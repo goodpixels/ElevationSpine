@@ -930,69 +930,126 @@ function PortalSection() {
 
 // ─── Workflow ─────────────────────────────────────────────────────────────────
 
+const workflowSteps = [
+  {
+    step: "Step 01",
+    title: "Trialing & Sizing",
+    desc: "Use the low-profile trial instruments to determine height, footprint, and lordotic angle under fluoroscopy.",
+    bgColor: "bg-slate-900 border border-slate-800 text-white shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M9 9h3.75M16.5 12h.008v.008h-.008V12zm0 3h.008v.008h-.008V15zm0-6h.008v.008h-.008V9zM2.25 21h19.5M8.25 21v-3.375c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21" />
+      </svg>
+    ),
+  },
+  {
+    step: "Step 02",
+    title: "Implant Loading",
+    desc: "Secure the SABER-C™ implant onto the unified inserter guide. Pre-pack the porous core with autologous bone graft.",
+    bgColor: "bg-slate-950 border border-slate-900 text-white shadow-[0_12px_40px_rgba(0,0,0,0.25)]",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    step: "Step 03",
+    title: "In-line Insertion",
+    desc: "Deliver the implant into the disc space. The zero-profile configuration ensures no protrusion beyond the anterior cortex.",
+    bgColor: "bg-sky-950 border border-sky-900 text-white shadow-[0_12px_40px_rgba(42,196,244,0.15)]",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#6ecff4] mb-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+      </svg>
+    ),
+  },
+  {
+    step: "Step 04",
+    title: "Rigid Screw Fixation",
+    desc: "Deploy screws through the integrated divergent guides. Engage the locking mechanism to prevent migration.",
+    bgColor: "bg-[#2ac4f4] text-[#0a0e17] shadow-[0_20px_50px_rgba(42,196,244,0.3)]",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="w-10 h-10 text-[#0a0e17] mb-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+      </svg>
+    ),
+  },
+];
+
 function WorkflowSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px 0px" });
-
   return (
-    <section id="about" className="bg-[#f8fafc] px-8 md:px-[35px] py-24 md:py-[118px] overflow-hidden">
-      <div ref={ref} className="max-w-[1800px] mx-auto flex flex-col lg:flex-row gap-16 md:gap-[118px] items-center">
-        <motion.div
-          variants={fadeIn}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex-1 relative"
-        >
-          <div className="rounded-[18px] border border-black/[0.07] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
-            <img
-              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png"
-              alt="Streamlined procedural workflow"
-              className="w-full object-cover"
-              style={{ minHeight: "400px", maxHeight: "718px" }}
-            />
-          </div>
-          <div className="absolute -bottom-3 -right-3 bg-white border border-[rgba(42,196,244,0.3)] shadow-[0_4px_20px_rgba(0,0,0,0.08)] rounded-[18px] w-[140px] h-[140px] flex flex-col items-center justify-center">
-            <span className="font-heading font-bold text-[#2ac4f4] text-[32px] leading-none">85%</span>
-            <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
-          </div>
-        </motion.div>
+    <section id="about" className="bg-[#f8fafc] px-6 md:px-16 lg:px-24 py-24 border-b border-black/[0.04]">
+      <div className="max-w-[1420px] mx-auto">
+        
+        {/* Title / Intro */}
+        <div className="mb-20 text-left">
+          <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
+            Clinical Advantage
+          </p>
+          <h2 className="font-heading font-bold text-[#0a0e17] text-[36px] md:text-[48px] tracking-tight leading-[1.15] max-w-[800px]">
+            Streamlined procedural workflow
+          </h2>
+          <p className="text-[#4a5568] text-[16px] md:text-[18px] mt-4 max-w-[700px] leading-relaxed">
+            The Elevation Spine platform is engineered to reduce surgical time and minimize intraoperative complications. By integrating fixation directly into the interbody device, we remove the need for supplemental plating and secondary steps.
+          </p>
+        </div>
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="flex-1 flex flex-col gap-16"
-        >
-          <div className="flex flex-col gap-9">
-            <motion.p variants={fadeUp} className="font-heading font-semibold text-[#2ac4f4] text-[13px] tracking-wider">
-              Clinical advantage
-            </motion.p>
-            <motion.h2 variants={fadeUp} className="font-heading font-bold text-[#0a0e17] text-[36px] md:text-[47px] tracking-[-0.945px] leading-[1.2]">
-              Streamlined procedural workflow
-            </motion.h2>
-            <p className="text-[#4a5568] text-[18px] md:text-[22px] leading-[1.65]">
-              The Elevation Spine platform is engineered to reduce surgical time and minimize intraoperative complications. By integrating fixation directly into the interbody device, we remove the need for supplemental plating and secondary steps.
-            </p>
-          </div>
-
-          <motion.div variants={stagger} className="flex flex-col gap-9">
-            {[
-              { title: "Reduced fluoroscopy", desc: "Fewer tool changes result in decreased radiation exposure." },
-              { title: "Optimized stability", desc: "Immediate rigid fixation through divergent screw paths." },
-            ].map((item, i) => (
-              <motion.div key={i} variants={fadeUp} className="flex gap-9 items-start">
-                <svg fill="none" viewBox="0 0 29.5312 35.4375" className="w-7 h-8 shrink-0 mt-0.5">
-                  <path d={svgPaths.p24f65700} fill="#2ac4f4" />
-                </svg>
+        {/* Scroll Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
+          
+          {/* Left Column: Stacking Cards */}
+          <div className="lg:col-span-6 flex flex-col gap-12 pb-32">
+            {workflowSteps.map((s, idx) => (
+              <div
+                key={idx}
+                className={`sticky rounded-[28px] p-8 md:p-12 min-h-[380px] flex flex-col justify-between transition-all duration-300 ${s.bgColor}`}
+                style={{
+                  top: `${140 + idx * 28}px`,
+                  zIndex: idx + 10,
+                }}
+              >
                 <div>
-                  <p className="font-heading font-bold text-[#0a0e17] text-[16px] mb-1">{item.title}</p>
-                  <p className="text-[#4a5568] text-[16px]">{item.desc}</p>
+                  <span className="font-mono text-[12px] uppercase tracking-[2px] opacity-60 block mb-6">
+                    {s.step}
+                  </span>
+                  {s.icon}
+                  <h3 className="font-heading font-bold text-[24px] md:text-[32px] tracking-tight leading-none mb-4">
+                    {s.title}
+                  </h3>
                 </div>
-              </motion.div>
+                <p className="text-[15px] md:text-[16px] leading-relaxed opacity-80 max-w-[440px]">
+                  {s.desc}
+                </p>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+
+          {/* Right Column: Sticky Image with stats overlays */}
+          <div className="lg:col-span-6 sticky top-[140px] z-0 hidden lg:block">
+            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white relative">
+              <img
+                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png"
+                alt="Streamlined procedural workflow"
+                className="w-full h-auto object-cover aspect-[4/3]"
+              />
+              
+              {/* Bottom stats indicators overlaid exactly like the mockups */}
+              <div className="absolute bottom-6 right-6 left-6 flex justify-end gap-3 pointer-events-none">
+                <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
+                  <span className="font-heading font-bold text-[#2ac4f4] text-[24px] leading-none">85%</span>
+                  <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
+                </div>
+                
+                <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
+                  <span className="font-heading font-bold text-[24px] leading-none">2-S</span>
+                  <span className="font-heading text-[10px] tracking-widest mt-1 uppercase">Fixation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
