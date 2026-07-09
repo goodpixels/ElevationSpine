@@ -747,65 +747,137 @@ function ProductsSection() {
   );
 }
 
-// ─── Distributor ──────────────────────────────────────────────────────────────
+// ─── Features (replaces Distributor) ─────────────────────────────────────────
 
-function DistributorSection() {
-  const benefits = ["Exclusive Territory Rights", "Comprehensive Sales Training", "Direct Surgeon Support Channel"];
+const featureCards = [
+  {
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8 text-[#2ac4f4]">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+      </svg>
+    ),
+    title: "FDA 510(k) Cleared",
+    desc: "SABER-C™ holds full FDA 510(k) clearance and is commercially distributed across leading US healthcare networks with proven safety and efficacy profiles.",
+    link: "Learn More",
+  },
+  {
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8 text-[#2ac4f4]">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      </svg>
+    ),
+    title: "Zero-Profile Fixation",
+    desc: "Proprietary in-line screw deployment eliminates secondary anterior plating, reducing operative time, soft tissue disruption, and adjacence-segment complications.",
+    link: "Learn More",
+  },
+  {
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8 text-[#2ac4f4]">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+      </svg>
+    ),
+    title: "Surgeon-Centric Design",
+    desc: "Every instrument in the SABER system is engineered to reduce cognitive load in the OR — familiar ergonomics, single-step delivery, and intuitive locking mechanisms.",
+    link: "Learn More",
+  },
+];
+
+function FeaturesSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px 0px" });
 
   return (
-    <section id="contact" className="bg-[#f8fafc] px-8 md:px-[106px] pb-24 pt-24">
-      <div className="max-w-[1800px] mx-auto">
+    <section id="contact" className="bg-white px-6 md:px-16 lg:px-24 py-28 border-b border-black/[0.04]">
+      <div className="max-w-[1420px] mx-auto">
+
+        {/* Header */}
         <motion.div
           ref={ref}
-          variants={fadeIn}
+          variants={stagger}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="bg-white border border-[#2ac4f4]/30 border-l-[4.5px] rounded-[18px] px-10 md:px-[52px] py-[50px] shadow-[0_4px_24px_rgba(42,196,244,0.08)]"
+          className="text-center mb-16"
         >
-          <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
+          <motion.p
+            variants={fadeUp}
+            className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-4 uppercase"
+          >
+            Precision. Safety. Speed.
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="font-heading font-bold text-[#0a0e17] text-[36px] md:text-[52px] lg:text-[60px] leading-[1.1] tracking-tight max-w-[860px] mx-auto"
+          >
+            A leading platform for advanced cervical spine fixation
+          </motion.h2>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14"
+        >
+          {featureCards.map((card, i) => (
             <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              className="flex-1 flex flex-col gap-9"
+              key={i}
+              variants={fadeUp}
+              whileHover={{
+                y: -6,
+                boxShadow: "0 20px 48px rgba(42,196,244,0.10)",
+                borderColor: "rgba(42,196,244,0.35)",
+              }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="group bg-[#f8fafc] border border-black/[0.06] rounded-[24px] p-8 flex flex-col gap-6 cursor-default"
             >
-              <div>
-                <motion.h2 variants={fadeUp} className="font-heading font-bold text-[#0a0e17] text-[40px] md:text-[64px] tracking-[-1.44px] leading-[1.15] mb-6">
-                  For distributors:<br />Ready to scale?
-                </motion.h2>
-                <p className="text-[#4a5568] text-[18px] md:text-[22px] leading-[1.55]">
-                  We are actively expanding our national footprint. Gain access to the Elevation Spine platform, technical training assets, and territory-specific analytics.
+              {/* Icon box */}
+              <div className="w-14 h-14 rounded-[16px] bg-[#f0f9ff] border border-[#2ac4f4]/20 flex items-center justify-center group-hover:bg-[#2ac4f4]/10 transition-colors duration-300">
+                {card.icon}
+              </div>
+
+              {/* Text */}
+              <div className="flex flex-col gap-3 flex-1">
+                <h3 className="font-heading font-bold text-[#0a0e17] text-[20px] leading-snug">
+                  {card.title}
+                </h3>
+                <p className="text-[#64748b] text-[15px] leading-relaxed flex-1">
+                  {card.desc}
                 </p>
               </div>
-              <motion.ul variants={stagger} className="flex flex-col gap-4">
-                {benefits.map((b, i) => (
-                  <motion.li key={i} variants={fadeUp} className="flex items-center gap-4">
-                    <svg fill="none" viewBox="0 0 25 25" className="w-5 h-5 shrink-0">
-                      <path d={svgPaths.p6e98980} fill="#2ac4f4" />
-                    </svg>
-                    <span className="font-heading font-semibold text-[#0a0e17] text-[18px] md:text-[22px]">{b}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
 
-            <motion.div variants={fadeUp} className="shrink-0">
-              <motion.button
-                whileHover={{ scale: 1.04, y: -3, boxShadow: "0 20px 50px rgba(42,196,244,0.3)", backgroundColor: "#6ecff4" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-semibold text-[15px] md:text-[18px] px-12 md:px-16 py-6 rounded-full flex items-center justify-center gap-3 shadow-[0px_20px_50px_-10px_rgba(42,196,244,0.25)]"
+              {/* Link */}
+              <motion.div
+                className="flex items-center gap-2 text-[#0891b2] font-heading font-semibold text-[14px] w-fit"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.2 }}
               >
-                Request territory data
-                <svg fill="none" viewBox="0 0 24 24" className="w-6 h-6">
-                  <path d={svgPaths.p2648c0c0} fill="#0a0e17" />
-                </svg>
-              </motion.button>
+                <span>→ {card.link}</span>
+              </motion.div>
             </motion.div>
-          </div>
+          ))}
         </motion.div>
+
+        {/* Bottom note + CTA */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="flex flex-col items-center gap-6 text-center"
+        >
+          <p className="text-[#94a3b8] text-[15px] max-w-[560px] leading-relaxed">
+            Our clinical and distribution teams collaborate with surgeons and healthcare networks across the US to ensure comprehensive adoption and outcomes tracking.
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.04, y: -3, boxShadow: "0 20px 50px rgba(42,196,244,0.35)", backgroundColor: "#6ecff4" }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[15px] px-10 py-4 rounded-full flex items-center gap-3 shadow-[0_8px_28px_rgba(42,196,244,0.25)]"
+          >
+            → Explore All Products
+          </motion.button>
+        </motion.div>
+
       </div>
     </section>
   );
@@ -813,11 +885,11 @@ function DistributorSection() {
 
 // ─── Portal ───────────────────────────────────────────────────────────────────
 
+const BG_PORTAL = "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783571259/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
+
 function PortalSection() {
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
-  const leftInView = useInView(leftRef, { once: true, margin: "-80px 0px" });
-  const rightInView = useInView(rightRef, { once: true, margin: "-80px 0px" });
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-80px 0px" });
 
   const resources = [
     { icon: svgPaths.p713f7c0, vb: "0 0 21.0468 26.6593", w: 21, h: 27, label: "Instructions for Use (IFU) Library" },
@@ -826,95 +898,195 @@ function PortalSection() {
   ];
 
   return (
-    <section id="login" className="bg-white px-8 md:px-[130px] py-24 md:py-[168px]">
-      <div className="max-w-[1800px] mx-auto flex flex-col lg:flex-row gap-16 md:gap-[134px] items-center">
+    <section
+      id="login"
+      ref={sectionRef}
+      className="relative min-h-[680px] flex items-center overflow-hidden"
+      style={{ isolation: "isolate" }}
+    >
+      {/* Full-bleed background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${BG_PORTAL})` }}
+      />
+      {/* Dark gradient overlay: heavy on left for text legibility, fades out on right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
+      {/* Teal vignette tint at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e17]/60 to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-[1420px] mx-auto px-6 md:px-16 lg:px-24 py-20 md:py-28 flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+
+        {/* ── Left: Info card ──────────────────────────────────── */}
         <motion.div
-          ref={leftRef}
           variants={stagger}
           initial="hidden"
-          animate={leftInView ? "visible" : "hidden"}
-          className="flex-1 flex flex-col gap-10"
+          animate={inView ? "visible" : "hidden"}
+          className="flex-1 flex flex-col gap-8"
+          style={{
+            background: "rgba(255,255,255,0.07)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: "28px",
+            padding: "44px 48px",
+          }}
         >
           <div>
-            <motion.h2 variants={fadeUp} className="font-heading font-bold text-[#2ac4f4] text-[48px] md:text-[67px] tracking-[-1.68px] leading-[1.0] mb-6">
-              Technical resource portal
+            <motion.p
+              variants={fadeUp}
+              className="font-mono text-[#2ac4f4] text-[12px] tracking-widest uppercase font-semibold mb-3"
+            >
+              Secure Resource Access
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="font-heading font-bold text-white text-[34px] md:text-[46px] leading-[1.1] tracking-tight mb-4"
+            >
+              Technical<br />Resource Portal
             </motion.h2>
-            <p className="text-[#4a5568] text-[18px] md:text-[22px] leading-[1.6]">
-              Secure access to detailed surgical techniques, Instructions for Use (IFU), clinical data, and marketing assets for authorized distributors and surgical staff.
-            </p>
+            <motion.p variants={fadeUp} className="text-white/60 text-[15px] md:text-[17px] leading-relaxed max-w-[420px]">
+              Secure access to surgical techniques, IFU documentation, clinical data, and marketing assets for authorized distributors and surgical staff.
+            </motion.p>
           </div>
-          <motion.div variants={stagger} className="flex flex-col gap-8">
+
+          {/* Resource list */}
+          <motion.div variants={stagger} className="flex flex-col gap-5">
             {resources.map((item, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-8 cursor-default"
+                className="flex items-center gap-5 cursor-default group"
               >
-                <div className="flex items-center justify-center w-[67px] h-[67px] shrink-0 bg-[#f0f9ff] border border-[#2ac4f4]/20 rounded-full">
-                  <svg fill="none" viewBox={item.vb} style={{ width: item.w, height: item.h }}>
+                <div className="flex items-center justify-center w-[50px] h-[50px] shrink-0 rounded-full"
+                  style={{ background: "rgba(42,196,244,0.12)", border: "1px solid rgba(42,196,244,0.25)" }}
+                >
+                  <svg fill="none" viewBox={item.vb} style={{ width: item.w * 0.75, height: item.h * 0.75 }}>
                     <path d={item.icon} fill="#2ac4f4" />
                   </svg>
                 </div>
-                <span className="font-heading font-medium text-[#0a0e17] text-[16px] md:text-[18px]">
+                <span className="font-heading font-medium text-white/80 group-hover:text-white text-[15px] transition-colors">
                   {item.label}
                 </span>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="flex flex-row gap-4 mt-2">
+            <motion.button
+              whileHover={{ scale: 1.04, y: -3, boxShadow: "0 20px 44px rgba(42,196,244,0.40)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-3.5 rounded-full flex items-center gap-2 shadow-[0_8px_24px_rgba(42,196,244,0.3)]"
+            >
+              → Request Access
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.12)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
+              className="border border-white/25 text-white font-heading font-medium text-[14px] px-8 py-3.5 rounded-full"
+              style={{ background: "rgba(255,255,255,0.07)", backdropFilter: "blur(8px)" }}
+            >
+              Learn More
+            </motion.button>
+          </motion.div>
         </motion.div>
 
+        {/* ── Right: Login form card ────────────────────────────── */}
         <motion.div
-          ref={rightRef}
           variants={fadeUp}
           initial="hidden"
-          animate={rightInView ? "visible" : "hidden"}
-          className="flex-1 w-full max-w-[520px]"
+          animate={inView ? "visible" : "hidden"}
+          className="w-full max-w-[420px] shrink-0"
         >
-          <div className="bg-white border border-black/[0.07] rounded-[32px] shadow-[0_8px_40px_rgba(0,0,0,0.08)] overflow-hidden relative">
-            <div className="absolute top-0 left-0 right-0 h-[5px] bg-[#2ac4f4]" />
-            <div className="p-[48px] md:p-[67px] pt-[70px]">
-              <h3 className="font-heading font-bold text-[#2ac4f4] text-[36px] md:text-[42px] tracking-[-1.05px] leading-[1.2] mb-2">
+          <div
+            className="relative overflow-hidden rounded-[28px]"
+            style={{
+              background: "rgba(255,255,255,0.10)",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+              border: "1px solid rgba(255,255,255,0.18)",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.35)",
+            }}
+          >
+            {/* Cyan top bar */}
+            <div className="h-[4px] w-full bg-[#2ac4f4]" />
+
+            <div className="p-10">
+              <h3 className="font-heading font-bold text-white text-[28px] md:text-[32px] tracking-tight mb-1">
                 Portal login
               </h3>
-              <p className="text-[#64748b] text-[16px] md:text-[18px] mb-10">
-                Authorized personnel only.
-              </p>
-              <form className="flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
-                <div className="flex flex-col gap-4">
-                  <label className="font-heading font-semibold text-[#0a0e17] text-[12px] tracking-wide">
+              <p className="text-white/50 text-[14px] mb-8">Authorized personnel only.</p>
+
+              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+                <div className="flex flex-col gap-2">
+                  <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
                     Institution email
                   </label>
                   <input
                     type="email"
                     required
                     placeholder="name@hospital.org"
-                    className="bg-[#f8fafc] border border-black/10 rounded-[12px] px-6 py-5 font-sans text-[#0a0e17] text-[16px] placeholder-[#94a3b8] focus:outline-none focus:border-[#2ac4f4]/60 transition-colors"
+                    className="rounded-[12px] px-5 py-3.5 text-[15px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.border = "1px solid rgba(42,196,244,0.6)";
+                      e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
+                      e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                    }}
                   />
                 </div>
-                
-                <div className="flex flex-col gap-4">
-                  <label className="font-heading font-semibold text-[#0a0e17] text-[12px] tracking-wide">
+
+                <div className="flex flex-col gap-2">
+                  <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
                     Password
                   </label>
                   <input
                     type="password"
                     required
                     placeholder="••••••••"
-                    className="bg-[#f8fafc] border border-black/10 rounded-[12px] px-6 py-5 font-sans text-[#0a0e17] text-[16px] placeholder-[#94a3b8] focus:outline-none focus:border-[#2ac4f4]/60 transition-colors"
+                    className="rounded-[12px] px-5 py-3.5 text-[15px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.border = "1px solid rgba(42,196,244,0.6)";
+                      e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
+                      e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                    }}
                   />
                 </div>
 
-                <div className="border-t border-black/[0.07] pt-10 flex items-center justify-between">
-                  <a href="#" className="font-heading text-[#64748b] text-[16px] hover:text-[#2ac4f4] transition-colors font-medium">
+                <div
+                  className="flex items-center justify-between pt-4 mt-1"
+                  style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}
+                >
+                  <a
+                    href="#"
+                    className="font-heading text-white/50 hover:text-[#2ac4f4] text-[13px] font-medium transition-colors nav-underline"
+                  >
                     Request access
                   </a>
                   <motion.button
-                    whileHover={{ scale: 1.04, y: -2, backgroundColor: "#6ecff4" }}
+                    type="submit"
+                    whileHover={{ scale: 1.05, y: -2, boxShadow: "0 14px_36px rgba(42,196,244,0.45)" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ duration: 0.2 }}
-                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-semibold text-[13px] px-10 py-4 rounded-full shadow-[0_4px_14px_rgba(42,196,244,0.3)] cursor-pointer"
+                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[13px] px-8 py-3 rounded-full shadow-[0_4px_20px_rgba(42,196,244,0.4)] cursor-pointer"
                   >
                     Secure login
                   </motion.button>
@@ -923,6 +1095,7 @@ function PortalSection() {
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
@@ -1138,7 +1311,7 @@ function HomeView() {
       <MissionSection />
       <ProductsSection />
       <WorkflowSection />
-      <DistributorSection />
+      <FeaturesSection />
       <PortalSection />
       <Footer />
     </>

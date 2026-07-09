@@ -182,3 +182,105 @@
     line-height: 1.5;
   }
 }
+
+/* ─── Global Micro-Animations & Polish ─────────────────────────────────────── */
+
+/* Smooth scroll throughout the page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Text selection color */
+::selection {
+  background-color: rgba(42, 196, 244, 0.2);
+  color: #0a0e17;
+}
+
+/* All links transition */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Button base micro-transition */
+button {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+/* Subtle focus ring */
+:focus-visible {
+  outline: 2px solid rgba(42, 196, 244, 0.6);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Thin scroll bar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(42, 196, 244, 0.2);
+  border-radius: 99px;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(42, 196, 244, 0.5);
+}
+
+/* Animated underline helper (apply class "nav-underline" to any anchor) */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: #2ac4f4;
+  border-radius: 2px;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-underline:hover::after {
+  width: 100%;
+}
+
+/* Card lift (apply to any card wrapper div) */
+.card-lift {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Fade-in keyframe for elements entering viewport */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer loading keyframe */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Typing cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
