@@ -494,8 +494,8 @@ const productsData = [
     tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
     title: "SABER-C™",
     description: "Integrated cervical interbody fusion system designed for maximum stability with minimal anatomic disruption.",
-    visualType: "video",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    visualType: "image",
+    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
     link: "/saber-c",
     cta: "View device details",
   },
@@ -505,8 +505,8 @@ const productsData = [
     tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
     title: "SABER-XA™",
     description: "Next-generation lateral access fixation currently undergoing final validation and clinical advisory review.",
-    visualType: "image",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
+    visualType: "blueprint",
+    visualUrl: "",
     statusUpdate: {
       title: "Status update",
       text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
@@ -672,12 +672,54 @@ function ProductsSection() {
                 >
                   <source src={activeProduct.visualUrl} type="video/mp4" />
                 </video>
-              ) : (
+              ) : activeProduct.visualType === "image" ? (
                 <img
                   src={activeProduct.visualUrl}
                   alt={activeProduct.title}
                   className="w-full h-full object-cover"
                 />
+              ) : (
+                <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-[#0a101d] overflow-hidden">
+                  {/* Blueprint Grid Lines */}
+                  <div 
+                    className="absolute inset-0 opacity-[0.07]" 
+                    style={{
+                      backgroundImage: 'radial-gradient(#2ac4f4 1.5px, transparent 1.5px), linear-gradient(rgba(42,196,244,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(42,196,244,0.1) 1px, transparent 1px)',
+                      backgroundSize: '24px 24px, 24px 24px, 24px 24px',
+                      backgroundPosition: '0 0, 12px 12px, 12px 12px'
+                    }}
+                  />
+                  
+                  {/* Pulsing Glow Rings */}
+                  <div className="relative flex items-center justify-center">
+                    <motion.div 
+                      animate={{ scale: [1, 1.35, 1], opacity: [0.15, 0.02, 0.15] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute w-32 h-32 rounded-full border border-[#2ac4f4]/25"
+                    />
+                    <motion.div 
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.05, 0.25] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute w-24 h-24 rounded-full border border-[#2ac4f4]/35"
+                    />
+                    
+                    {/* Medical Icon Inner Circle */}
+                    <div className="relative w-16 h-16 rounded-full bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 flex items-center justify-center shadow-[0_0_24px_rgba(42,196,244,0.12)]">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-[#2ac4f4]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 text-center z-10 px-6">
+                    <h4 className="font-mono text-[#2ac4f4] text-[12px] tracking-[2px] font-semibold uppercase mb-1.5">
+                      {activeProduct.title}
+                    </h4>
+                    <p className="font-sans text-white/50 text-[12px] tracking-wider uppercase">
+                      Product in Development
+                    </p>
+                  </div>
+                </div>
               )}
               {/* Subtle overlay for styling integration */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
