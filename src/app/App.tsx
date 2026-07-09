@@ -485,83 +485,205 @@ function GlassRibbonSection() {
 
 // ─── Products ─────────────────────────────────────────────────────────────────
 
-function ProductsSection() {
-  return (
-    <section id="products" className="bg-white px-8 md:px-24 py-24">
-      <div className="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        <RevealSection>
-          <Link to="/saber-c" className="block text-left h-full">
-            <motion.div
-              whileHover={{ y: -6, scale: 1.01, boxShadow: "0 24px 60px rgba(42,196,244,0.18)" }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="bg-[#f0f9ff] hover:border-[#2ac4f4]/50 rounded-[18px] border border-[#2ac4f4]/20 overflow-hidden relative min-h-[700px] md:min-h-[900px] flex flex-col h-full"
-            >
-              <div className="absolute inset-0 opacity-20">
-                <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png" alt="SABER-C implant" className="w-full h-full object-cover scale-x-[-1]" />
-              </div>
-              <div className="relative z-10 flex flex-col flex-1 p-[40px] md:p-[49.5px]">
-                <div className="inline-flex self-start items-center bg-[rgba(42,196,244,0.12)] border border-[rgba(42,196,244,0.3)] rounded-full px-5 py-1.5 mb-6">
-                  <span className="font-mono font-medium text-[#0891b2] text-[12px] tracking-wider">Available now</span>
-                </div>
-                <h2 className="font-heading font-bold text-[#0a0e17] text-[52px] md:text-[72px] tracking-[-1.44px] leading-[1.15] mb-5">
-                  SABER-C™
-                </h2>
-                <p className="text-[#4a5568] text-[18px] md:text-[22px] leading-[1.5] max-w-[480px] mb-auto">
-                  Integrated cervical interbody fusion system designed for maximum stability with minimal anatomic disruption.
-                </p>
-                <div className="mt-12">
-                  <motion.button
-                    whileHover={{ scale: 1.02, backgroundColor: "rgba(42,196,244,0.15)" }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 rounded-[18px] flex items-center gap-4 px-8 py-5 text-[#0a0e17]"
-                  >
-                    <svg fill="none" viewBox="0 0 24 30" className="w-5 h-6 shrink-0">
-                      <path d={svgPaths.pc679c40} fill="#0891b2" />
-                    </svg>
-                    <span className="font-heading font-semibold text-[#0891b2] text-[15px]">
-                      View device details
-                    </span>
-                    <svg fill="none" viewBox="0 0 16 16" className="w-4 h-4 shrink-0">
-                      <path d={svgPaths.p358da480} fill="#0891b2" />
-                    </svg>
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          </Link>
-        </RevealSection>
+// ─── Products ─────────────────────────────────────────────────────────────────
 
-        <RevealSection delay={0.12}>
-          <motion.div
-            whileHover={{ y: -6, boxShadow: "0 24px 60px rgba(0,0,0,0.08)" }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="bg-[#f8fafc] rounded-[18px] border border-black/[0.07] overflow-hidden relative min-h-[700px] md:min-h-[900px] flex flex-col"
-          >
-            <div className="relative z-10 flex flex-col flex-1 p-[40px] md:p-[49.5px]">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="inline-flex items-center bg-[rgba(100,116,139,0.1)] border border-[rgba(100,116,139,0.2)] rounded-full px-5 py-1.5">
-                  <span className="font-mono font-medium text-[#64748b] text-[12px] tracking-wider">Pipeline development</span>
-                </div>
-                <svg fill="none" viewBox="0 0 18 23.625" className="w-[18px] h-[24px]">
-                  <path d={svgPaths.p2bea3800} fill="#94a3b8" />
-                </svg>
-              </div>
-              <h2 className="font-heading font-bold text-[#0a0e17]/60 text-[52px] md:text-[72px] tracking-[-1.44px] leading-[1.15] mb-5">
-                SABER-XA™
-              </h2>
-              <p className="text-[#64748b] text-[18px] md:text-[22px] leading-[1.5] max-w-[480px] mb-auto">
-                Next-generation lateral access fixation currently undergoing final validation and clinical advisory review.
-              </p>
-              <div className="mt-12 bg-[#f1f5f9] border border-black/[0.06] rounded-[18px] p-9">
-                <p className="font-mono font-medium text-[#64748b] text-[13px] tracking-wider mb-3">Status update</p>
-                <p className="italic text-[#475569] text-[16px] md:text-[18px] leading-[1.55]">
-                  "Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."
-                </p>
-              </div>
-            </div>
-          </motion.div>
+const productsData = [
+  {
+    id: "saber-c",
+    tag: "Available now",
+    tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
+    title: "SABER-C™",
+    description: "Integrated cervical interbody fusion system designed for maximum stability with minimal anatomic disruption.",
+    visualType: "video",
+    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    link: "/saber-c",
+    cta: "View device details",
+  },
+  {
+    id: "saber-xa",
+    tag: "Pipeline development",
+    tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
+    title: "SABER-XA™",
+    description: "Next-generation lateral access fixation currently undergoing final validation and clinical advisory review.",
+    visualType: "image",
+    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
+    statusUpdate: {
+      title: "Status update",
+      text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
+    },
+  },
+];
+
+function ProductsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const timerRef = useRef<number | null>(null);
+  const duration = 6000; // 6 seconds per product slide
+
+  useEffect(() => {
+    const startTime = Date.now();
+    
+    const updateProgress = () => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min((elapsed / duration) * 100, 100);
+      setProgress(pct);
+
+      if (elapsed >= duration) {
+        setActiveIndex((prev) => (prev + 1) % productsData.length);
+        setProgress(0);
+      } else {
+        timerRef.current = requestAnimationFrame(updateProgress);
+      }
+    };
+
+    timerRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (timerRef.current) cancelAnimationFrame(timerRef.current);
+    };
+  }, [activeIndex]);
+
+  const handleSelect = (index: number) => {
+    if (timerRef.current) cancelAnimationFrame(timerRef.current);
+    setActiveIndex(index);
+    setProgress(0);
+  };
+
+  const activeProduct = productsData[activeIndex];
+
+  return (
+    <section id="products" className="bg-[#f8fafc] px-6 md:px-16 lg:px-24 py-24 border-y border-black/[0.04]">
+      <div className="max-w-[1420px] mx-auto mb-12">
+        <RevealSection>
+          <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
+            Spine Solutions
+          </p>
+          <h2 className="font-heading font-bold text-[#1a2535] text-[36px] md:text-[48px] leading-[1.15] tracking-tight max-w-[800px]">
+            Innovative platforms engineered for precision and procedural simplicity.
+          </h2>
         </RevealSection>
+      </div>
+
+      <div className="max-w-[1420px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Left Content Card */}
+        <div className="lg:col-span-5 bg-white border border-black/[0.06] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.03)] p-8 md:p-12 flex flex-col justify-between min-h-[500px] relative overflow-hidden">
+          <div className="flex flex-col gap-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex flex-col gap-5 text-left"
+              >
+                <div className={`inline-flex self-start items-center border rounded-full px-4 py-1.5 ${activeProduct.tagColor}`}>
+                  <span className="font-mono font-medium text-[11px] tracking-wider uppercase">
+                    {activeProduct.tag}
+                  </span>
+                </div>
+                
+                <h3 className="font-heading font-bold text-[#0a0e17] text-[40px] md:text-[52px] tracking-tight leading-none">
+                  {activeProduct.title}
+                </h3>
+                
+                <p className="text-[#4a5568] text-[16px] md:text-[18px] leading-relaxed">
+                  {activeProduct.description}
+                </p>
+
+                {activeProduct.id === "saber-c" && activeProduct.link && (
+                  <div className="mt-6">
+                    <Link to={activeProduct.link} className="inline-block">
+                      <motion.div
+                        whileHover={{ scale: 1.02, backgroundColor: "rgba(42,196,244,0.15)" }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-[#2ac4f4]/10 border border-[#2ac4f4]/35 rounded-[16px] flex items-center gap-4 px-6 py-4 text-[#0a0e17] cursor-pointer"
+                      >
+                        <svg fill="none" viewBox="0 0 24 30" className="w-4 h-5 shrink-0">
+                          <path d={svgPaths.pc679c40} fill="#0891b2" />
+                        </svg>
+                        <span className="font-heading font-bold text-[#0891b2] text-[14px]">
+                          {activeProduct.cta}
+                        </span>
+                        <svg fill="none" viewBox="0 0 16 16" className="w-3.5 h-3.5 shrink-0">
+                          <path d={svgPaths.p358da480} fill="#0891b2" />
+                        </svg>
+                      </motion.div>
+                    </Link>
+                  </div>
+                )}
+
+                {activeProduct.statusUpdate && (
+                  <div className="mt-6 bg-slate-50 border border-black/[0.04] rounded-[16px] p-6 text-left">
+                    <p className="font-mono font-semibold text-[#64748b] text-[11px] tracking-wider mb-2 uppercase">
+                      {activeProduct.statusUpdate.title}
+                    </p>
+                    <p className="italic text-[#475569] text-[14px] md:text-[15px] leading-relaxed">
+                      {activeProduct.statusUpdate.text}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Progress Bars Indicators */}
+          <div className="flex gap-3 mt-12 w-[180px] self-start">
+            {productsData.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSelect(idx)}
+                className="flex-1 h-[3px] bg-black/[0.07] hover:bg-black/[0.15] rounded-full overflow-hidden relative cursor-pointer focus:outline-none transition-colors"
+                aria-label={`Go to product ${idx + 1}`}
+              >
+                {activeIndex === idx && (
+                  <div
+                    className="h-full bg-[#2ac4f4] transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+                {activeIndex > idx && (
+                  <div className="h-full bg-black/40" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Visual Card */}
+        <div className="lg:col-span-7 bg-[#0a0e17] rounded-[24px] overflow-hidden relative min-h-[360px] lg:min-h-[520px] flex items-center justify-center border border-black/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.03)]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.45, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full"
+            >
+              {activeProduct.visualType === "video" ? (
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={activeProduct.visualUrl} type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src={activeProduct.visualUrl}
+                  alt={activeProduct.title}
+                  className="w-full h-full object-cover"
+                />
+              )}
+              {/* Subtle overlay for styling integration */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
