@@ -487,7 +487,7 @@ function MissionSection() {
 
             <div className="rounded-[24px] overflow-hidden border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.03)] mt-4">
               <img
-                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png"
+                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783558935/El_Spine_products-7_s0qshq.jpg"
                 alt="Elevation Spine medical device implementation"
                 className="w-full object-cover aspect-[21/9] min-h-[220px]"
               />
