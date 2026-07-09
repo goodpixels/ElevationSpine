@@ -423,62 +423,78 @@ function HeroSection() {
   );
 }
 
-// ─── Glass Ribbon ─────────────────────────────────────────────────────────────
+// ─── Mission Section (with Typing Effect) ──────────────────────────────────────
 
-function GlassRibbonSection() {
-  const items = [
-    {
-      icon: svgPaths.p13774060,
-      iconVB: "0 0 528 31.5",
-      tag: "FDA 510(k) Cleared",
-      desc: "Commercially distributed across strategic US healthcare networks with proven safety profiles.",
-    },
-    {
-      icon: svgPaths.p1104fd00,
-      iconVB: "0 0 454.5 28.575",
-      tag: "Proprietary Fixation",
-      desc: "Low-profile instrumentation designed for minimally invasive approaches and reduced operative time.",
-    },
-    {
-      icon: svgPaths.p12df5c00,
-      iconVB: "0 0 454.5 30",
-      tag: "Single-Step In-Line Insertion",
-      desc: "Eliminates multi-stage deployment workflows, enhancing precision in high-stakes spinal procedures.",
-    },
-  ];
-
+function TypingTitle({ text }: { text: string }) {
+  const [displayedText, setDisplayedText] = useState("");
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(text.slice(0, index + 1));
+      index++;
+      if (index >= text.length) {
+        clearInterval(interval);
+      }
+    }, 28); // Speed of typing
+    return () => clearInterval(interval);
+  }, [isInView, text]);
 
   return (
-    <section id="partners" className="relative bg-white border-y border-black/[0.07]">
-      <motion.div
-        ref={ref}
-        variants={stagger}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="max-w-[1800px] mx-auto px-8 md:px-24 py-12 md:py-[50px] grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-[72px]"
-      >
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            variants={fadeUp}
-            className={`flex flex-col gap-3 ${i > 0 ? "md:border-l md:border-black/10 md:pl-[73.5px]" : ""}`}
-          >
-            <div className="pb-3 overflow-hidden" style={{ maxHeight: "32px" }}>
-              <svg fill="none" viewBox={item.iconVB} className="h-[32px]" style={{ width: "auto", maxWidth: "100%" }}>
-                <path d={item.icon} fill="#2ac4f4" />
-              </svg>
+    <h2
+      ref={ref}
+      className="font-heading font-bold text-[#0a0e17] text-[28px] sm:text-[40px] md:text-[54px] lg:text-[60px] leading-[1.1] tracking-tight max-w-[1200px] text-left"
+    >
+      {displayedText}
+      <span className="animate-pulse text-[#2ac4f4] ml-1">|</span>
+    </h2>
+  );
+}
+
+function MissionSection() {
+  return (
+    <section id="about" className="bg-white px-6 md:px-16 lg:px-24 py-24 border-b border-black/[0.04]">
+      <div className="max-w-[1420px] mx-auto flex flex-col gap-12">
+        {/* Title row */}
+        <div className="min-h-[100px] sm:min-h-[140px] md:min-h-[160px]">
+          <TypingTitle text="We engineer zero-profile spinal systems to elevate surgical control and patient recovery." />
+        </div>
+        
+        {/* Separator line */}
+        <div className="w-full h-px bg-black/[0.08]" />
+
+        {/* Content row */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          {/* Left Column tag */}
+          <div className="md:col-span-4 text-left">
+            <span className="font-heading font-semibold text-[#64748b] text-[15px] tracking-wide uppercase">
+              Zero-profile, zero compromise.
+            </span>
+          </div>
+
+          {/* Right Column details */}
+          <div className="md:col-span-8 flex flex-col gap-8 text-left">
+            <p className="font-heading font-semibold text-[#2ac4f4] text-[20px] md:text-[24px] leading-relaxed">
+              Our mission is to redefine spinal fusion surgery by delivering leading-edge zero-profile interbody systems that eliminate traditional secondary plating and accelerate recovery.
+            </p>
+            
+            <p className="text-[#4a5568] text-[16px] md:text-[18px] leading-relaxed">
+              By integrating rigid fixation directly into the cage, our platform minimizes soft tissue disruption, optimizes sagittal balance, and reduces overall operating room time. Elevation Spine devices conform seamlessly to patient anatomy, locking securely in place to provide immediate rigid stability that supports long-term fusion.
+            </p>
+
+            <div className="rounded-[24px] overflow-hidden border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.03)] mt-4">
+              <img
+                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png"
+                alt="Elevation Spine medical device implementation"
+                className="w-full object-cover aspect-[21/9] min-h-[220px]"
+              />
             </div>
-            <p className="font-mono font-medium text-[#2ac4f4] text-[14px] tracking-[1px]">
-              {item.tag}
-            </p>
-            <p className="font-sans font-normal text-[#4a5568] text-[16px] md:text-[18px] leading-[1.5]">
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -1062,7 +1078,7 @@ function HomeView() {
     <>
       <Navbar />
       <HeroSection />
-      <GlassRibbonSection />
+      <MissionSection />
       <ProductsSection />
       <WorkflowSection />
       <DistributorSection />
