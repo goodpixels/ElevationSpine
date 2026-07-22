@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ command }) => ({
-  base: command === 'serve' ? '/' : '/Elevation2/',
+  base: process.env.NETLIFY ? '/' : (command === 'serve' ? '/' : './'),
   build: {
     outDir: 'docs',
     emptyOutDir: true,
