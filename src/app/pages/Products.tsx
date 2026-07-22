@@ -9,7 +9,7 @@ const productsData = [
     title: "Saber-C™ Cervical Fusion System",
     description: "Zero-Profile Anterior Cervical Plate with Integrated Spike and Screw Fixation Options. Features a PorOss™ 3D-printed titanium porous interbody paired with in-line fixation.",
     visualType: "image",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png",
+    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
     link: "/saber-c",
     cta: "View Device Details",
   },
@@ -28,6 +28,8 @@ const productsData = [
   },
 ];
 
+import { TextRevealTitle } from "../App.tsx";
+
 export default function Products() {
   return (
     <div className="pt-32 pb-24 px-6 md:px-16 lg:px-24 min-h-screen bg-[#f8fafc]">
@@ -41,9 +43,11 @@ export default function Products() {
           <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
             Product Portfolio
           </p>
-          <h1 className="font-heading font-bold text-[#1a2535] text-[48px] md:text-[64px] leading-[1.1] tracking-tight">
-            Engineered for <br/> procedural simplicity
-          </h1>
+          <TextRevealTitle
+            as="h1"
+            text="Engineered for procedural simplicity"
+            className="font-heading font-bold text-[#1a2535] text-[48px] md:text-[64px] leading-[1.1] tracking-tight max-w-3xl"
+          />
         </motion.div>
 
         <div className="flex flex-col gap-12">

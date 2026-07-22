@@ -1,6 +1,6 @@
 import svgPaths from "@/imports/ElevationHome1/svg-podh48szuv";
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { motion, useInView, AnimatePresence, useScroll } from "motion/react";
 import { Link, Routes, Route } from "react-router";
 import SaberCDetail from "./SaberCDetail.tsx";
 
@@ -282,6 +282,25 @@ function VideoGalleryModal({ onClose }: { onClose: () => void }) {
 
 function HeroSection() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.currentTime = 7;
+    }
+  }, []);
+
+  const handleLoadedMetadata = () => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.currentTime = 7;
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (heroVideoRef.current && heroVideoRef.current.currentTime < 6.8) {
+      heroVideoRef.current.currentTime = 7;
+    }
+  };
 
   return (
     <>
@@ -293,14 +312,17 @@ function HeroSection() {
           {/* Video background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e17] via-[#0f1520] to-[#1a2535]" />
           <video
+            ref={heroVideoRef}
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
             muted
             loop
             playsInline
+            onLoadedMetadata={handleLoadedMetadata}
+            onTimeUpdate={handleTimeUpdate}
             poster="/img/hero-poster.jpg"
           >
-            <source src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4#t=7" type="video/mp4" />
           </video>
 
           {/* Overlay gradients for text legibility */}
@@ -454,9 +476,47 @@ function TypingTitle({ text }: { text: string }) {
   );
 }
 
+const missionImages = [
+  {
+    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783558935/El_Spine_products-7_s0qshq.jpg",
+    title: "Zero-Profile Implant Architecture",
+    caption: "Minimizes tissue disruption & eliminates secondary plates",
+  },
+  {
+    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784759902/El_Spine_products-19_zvzhgl.jpg",
+    title: "Slimline™ Precision Instrumentation",
+    caption: "Streamlined single-tray surgical sequence for OR efficiency",
+  },
+  {
+    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784759901/El_Spine_products-7_rp7ry0.jpg",
+    title: "Integrated Spike Fixation",
+    caption: "Pre-loaded in-line fixation providing rigid stability",
+  },
+];
+
 function MissionSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  useEffect(() => {
+    return scrollYProgress.onChange((v) => {
+      if (v < 0.35) {
+        setActiveIdx(0);
+      } else if (v < 0.7) {
+        setActiveIdx(1);
+      } else {
+        setActiveIdx(2);
+      }
+    });
+  }, [scrollYProgress]);
+
   return (
-    <section id="about" className="bg-white px-6 md:px-16 lg:px-24 py-24 border-b border-black/[0.04]">
+    <section id="about" className="bg-white px-6 md:px-16 lg:px-24 py-20 border-b border-black/[0.04]">
       <div className="max-w-[1420px] mx-auto flex flex-col gap-12">
         {/* Title row */}
         <div className="min-h-[100px] sm:min-h-[140px] md:min-h-[160px]">
@@ -466,37 +526,110 @@ function MissionSection() {
         {/* Separator line */}
         <div className="w-full h-px bg-black/[0.08]" />
 
-        {/* Content row */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          {/* Left Column tag */}
-          <div className="md:col-span-4 text-left">
-            <span className="font-heading font-semibold text-[#64748b] text-[15px] tracking-wide uppercase">
-              Zero-profile, zero compromise.
-            </span>
-          </div>
+        {/* Pinned scroll container */}
+        <div ref={containerRef} className="relative min-h-[180vh] md:min-h-[220vh]">
+          <div className="sticky top-[10vh] flex flex-col justify-center min-h-[calc(100vh-100px)] py-4">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              {/* Left Column tag & interactive steps */}
+              <div className="md:col-span-4 text-left flex flex-col gap-6">
+                <span className="font-heading font-semibold text-[#64748b] text-[15px] tracking-wide uppercase">
+                  Zero-profile, zero compromise.
+                </span>
 
-          {/* Right Column details */}
-          <div className="md:col-span-8 flex flex-col gap-8 text-left">
-            <p className="font-heading font-semibold text-[#2ac4f4] text-[20px] md:text-[24px] leading-relaxed">
-              Our mission is to redefine spinal fusion surgery by delivering leading-edge zero-profile interbody systems that eliminate traditional secondary plating and accelerate recovery.
-            </p>
-            
-            <p className="text-[#4a5568] text-[16px] md:text-[18px] leading-relaxed">
-              By integrating rigid fixation directly into the cage, our platform minimizes soft tissue disruption, optimizes sagittal balance, and reduces overall operating room time. Elevation Spine devices conform seamlessly to patient anatomy, locking securely in place to provide immediate rigid stability that supports long-term fusion.
-            </p>
+                {/* Step indicator */}
+                <div className="hidden md:flex flex-col gap-4 mt-4 border-l-2 border-black/[0.08] pl-5">
+                  {missionImages.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveIdx(i)}
+                      className={`text-left transition-all duration-300 cursor-pointer ${
+                        activeIdx === i
+                          ? "text-[#2ac4f4] font-semibold translate-x-1"
+                          : "text-slate-400 hover:text-slate-600 font-normal"
+                      }`}
+                    >
+                      <p className="font-heading text-sm">{img.title}</p>
+                      <p className="font-sans text-xs text-slate-400 mt-0.5 line-clamp-1">{img.caption}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-            <div className="rounded-[24px] overflow-hidden border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.03)] mt-4">
-              <img
-                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783558935/El_Spine_products-7_s0qshq.jpg"
-                alt="Elevation Spine medical device implementation"
-                className="w-full object-cover aspect-[21/9] min-h-[220px]"
-              />
+              {/* Right Column details and animated image slide */}
+              <div className="md:col-span-8 flex flex-col gap-6 text-left">
+                <p className="font-heading font-semibold text-[#2ac4f4] text-[20px] md:text-[24px] leading-relaxed">
+                  Our mission is to redefine spinal fusion surgery by delivering leading-edge zero-profile interbody systems that eliminate traditional secondary plating and accelerate recovery.
+                </p>
+                
+                <p className="text-[#4a5568] text-[15px] md:text-[17px] leading-relaxed">
+                  By integrating rigid fixation directly into the cage, our platform minimizes soft tissue disruption, optimizes sagittal balance, and reduces overall operating room time. Elevation Spine devices conform seamlessly to patient anatomy, locking securely in place to provide immediate rigid stability that supports long-term fusion.
+                </p>
+
+                {/* Pinned Image Container with Slide-in animation */}
+                <div className="relative rounded-[24px] overflow-hidden border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.08)] aspect-[21/10] min-h-[260px] bg-slate-950 mt-2">
+                  
+                  {/* Subtle Scroll Badge */}
+                  <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full text-white/70 text-[11px] font-sans tracking-wide">
+                    <motion.span
+                      animate={{ y: [0, 2.5, 0] }}
+                      transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                      className="text-[#2ac4f4] text-[12px]"
+                    >
+                      ↓
+                    </motion.span>
+                    <span>Scroll</span>
+                  </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIdx}
+                    initial={{ opacity: 0, x: 70, scale: 0.98 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -70, scale: 0.98 }}
+                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <img
+                      src={missionImages[activeIdx].url}
+                      alt={missionImages[activeIdx].title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                    
+                    {/* Caption badge */}
+                    <div className="absolute bottom-5 left-6 right-6 flex items-end justify-between z-10">
+                      <div>
+                        <p className="font-heading font-bold text-white text-lg md:text-xl drop-shadow">
+                          {missionImages[activeIdx].title}
+                        </p>
+                        <p className="font-sans text-white/80 text-xs md:text-sm drop-shadow-sm">
+                          {missionImages[activeIdx].caption}
+                        </p>
+                      </div>
+
+                      {/* Step number badge */}
+                      <div className="bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1 rounded-full font-mono text-white text-xs font-semibold shrink-0">
+                        0{activeIdx + 1} / 03
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Progress line */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-white/20 z-20">
+                  <motion.div
+                    className="h-full bg-[#2ac4f4]"
+                    animate={{ width: `${((activeIdx + 1) / 3) * 100}%` }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
 
 // ─── Products ─────────────────────────────────────────────────────────────────
@@ -511,7 +644,7 @@ const productsData = [
     title: "Saber-C™ Cervical Fusion System",
     description: "Zero-Profile Anterior Cervical Plate with Integrated Spike and Screw Fixation Options. Features a PorOss™ 3D-printed titanium porous interbody paired with in-line fixation for maximum stability.",
     visualType: "image",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png",
+    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
     link: "/saber-c",
     cta: "View Device Details",
   },

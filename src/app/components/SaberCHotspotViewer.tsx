@@ -36,8 +36,8 @@ const HOTSPOTS: Hotspot[] = [
     title: "Spikes or Screws",
     tag: "PRIMARY ANCHORING",
     badge: "Ti-6Al-4V ELI Grade 23",
-    x: 34,
-    y: 31,
+    x: 37,
+    y: 42,
     shortDesc: "Offers in-line fixation via pre-loaded titanium spikes or self-drilling screws.",
     description:
       "Offers in-line fixation via pre-loaded titanium spikes or self-drilling screws. Designed to secure into cortical endplates without requiring standard anterior plate overhang.",
@@ -54,8 +54,8 @@ const HOTSPOTS: Hotspot[] = [
     title: "PorOss™ 3D Titanium Interbody",
     tag: "BIO-FUSION MATRIX",
     badge: "55% Porous Lattice",
-    x: 48.5,
-    y: 19,
+    x: 50,
+    y: 48,
     shortDesc: "3D-printed titanium structure featuring a 55% porous lattice for osteointegration.",
     description:
       "3D-printed titanium structure featuring a 55% porous lattice designed to mimic trabecular bone structure, supporting fluid wicking and osteointegration while maintaining imaging transparency.",
@@ -72,8 +72,8 @@ const HOTSPOTS: Hotspot[] = [
     title: "Anti-Migration Surface Geometry",
     tag: "PRIMARY STABILITY",
     badge: "Dual Endplate Contact",
-    x: 64.5,
-    y: 28.5,
+    x: 66,
+    y: 54,
     shortDesc: "Textured surface geometry providing immediate mechanical friction upon insertion.",
     description:
       "Textured surface geometry and lateral stabilization features provide immediate mechanical friction upon insertion, resisting rotational displacement prior to fusion.",
@@ -90,8 +90,8 @@ const HOTSPOTS: Hotspot[] = [
     title: "Anterior Cervical Plate",
     tag: "ZERO-PROFILE FRAME",
     badge: "0.0mm Anterior Protrusion",
-    x: 34.5,
-    y: 67,
+    x: 25,
+    y: 62,
     shortDesc: "Integrated structural faceplate engineered to sit completely flush with vertebral wall.",
     description:
       "Integrated structural faceplate engineered to sit completely flush with the anterior cervical vertebral wall, minimizing esophageal contact and reducing post-op dysphagia risk.",
@@ -108,8 +108,8 @@ const HOTSPOTS: Hotspot[] = [
     title: "Integrated Locking Plate",
     tag: "ANTI-BACKOUT RETENTION",
     badge: "Tactile Anti-Backout Lock",
-    x: 63.5,
-    y: 72,
+    x: 62,
+    y: 65,
     shortDesc: "Central locking tab system providing tactile and visual confirmation when engaged.",
     description:
       "Central locking tab system providing tactile and visual confirmation when engaged. Prevents post-operative screw or spike backout.",
@@ -193,7 +193,7 @@ export default function SaberCHotspotViewer() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
         {/* Left / Top: Interactive Image Viewport */}
-        <div className="lg:col-span-7 relative group rounded-2xl bg-[#050811]/70 border border-white/10 p-4 md:p-8 flex items-center justify-center overflow-hidden min-h-[420px] md:min-h-[500px]">
+        <div className="lg:col-span-7 relative group rounded-2xl bg-[#050811]/70 border border-white/10 p-4 pb-20 md:p-8 md:pb-24 flex items-center justify-center overflow-hidden min-h-[380px] md:min-h-[460px]">
           {/* Subtle grid pattern background */}
           <div
             className="absolute inset-0 opacity-15 pointer-events-none"
@@ -203,12 +203,12 @@ export default function SaberCHotspotViewer() {
             }}
           />
 
-          {/* Main Image Container - Enlarged scale within fixed container bounds */}
-          <div className="relative w-full max-w-[640px] aspect-[16/10] select-none flex items-center justify-center scale-[1.38] md:scale-[1.45] transition-transform duration-500 origin-center my-6">
+          {/* Main Image Container - Size precisely to the image to ensure accurate point placement */}
+          <div className="relative w-full max-w-[640px] select-none flex items-center justify-center scale-[1.38] md:scale-[1.45] transition-transform duration-500 origin-center -mt-16 md:-mt-28">
             <motion.img
               src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png"
               alt="Saber-C Implant Construct ISO View"
-              className="w-full h-full object-contain filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+              className="w-full h-auto block filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)] relative z-10"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
@@ -294,7 +294,7 @@ export default function SaberCHotspotViewer() {
           </div>
 
           {/* Quick Hotspot Chips below canvas */}
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center flex-wrap gap-2 z-20">
+          <div className="absolute bottom-6 md:bottom-8 left-4 right-4 flex items-center justify-center flex-wrap gap-2 z-20">
             {HOTSPOTS.map((spot) => {
               const highlightedId = hoveredId || activeId;
               const isHighlighted = highlightedId === spot.id;
