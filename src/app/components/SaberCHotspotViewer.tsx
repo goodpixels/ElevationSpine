@@ -90,7 +90,7 @@ const HOTSPOTS: Hotspot[] = [
     title: "Anterior Cervical Plate",
     tag: "ZERO-PROFILE FRAME",
     badge: "0.0mm Anterior Protrusion",
-    x: 25,
+    x: 34,
     y: 62,
     shortDesc: "Integrated structural faceplate engineered to sit completely flush with vertebral wall.",
     description:
@@ -193,7 +193,7 @@ export default function SaberCHotspotViewer() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
         {/* Left / Top: Interactive Image Viewport */}
-        <div className="lg:col-span-7 relative group rounded-2xl bg-[#050811]/70 border border-white/10 p-4 pb-20 md:p-8 md:pb-24 flex items-center justify-center overflow-hidden min-h-[380px] md:min-h-[460px]">
+        <div className="lg:col-span-7 relative group rounded-2xl bg-[#050811]/70 border border-white/10 p-4 md:p-8 md:pb-24 flex items-center justify-center overflow-hidden min-h-[320px] md:min-h-[460px]">
           {/* Subtle grid pattern background */}
           <div
             className="absolute inset-0 opacity-15 pointer-events-none"
@@ -204,7 +204,7 @@ export default function SaberCHotspotViewer() {
           />
 
           {/* Main Image Container - Size precisely to the image to ensure accurate point placement */}
-          <div className="relative w-full max-w-[640px] select-none flex items-center justify-center scale-[1.38] md:scale-[1.45] transition-transform duration-500 origin-center -mt-16 md:-mt-28">
+          <div className="relative w-full max-w-[640px] select-none flex items-center justify-center scale-[1.38] md:scale-[1.45] transition-transform duration-500 origin-center -mt-6 md:-mt-28">
             <motion.img
               src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png"
               alt="Saber-C Implant Construct ISO View"
@@ -263,7 +263,11 @@ export default function SaberCHotspotViewer() {
                             : "bg-[#0a0e17]/90 text-white border-[#2ac4f4]/70 hover:bg-[#2ac4f4] hover:text-[#0a0e17]"
                         }`}
                       >
-                        {spot.number}
+                        {/* 20px plus icon for better centering */}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
                       </motion.button>
 
                       {/* Tooltip Label Tag on Focus */}
@@ -294,7 +298,7 @@ export default function SaberCHotspotViewer() {
           </div>
 
           {/* Quick Hotspot Chips below canvas */}
-          <div className="absolute bottom-6 md:bottom-8 left-4 right-4 flex items-center justify-center flex-wrap gap-2 z-20">
+          <div className="hidden md:flex absolute bottom-6 md:bottom-8 left-4 right-4 items-center justify-center flex-wrap gap-2 z-20">
             {HOTSPOTS.map((spot) => {
               const highlightedId = hoveredId || activeId;
               const isHighlighted = highlightedId === spot.id;

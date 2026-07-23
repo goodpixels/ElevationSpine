@@ -306,8 +306,8 @@ function HeroSection() {
     <>
       {/* Outer section: page bg shows around the rounded card — navbar floats over the top */}
       <section className="relative w-full min-h-screen bg-white px-4 md:px-6 lg:px-8 pt-4 pb-6">
-        {/* ── Rounded video card — fills viewport, navbar overlays from top ── */}
-        <div className="relative w-full h-[calc(100vh-40px)] min-h-[580px] rounded-[24px] md:rounded-[32px] overflow-hidden">
+        {/* ── Rounded video card — fills viewport on desktop, 70vh on mobile ── */}
+        <div className="relative w-full h-[70vh] md:h-[calc(100vh-40px)] min-h-[450px] md:min-h-[580px] rounded-[24px] md:rounded-[32px] overflow-hidden">
 
           {/* Video background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e17] via-[#0f1520] to-[#1a2535]" />
@@ -329,8 +329,8 @@ function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17]/85 via-[#0a0e17]/25 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e17]/65 via-[#0a0e17]/10 to-transparent" />
 
-          {/* ── Left content — centered vertically ── */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-[60px] lg:px-[80px] pt-8 pb-28">
+          {/* ── Left content — aligned to bottom on mobile, centered on desktop ── */}
+          <div className="relative z-10 h-full flex flex-col justify-end md:justify-center px-6 md:px-[60px] lg:px-[80px] pt-8 pb-12 md:pb-28">
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -384,7 +384,7 @@ function HeroSection() {
             initial={{ opacity: 0, x: 20, y: 10 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-7 md:bottom-9 right-6 md:right-9 z-20 flex items-end gap-3"
+            className="hidden md:flex absolute bottom-7 md:bottom-9 right-6 md:right-9 z-20 items-end gap-3"
           >
             {/* Thumbnail chip */}
             <motion.div
@@ -661,6 +661,19 @@ const productsData = [
       text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
     },
   },
+  {
+    id: "poross",
+    tag: "Proprietary Tech",
+    tagColor: "text-indigo-600 bg-indigo-50 border-indigo-100",
+    title: "POROSS™ Platform",
+    description: "Our proprietary 55% interconnected lattice technology engineered to mimic natural cancellous bone, accelerating cellular infiltration and long-term fusion.",
+    visualType: "blueprint",
+    visualUrl: "",
+    statusUpdate: {
+      title: "Status update",
+      text: `"PorOss lattice architecture has shown superior fluid wicking capabilities in initial testing. Broad rollout planned across all interbody platforms."`,
+    },
+  },
 ];
 
 function ProductsSection() {
@@ -711,6 +724,46 @@ function ProductsSection() {
             Innovative platforms engineered for precision and procedural simplicity.
           </h2>
         </RevealSection>
+
+        {/* Product Filter Tabs */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mt-10 flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide"
+        >
+          <Link 
+            to="/products" 
+            className="shrink-0 px-6 py-2.5 rounded-full border border-black/10 font-heading text-[14px] font-bold text-slate-500 hover:text-slate-800 transition-colors"
+          >
+            All Products
+          </Link>
+          
+          <button 
+            onClick={() => handleSelect(0)}
+            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 0 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
+          >
+            <span className={`w-2 h-2 rounded-full bg-[#2ac4f4]`} />
+            SABER-C™
+          </button>
+          
+          <button 
+            onClick={() => handleSelect(1)}
+            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 1 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
+          >
+            <span className="w-2 h-2 rounded-full bg-teal-500" />
+            SABER-XA™
+          </button>
+          
+          <button 
+            onClick={() => handleSelect(2)}
+            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 2 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
+          >
+            <span className="w-2 h-2 rounded-full bg-indigo-500" />
+            POROSS™ Platform
+          </button>
+        </motion.div>
       </div>
 
       <div className="max-w-[1420px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
