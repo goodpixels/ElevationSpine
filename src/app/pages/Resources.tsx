@@ -641,16 +641,16 @@ export default function Resources() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
-          <div>
-            <div className="inline-flex items-center gap-2 bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 rounded-full px-3.5 py-1 text-xs font-mono text-[#0891b2] mb-3 uppercase tracking-widest font-semibold">
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 rounded-full px-3.5 py-1 text-xs font-mono text-[#0891b2] mb-4 uppercase tracking-widest font-semibold">
               Document & Media Library
             </div>
             <TextRevealTitle
               as="h1"
               text="Resource Center"
-              className="font-heading font-bold text-[#1a2535] text-[36px] md:text-[50px] leading-[1.1] tracking-tight block"
+              className="font-heading font-bold text-[#1a2535] text-[36px] md:text-[50px] leading-[1.1] tracking-tight block w-full"
             />
-            <p className="text-[#64748b] text-sm md:text-base mt-1.5 max-w-2xl">
+            <p className="text-[#64748b] text-sm md:text-base mt-2 max-w-2xl">
               Access product folders, clinical brochures, IFUs, high-res renders, and restricted sales representative files.
             </p>
           </div>
