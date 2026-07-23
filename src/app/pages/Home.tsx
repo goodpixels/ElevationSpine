@@ -1447,8 +1447,8 @@ function WorkflowSection() {
                   {s.icon}
 
                   {/* MOBILE IMAGE - Hidden on Desktop */}
-                  <div className="block lg:hidden w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-8 border border-white/5 shadow-lg bg-white/5">
-                    <img src={s.image} alt={s.title} className="w-full h-full object-cover mix-blend-screen" />
+                  <div className="block lg:hidden w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-8 shadow-lg">
+                    <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
                   </div>
 
                   <h3 className="font-heading font-bold text-[24px] md:text-[32px] tracking-tight leading-none mb-4">

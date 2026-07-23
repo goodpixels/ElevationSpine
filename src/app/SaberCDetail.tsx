@@ -274,7 +274,7 @@ export default function SaberCDetail() {
               Zero-Profile Anterior Cervical Plate with Integrated Spike and Screw Fixation Options.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-2">
+            <motion.div variants={fadeUp} className="hidden lg:flex flex-wrap gap-4 mt-2">
               <button
                 onClick={() => setShowDemoModal(true)}
                 className="font-heading font-bold text-sm bg-[#2ac4f4] text-[#070b14] hover:bg-[#6ecff4] px-8 py-4 rounded-xl shadow-[0_8px_25px_rgba(42,196,244,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
@@ -296,7 +296,7 @@ export default function SaberCDetail() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-6 relative flex justify-center items-center"
+            className="lg:col-span-6 relative flex flex-col justify-center items-center gap-8"
           >
             <div className="relative w-full max-w-[560px] aspect-[4/3] rounded-3xl bg-[#091020]/80 border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(42,196,244,0.15),transparent_65%)] pointer-events-none" />
@@ -309,6 +309,23 @@ export default function SaberCDetail() {
                 Saber-C™ Construct
               </div>
             </div>
+
+            {/* Mobile Buttons (Visible only on small screens below the image) */}
+            <motion.div variants={fadeUp} className="flex lg:hidden flex-col w-full gap-4 mt-2">
+              <button
+                onClick={() => setShowDemoModal(true)}
+                className="w-full font-heading font-bold text-sm bg-[#2ac4f4] text-[#070b14] hover:bg-[#6ecff4] px-8 py-4 rounded-xl shadow-[0_8px_25px_rgba(42,196,244,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center"
+              >
+                Request a Demo
+              </button>
+              <button
+                onClick={() => triggerToast("Downloading Saber-C™ Surgical Technique Guide (PDF)...")}
+                className="w-full justify-center font-heading font-semibold text-sm bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-2 cursor-pointer"
+              >
+                <Download className="w-4 h-4 text-[#2ac4f4]" />
+                <span>Download Surgical Technique Guide</span>
+              </button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
