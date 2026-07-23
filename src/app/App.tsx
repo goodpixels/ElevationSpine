@@ -1,4 +1,5 @@
 import svgPaths from "@/imports/ElevationHome1/svg-podh48szuv";
+import { Linkedin, Youtube } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { Link, Routes, Route, useLocation } from "react-router";
@@ -45,7 +46,7 @@ export function RevealSection({
   delay?: number;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px 0px" });
+  const inView = useInView(ref, { once: true, margin: "-20px 0px" });
   return (
     <motion.div
       ref={ref}
@@ -72,7 +73,7 @@ export function TextRevealTitle({
   delay?: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px 0px" });
+  const isInView = useInView(ref, { once: true, margin: "-10px 0px" });
 
   const Component = motion[as] as any;
   const words = text.split(" ");
@@ -280,7 +281,13 @@ function Footer() {
           <p className="font-sans text-white/50 text-[18px] md:text-[21px] leading-[1.45]">
             Leading the industry in zero-profile spinal fixation solutions. Our mission is to simplify complex surgical procedures through elegant mechanical engineering.
           </p>
-          <p className="font-sans text-white/60 text-[16px]">
+          <div className="flex flex-col gap-1.5 font-sans text-white/70 text-[15px]">
+            <p>Phone: (844) 415-0226</p>
+            <p>Email: info@elevationspine.com</p>
+            <p className="mt-2">2511 Garden Road | Suite B125</p>
+            <p>Monterey, California 93940</p>
+          </div>
+          <p className="font-sans text-white/40 text-[14px]">
             © 2026 Elevation Spine. All rights reserved.
           </p>
         </div>
@@ -307,22 +314,24 @@ function Footer() {
           <div className="flex flex-col gap-6">
             <p className="font-heading font-semibold text-white/40 text-[11px] tracking-[1.5px]">Connect</p>
             <div className="flex gap-4">
-              {[
-                { icon: svgPaths.p1e78c320, vb: "0 0 22.5 25" },
-                { icon: svgPaths.p68cd680, vb: "0 0 25 20" },
-              ].map((s, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                  className="bg-white/10 border border-white/10 rounded-full w-[52px] h-[52px] flex items-center justify-center hover:bg-white/20 transition-colors"
-                >
-                  <svg fill="none" viewBox={s.vb} className="w-5 h-5">
-                    <path d={s.icon} fill="white" />
-                  </svg>
-                </motion.a>
-              ))}
+              <motion.a
+                href="https://www.linkedin.com/company/elevation-spine/"
+                target="_blank" rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+                className="bg-white/10 border border-white/10 rounded-full w-[52px] h-[52px] flex items-center justify-center hover:bg-white/20 hover:text-[#2ac4f4] transition-colors text-white"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.youtube.com/@ElevationSpine-i9z"
+                target="_blank" rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+                className="bg-white/10 border border-white/10 rounded-full w-[52px] h-[52px] flex items-center justify-center hover:bg-white/20 hover:text-red-500 transition-colors text-white"
+              >
+                <Youtube className="w-6 h-6" />
+              </motion.a>
             </div>
           </div>
         </div>

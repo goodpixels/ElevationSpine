@@ -81,13 +81,6 @@ export const INITIAL_PRODUCTS: ProductItem[] = [
     description: "Next-Generation Lateral Access System with PorOss™ Technology",
     color: "#0891b2",
   },
-  {
-    id: "poross",
-    name: "POROSS™ Platform",
-    code: "POROSS",
-    description: "3D Printed Titanium Porous Structural Engineering",
-    color: "#6366f1",
-  },
 ];
 
 export const INITIAL_FOLDERS: FolderItem[] = [
@@ -795,7 +788,10 @@ export default function Resources() {
           {/* Breadcrumb Path Display */}
           <div className="flex items-center gap-2 overflow-x-auto text-xs md:text-sm font-sans text-[#475569] shrink-0">
             <button
-              onClick={() => setSelectedFolderId(null)}
+              onClick={() => {
+                setSelectedProductId("all");
+                setSelectedFolderId(null);
+              }}
               className="font-semibold hover:text-[#0284c7] transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
             >
               <Folder className="w-4 h-4 text-amber-500 fill-amber-400" />
@@ -879,23 +875,61 @@ export default function Resources() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-heading font-bold text-sm text-[#64748b] uppercase tracking-wider">
-                  Folders in {selectedProductId === "all" ? "All Products" : currentProduct.name}
+                  {selectedProductId === "all" ? "Product Folders" : `Folders in ${currentProduct.name}`}
                 </h3>
                 <span className="text-xs font-mono text-slate-400">
-                  {INITIAL_FOLDERS.length} Folders Available
+                  {selectedProductId === "all" ? INITIAL_PRODUCTS.length : INITIAL_FOLDERS.length} Folders Available
                 </span>
               </div>
 
               {/* Folder Grid - Styled exactly like the Windows Explorer screenshot! */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
-                {INITIAL_FOLDERS.map((folder) => {
-                  const folderFileCount = files.filter(
-                    (f) =>
-                      (selectedProductId === "all" || f.productId === selectedProductId) &&
-                      f.folderId === folder.id
-                  ).length;
+                {selectedProductId === "all" ? (
+                  INITIAL_PRODUCTS.map((prod) => {
+                    const productFileCount = files.filter(f => f.productId === prod.id).length;
+                    return (
+                      <motion.div
+                        key={prod.id}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => setSelectedProductId(prod.id)}
+                        className={`group cursor-pointer p-4 rounded-2xl border transition-all flex flex-col items-center text-center relative bg-white border-slate-200 hover:border-[#2ac4f4] hover:shadow-[0_8px_24px_rgba(42,196,244,0.12)]`}
+                      >
+                        <div className="relative my-3">
+                          <div className="w-20 h-16 relative">
+                            {/* Folder Backing */}
+                            <svg className="w-full h-full text-amber-400 drop-shadow-sm" viewBox="0 0 100 80" fill="currentColor">
+                              <path d="M0 12C0 5.37258 5.37258 0 12 0H35C39.4183 0 43.4183 2.41828 45.4183 6L50 14H88C94.6274 14 100 19.3726 100 26V68C100 74.6274 94.6274 80 88 80H12C5.37258 80 0 74.6274 0 68V12Z" />
+                            </svg>
+                            {/* Folder Front Lip */}
+                            <div className="absolute bottom-0 inset-x-0 h-11 bg-amber-300 rounded-b-xl border-t border-amber-200 shadow-inner" />
+                            
+                            <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-white rounded-md px-1.5 py-1 shadow-md border border-slate-200 flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform">
+                              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: prod.color }} />
+                            </div>
+                          </div>
+                        </div>
+                        <h4 className="font-heading font-bold text-sm text-[#0a0e17] group-hover:text-[#0284c7] transition-colors mt-1">
+                          {prod.name}
+                        </h4>
+                        <p className="text-[11px] text-[#64748b] mt-1 line-clamp-1 max-w-[180px]">
+                          {prod.description}
+                        </p>
+                        <div className="mt-2 text-[10px] font-mono font-semibold text-[#94a3b8] bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                          {productFileCount} {productFileCount === 1 ? "file" : "files"}
+                        </div>
+                      </motion.div>
+                    );
+                  })
+                ) : (
+                  INITIAL_FOLDERS.map((folder) => {
+                    const folderFileCount = files.filter(
+                      (f) =>
+                        (selectedProductId === "all" || f.productId === selectedProductId) &&
+                        f.folderId === folder.id
+                    ).length;
 
-                  return (
+                    return (
                     <motion.div
                       key={folder.id}
                       whileHover={{ scale: 1.02, y: -2 }}
@@ -960,7 +994,7 @@ export default function Resources() {
                       </div>
                     </motion.div>
                   );
-                })}
+                }))}
               </div>
             </div>
           ) : (

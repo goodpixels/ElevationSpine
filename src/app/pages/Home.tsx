@@ -305,7 +305,7 @@ function HeroSection() {
   return (
     <>
       {/* Outer section: page bg shows around the rounded card — navbar floats over the top */}
-      <section className="relative w-full min-h-screen bg-white px-4 md:px-6 lg:px-8 pt-4 pb-6">
+      <section className="relative w-full min-h-[70vh] md:min-h-screen bg-white px-4 md:px-6 lg:px-8 pt-4 pb-6">
         {/* ── Rounded video card — fills viewport on desktop, 70vh on mobile ── */}
         <div className="relative w-full h-[70vh] md:h-[calc(100vh-40px)] min-h-[450px] md:min-h-[580px] rounded-[24px] md:rounded-[32px] overflow-hidden">
 
@@ -661,19 +661,6 @@ const productsData = [
       text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
     },
   },
-  {
-    id: "poross",
-    tag: "Proprietary Tech",
-    tagColor: "text-indigo-600 bg-indigo-50 border-indigo-100",
-    title: "POROSS™ Platform",
-    description: "Our proprietary 55% interconnected lattice technology engineered to mimic natural cancellous bone, accelerating cellular infiltration and long-term fusion.",
-    visualType: "blueprint",
-    visualUrl: "",
-    statusUpdate: {
-      title: "Status update",
-      text: `"PorOss lattice architecture has shown superior fluid wicking capabilities in initial testing. Broad rollout planned across all interbody platforms."`,
-    },
-  },
 ];
 
 function ProductsSection() {
@@ -731,15 +718,8 @@ function ProductsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="mt-10 flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide"
+          className="mt-6 md:mt-10 flex items-center gap-3 overflow-x-auto pb-4 pt-2 scrollbar-hide sticky top-[80px] md:static z-40 md:z-auto bg-[#f8fafc] md:bg-transparent -mx-6 px-6 md:mx-0 md:px-0"
         >
-          <Link 
-            to="/products" 
-            className="shrink-0 px-6 py-2.5 rounded-full border border-black/10 font-heading text-[14px] font-bold text-slate-500 hover:text-slate-800 transition-colors"
-          >
-            All Products
-          </Link>
-          
           <button 
             onClick={() => handleSelect(0)}
             className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 0 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
@@ -755,28 +735,42 @@ function ProductsSection() {
             <span className="w-2 h-2 rounded-full bg-teal-500" />
             SABER-XA™
           </button>
-          
-          <button 
-            onClick={() => handleSelect(2)}
-            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 2 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
-          >
-            <span className="w-2 h-2 rounded-full bg-indigo-500" />
-            POROSS™ Platform
-          </button>
         </motion.div>
       </div>
 
       <div className="max-w-[1420px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Left Content Card */}
         <div className="lg:col-span-5 bg-white border border-black/[0.06] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.03)] p-8 md:p-12 flex flex-col justify-between min-h-[500px] relative overflow-hidden">
+          {/* Progress Bars Indicators */}
+          <div className="flex gap-3 mb-8 w-[180px] self-start">
+            {productsData.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSelect(idx)}
+                className="flex-1 h-[3px] bg-black/[0.07] hover:bg-black/[0.15] rounded-full overflow-hidden relative cursor-pointer focus:outline-none transition-colors"
+                aria-label={`Go to product ${idx + 1}`}
+              >
+                {activeIndex === idx && (
+                  <div
+                    className="h-full bg-[#2ac4f4] transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+                {activeIndex > idx && (
+                  <div className="h-full bg-black/40" />
+                )}
+              </button>
+            ))}
+          </div>
+
           <div className="flex flex-col gap-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="flex flex-col gap-5 text-left"
               >
                 <div className={`inline-flex self-start items-center border rounded-full px-4 py-1.5 ${activeProduct.tagColor}`}>
@@ -830,27 +824,6 @@ function ProductsSection() {
             </AnimatePresence>
           </div>
 
-          {/* Progress Bars Indicators */}
-          <div className="flex gap-3 mt-12 w-[180px] self-start">
-            {productsData.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleSelect(idx)}
-                className="flex-1 h-[3px] bg-black/[0.07] hover:bg-black/[0.15] rounded-full overflow-hidden relative cursor-pointer focus:outline-none transition-colors"
-                aria-label={`Go to product ${idx + 1}`}
-              >
-                {activeIndex === idx && (
-                  <div
-                    className="h-full bg-[#2ac4f4] transition-all duration-300"
-                    style={{ width: `${progress}%` }}
-                  />
-                )}
-                {activeIndex > idx && (
-                  <div className="h-full bg-black/40" />
-                )}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Right Visual Card */}
@@ -858,10 +831,10 @@ function ProductsSection() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.45, ease: "easeInOut" }}
+              initial={{ opacity: 0, x: 80, scale: 0.98 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -80, scale: 0.98 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 w-full h-full"
             >
               {activeProduct.visualType === "video" ? (
@@ -927,6 +900,74 @@ function ProductsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
             </motion.div>
           </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Comparison ──────────────────────────────────────────────────────────────
+
+function ComparisonSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-20px 0px" });
+
+  return (
+    <section className="bg-slate-50 px-6 md:px-16 lg:px-24 py-28 border-y border-black/[0.04]">
+      <div className="max-w-[1420px] mx-auto">
+        <RevealSection className="text-center mb-16">
+          <h2 className="font-heading font-bold text-[#1a2535] text-[32px] md:text-[44px] leading-[1.15] tracking-tight max-w-[900px] mx-auto mb-6">
+            <span className="text-[#2ac4f4]">Saber-C</span> Fixation Corridor Compared To Traditional Screw Fixation
+          </h2>
+          <p className="font-sans text-[#64748b] text-[16px] md:text-[18px] leading-relaxed max-w-[800px] mx-auto">
+            Low-profile instrumentation combined with in-line spike fixation allows Saber-C to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
+          </p>
+        </RevealSection>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+          {/* Saber-C Side */}
+          <RevealSection delay={0.1} className="relative group h-full">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#2ac4f4]/20 to-transparent rounded-[32px] blur-2xl opacity-60 transition-opacity duration-700 group-hover:opacity-100" />
+            <div className="bg-white border-2 border-[#2ac4f4]/40 rounded-[32px] p-6 md:p-10 shadow-[0_12px_40px_rgba(42,196,244,0.12)] relative z-10 flex flex-col h-full overflow-hidden transition-all duration-500">
+              <h3 className="font-heading font-bold text-[#0a0e17] text-[20px] md:text-[24px] mb-6 text-center flex items-center justify-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#2ac4f4]" />
+                Saber-C In-Line Spike Fixation
+              </h3>
+              
+              <div className="flex-1 rounded-[24px] overflow-hidden bg-slate-50/50 mb-6 flex items-center justify-center relative min-h-[260px] md:min-h-[340px]">
+                <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Saber-C-Fixation_go5mcv.png" alt="Saber-C Fixation" className="w-full h-auto max-h-[360px] object-contain object-center scale-[1.02] group-hover:scale-[1.07] transition-transform duration-700 ease-out" />
+              </div>
+
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-center justify-center font-heading font-bold text-[#0891b2] text-[12.5px]">
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                  Minimized surgical exposure
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                  Reduced surgical steps
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                  Less challenging
+                </div>
+              </div>
+            </div>
+          </RevealSection>
+
+          {/* Traditional Side */}
+          <RevealSection delay={0.2} className="relative group h-full">
+            <div className="bg-white border border-slate-200 rounded-[32px] p-6 md:p-10 shadow-sm relative z-10 flex flex-col h-full overflow-hidden grayscale-[0.6] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+              <h3 className="font-heading font-bold text-slate-500 text-[20px] md:text-[24px] mb-6 text-center flex items-center justify-center gap-2 transition-colors duration-500 group-hover:text-slate-800">
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                Traditional Screw Fixation
+              </h3>
+              
+              <div className="flex-1 rounded-[24px] overflow-hidden bg-slate-50 flex items-center justify-center relative min-h-[260px] md:min-h-[340px]">
+                <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Traditional-Fixation_o0nuww.png" alt="Traditional Screw Fixation" className="w-full h-auto max-h-[360px] object-contain object-center scale-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.05]" />
+              </div>
+            </div>
+          </RevealSection>
         </div>
       </div>
     </section>
@@ -1386,24 +1427,27 @@ function WorkflowSection() {
 
           {/* Right Column: Sticky Image with stats overlays */}
           <div className="lg:col-span-6 sticky top-[140px] z-0 hidden lg:block">
-            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white relative">
-              <img
-                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png"
-                alt="Streamlined procedural workflow"
+            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white">
+              <video
+                src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1784772842/Streamlined-Procedural-Workflow_gvmiyx.mp4"
                 className="w-full h-auto object-cover aspect-[4/3]"
+                autoPlay
+                muted
+                loop
+                playsInline
               />
+            </div>
+            
+            {/* Bottom stats indicators placed below the video */}
+            <div className="flex justify-end gap-3 mt-6 pointer-events-none">
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[24px] leading-none">85%</span>
+                <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
+              </div>
               
-              {/* Bottom stats indicators overlaid exactly like the mockups */}
-              <div className="absolute bottom-6 right-6 left-6 flex justify-end gap-3 pointer-events-none">
-                <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                  <span className="font-heading font-bold text-[#2ac4f4] text-[24px] leading-none">85%</span>
-                  <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
-                </div>
-                
-                <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                  <span className="font-heading font-bold text-[24px] leading-none">2-S</span>
-                  <span className="font-heading text-[10px] tracking-widest mt-1 uppercase">Fixation</span>
-                </div>
+              <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
+                <span className="font-heading font-bold text-[24px] leading-none">2-S</span>
+                <span className="font-heading text-[10px] tracking-widest mt-1 uppercase">Fixation</span>
               </div>
             </div>
           </div>
@@ -1495,6 +1539,7 @@ export default function Home() {
       <HeroSection />
       <MissionSection />
       <ProductsSection />
+      <ComparisonSection />
       <WorkflowSection />
       <FeaturesSection />
       <PortalSection />
