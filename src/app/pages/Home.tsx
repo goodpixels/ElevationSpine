@@ -566,7 +566,7 @@ function MissionSection() {
                 </p>
 
                 {/* Pinned Image Container with Slide-in animation */}
-                <div className="relative rounded-[24px] overflow-hidden border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.08)] aspect-[21/10] min-h-[260px] bg-slate-950 mt-2">
+                <div className="relative rounded-[24px] overflow-hidden border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.08)] aspect-[21/10] min-h-[260px] bg-slate-100 mt-2">
                   
                   {/* Subtle Scroll Badge */}
                   <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full text-white/70 text-[11px] font-sans tracking-wide">
@@ -579,13 +579,13 @@ function MissionSection() {
                     </motion.span>
                     <span>Scroll</span>
                   </div>
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                   <motion.div
                     key={activeIdx}
-                    initial={{ opacity: 0, x: 70, scale: 0.98 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -70, scale: 0.98 }}
-                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 1.03 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.85, ease: "easeInOut" }}
                     className="absolute inset-0 w-full h-full"
                   >
                     <img
@@ -913,42 +913,47 @@ function ComparisonSection() {
   const inView = useInView(ref, { once: true, margin: "-20px 0px" });
 
   return (
-    <section className="bg-slate-50 px-6 md:px-16 lg:px-24 py-28 border-y border-black/[0.04]">
-      <div className="max-w-[1420px] mx-auto">
-        <RevealSection className="text-center mb-16">
-          <h2 className="font-heading font-bold text-[#1a2535] text-[32px] md:text-[44px] leading-[1.15] tracking-tight max-w-[900px] mx-auto mb-6">
+    <section className="bg-white px-6 md:px-16 lg:px-24 py-16 md:py-20 border-y border-black/[0.04]">
+      <div className="max-w-[1280px] mx-auto">
+        <RevealSection className="text-center mb-12">
+          <h2 className="font-heading font-bold text-[#1a2535] text-[28px] md:text-[38px] leading-[1.15] tracking-tight max-w-[800px] mx-auto mb-4">
             <span className="text-[#2ac4f4]">Saber-C</span> Fixation Corridor Compared To Traditional Screw Fixation
           </h2>
-          <p className="font-sans text-[#64748b] text-[16px] md:text-[18px] leading-relaxed max-w-[800px] mx-auto">
+          <p className="font-sans text-[#64748b] text-[15px] md:text-[17px] leading-relaxed max-w-[740px] mx-auto">
             Low-profile instrumentation combined with in-line spike fixation allows Saber-C to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
           </p>
         </RevealSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Saber-C Side */}
-          <RevealSection delay={0.1} className="relative group h-full">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#2ac4f4]/20 to-transparent rounded-[32px] blur-2xl opacity-60 transition-opacity duration-700 group-hover:opacity-100" />
-            <div className="bg-white border-2 border-[#2ac4f4]/40 rounded-[32px] p-6 md:p-10 shadow-[0_12px_40px_rgba(42,196,244,0.12)] relative z-10 flex flex-col h-full overflow-hidden transition-all duration-500">
-              <h3 className="font-heading font-bold text-[#0a0e17] text-[20px] md:text-[24px] mb-6 text-center flex items-center justify-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#2ac4f4]" />
+          <RevealSection delay={0.1} className="relative group">
+            <div className="absolute inset-0 bg-[#2ac4f4]/5 rounded-[24px] scale-[1.03] opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg" />
+            <div className="relative z-10 flex flex-col h-full">
+              <h3 className="font-heading font-bold text-[#0a0e17] text-[18px] md:text-[20px] mb-4 flex items-center justify-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#2ac4f4]" />
                 Saber-C In-Line Spike Fixation
               </h3>
               
-              <div className="flex-1 rounded-[24px] overflow-hidden bg-slate-50/50 mb-6 flex items-center justify-center relative min-h-[260px] md:min-h-[340px]">
-                <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Saber-C-Fixation_go5mcv.png" alt="Saber-C Fixation" className="w-full h-auto max-h-[360px] object-contain object-center scale-[1.02] group-hover:scale-[1.07] transition-transform duration-700 ease-out" />
+              {/* Image Container with precise cropping */}
+              <div className="rounded-[20px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] mb-5 flex items-center justify-center bg-white">
+                <img 
+                  src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Saber-C-Fixation_go5mcv.png" 
+                  alt="Saber-C Fixation" 
+                  className="absolute w-full h-full object-cover object-center scale-[1.15] group-hover:scale-[1.20] transition-transform duration-700 ease-out" 
+                />
               </div>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-center justify-center font-heading font-bold text-[#0891b2] text-[12.5px]">
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <div className="flex flex-wrap gap-2 items-center justify-center font-heading font-bold text-[#0891b2] text-[12px]">
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Minimized surgical exposure
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Reduced surgical steps
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-4 py-2.5 rounded-full">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Less challenging
                 </div>
               </div>
@@ -956,15 +961,20 @@ function ComparisonSection() {
           </RevealSection>
 
           {/* Traditional Side */}
-          <RevealSection delay={0.2} className="relative group h-full">
-            <div className="bg-white border border-slate-200 rounded-[32px] p-6 md:p-10 shadow-sm relative z-10 flex flex-col h-full overflow-hidden grayscale-[0.6] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
-              <h3 className="font-heading font-bold text-slate-500 text-[20px] md:text-[24px] mb-6 text-center flex items-center justify-center gap-2 transition-colors duration-500 group-hover:text-slate-800">
-                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+          <RevealSection delay={0.2} className="relative group">
+            <div className="relative z-10 flex flex-col h-full opacity-80 grayscale-[0.4] group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+              <h3 className="font-heading font-bold text-slate-400 group-hover:text-slate-700 text-[18px] md:text-[20px] mb-4 flex items-center justify-center gap-2 transition-colors duration-500">
+                <span className="w-2 h-2 rounded-full bg-slate-300" />
                 Traditional Screw Fixation
               </h3>
               
-              <div className="flex-1 rounded-[24px] overflow-hidden bg-slate-50 flex items-center justify-center relative min-h-[260px] md:min-h-[340px]">
-                <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Traditional-Fixation_o0nuww.png" alt="Traditional Screw Fixation" className="w-full h-auto max-h-[360px] object-contain object-center scale-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.05]" />
+              {/* Image Container with precise cropping */}
+              <div className="rounded-[20px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center bg-white">
+                <img 
+                  src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Traditional-Fixation_o0nuww.png" 
+                  alt="Traditional Screw Fixation" 
+                  className="absolute w-full h-full object-cover object-center scale-[1.15] group-hover:scale-[1.20] transition-transform duration-700 ease-out" 
+                />
               </div>
             </div>
           </RevealSection>
@@ -1336,6 +1346,7 @@ const workflowSteps = [
     title: "Trialing & Sizing",
     desc: "Use the low-profile trial instruments to determine height, footprint, and lordotic angle under fluoroscopy.",
     bgColor: "bg-slate-900 border border-slate-800 text-white shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
+    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774182/Trailing_teg7cn.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M9 9h3.75M16.5 12h.008v.008h-.008V12zm0 3h.008v.008h-.008V15zm0-6h.008v.008h-.008V9zM2.25 21h19.5M8.25 21v-3.375c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21" />
@@ -1347,6 +1358,7 @@ const workflowSteps = [
     title: "Implant Loading",
     desc: "Secure the SABER-C™ implant onto the unified inserter guide. Pre-pack the porous core with autologous bone graft.",
     bgColor: "bg-slate-950 border border-slate-900 text-white shadow-[0_12px_40px_rgba(0,0,0,0.25)]",
+    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774183/Implant-Loading_clhza9.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -1356,8 +1368,9 @@ const workflowSteps = [
   {
     step: "Step 03",
     title: "In-line Insertion",
-    desc: "Deliver the implant into the disc space. The zero-profile configuration ensures no protrusion beyond the anterior cortex.",
-    bgColor: "bg-sky-950 border border-sky-900 text-white shadow-[0_12px_40px_rgba(42,196,244,0.15)]",
+    desc: "Deliver the implant into the disc space using a direct anterior approach. The low-profile inserter allows maximum visibility.",
+    bgColor: "bg-[#0f2847] text-white shadow-[0_20px_50px_rgba(15,40,71,0.4)]",
+    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774187/In-Line-Insertion_tiklge.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#6ecff4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -1367,8 +1380,9 @@ const workflowSteps = [
   {
     step: "Step 04",
     title: "Rigid Screw Fixation",
-    desc: "Deploy screws through the integrated divergent guides. Engage the locking mechanism to prevent migration.",
-    bgColor: "bg-[#2ac4f4] text-[#0a0e17] shadow-[0_20px_50px_rgba(42,196,244,0.3)]",
+    desc: "Secure the zero-profile implant onto the inserter. The integrated fixation elements remain shielded during delivery.",
+    bgColor: "bg-[#060c18] text-[#e2e8f0] shadow-[0_20px_50px_rgba(6,12,24,0.4)]",
+    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774189/Rigid-Screw-Fixation_syjyn0.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="w-10 h-10 text-[#0a0e17] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
@@ -1378,6 +1392,23 @@ const workflowSteps = [
 ];
 
 function WorkflowSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  useEffect(() => {
+    return scrollYProgress.onChange((v) => {
+      if (v < 0.25) setActiveIdx(0);
+      else if (v < 0.5) setActiveIdx(1);
+      else if (v < 0.75) setActiveIdx(2);
+      else setActiveIdx(3);
+    });
+  }, [scrollYProgress]);
+
   return (
     <section id="about" className="bg-[#f8fafc] px-6 md:px-16 lg:px-24 py-24 border-b border-black/[0.04]">
       <div className="max-w-[1420px] mx-auto">
@@ -1396,24 +1427,30 @@ function WorkflowSection() {
         </div>
 
         {/* Scroll Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
           
           {/* Left Column: Stacking Cards */}
-          <div className="lg:col-span-6 flex flex-col gap-12 pb-32">
+          <div className="lg:col-span-6 flex flex-col gap-8 lg:gap-12 pb-16 lg:pb-32">
             {workflowSteps.map((s, idx) => (
               <div
                 key={idx}
-                className={`sticky rounded-[28px] p-8 md:p-12 min-h-[380px] flex flex-col justify-between transition-all duration-300 ${s.bgColor}`}
+                className={`relative lg:sticky rounded-[24px] lg:rounded-[28px] p-6 sm:p-8 md:p-12 min-h-[auto] lg:min-h-[380px] flex flex-col justify-between transition-all duration-300 lg:top-[var(--top-offset)] ${s.bgColor}`}
                 style={{
-                  top: `${140 + idx * 28}px`,
+                  '--top-offset': `${140 + idx * 28}px`,
                   zIndex: idx + 10,
-                }}
+                } as any}
               >
                 <div>
                   <span className="font-mono text-[12px] uppercase tracking-[2px] opacity-60 block mb-6">
                     {s.step}
                   </span>
                   {s.icon}
+
+                  {/* MOBILE IMAGE - Hidden on Desktop */}
+                  <div className="block lg:hidden w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-8 border border-white/5 shadow-lg bg-white/5">
+                    <img src={s.image} alt={s.title} className="w-full h-full object-cover mix-blend-screen" />
+                  </div>
+
                   <h3 className="font-heading font-bold text-[24px] md:text-[32px] tracking-tight leading-none mb-4">
                     {s.title}
                   </h3>
@@ -1427,15 +1464,23 @@ function WorkflowSection() {
 
           {/* Right Column: Sticky Image with stats overlays */}
           <div className="lg:col-span-6 sticky top-[140px] z-0 hidden lg:block">
-            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white">
-              <video
-                src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1784772842/Streamlined-Procedural-Workflow_gvmiyx.mp4"
-                className="w-full h-auto object-cover aspect-[4/3]"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white aspect-[4/3] relative flex items-center justify-center">
+              <AnimatePresence>
+                <motion.div
+                  key={activeIdx}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.85, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={workflowSteps[activeIdx].image}
+                    alt={workflowSteps[activeIdx].title}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
             
             {/* Bottom stats indicators placed below the video */}
