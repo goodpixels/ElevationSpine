@@ -641,10 +641,11 @@ const productsData = [
     id: "saber-c",
     tag: "FDA 510(k) Cleared",
     tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
-    title: "Saber-C™ Cervical Fusion System",
-    description: "Zero-Profile Anterior Cervical Plate with Integrated Spike and Screw Fixation Options. Features a PorOss™ 3D-printed titanium porous interbody paired with in-line fixation for maximum stability.",
+    title: "Saber-C® AVIA™",
+    description: "Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
+    imageClassName: "w-full h-full object-cover",
     link: "/saber-c",
     cta: "View Device Details",
   },
@@ -654,8 +655,9 @@ const productsData = [
     tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
     title: "SABER-XA™",
     description: "Next-generation lateral access fixation currently undergoing final validation and clinical advisory review.",
-    visualType: "blueprint",
-    visualUrl: "",
+    visualType: "image",
+    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785983935/SaberXA_lyih36.png",
+    imageClassName: "w-full h-full object-contain p-8 md:p-16 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]",
     statusUpdate: {
       title: "Status update",
       text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
@@ -851,7 +853,7 @@ function ProductsSection() {
                 <img
                   src={activeProduct.visualUrl}
                   alt={activeProduct.title}
-                  className="w-full h-full object-cover"
+                  className={activeProduct.imageClassName || "w-full h-full object-cover"}
                 />
               ) : (
                 <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-[#0a101d] overflow-hidden">
