@@ -12,6 +12,8 @@ import Contact from './pages/Contact.tsx';
 import Resources from './pages/Resources.tsx';
 import ResourcesAdmin from './pages/ResourcesAdmin.tsx';
 import Login from './pages/Login.tsx';
+import About from './pages/About.tsx';
+import SaberXADetail from './SaberXADetail.tsx';
 
 // ─── Scroll To Top Component ────────────────────────────────────────────────
 function ScrollToTop() {
@@ -111,6 +113,7 @@ export function TextRevealTitle({
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
   { label: "News", href: "/news" },
   { label: "Partners", href: "/partners" },
@@ -294,7 +297,7 @@ function Footer() {
 
         <div className="flex flex-wrap gap-12 md:gap-[72px]">
           {[
-            { heading: "Navigation", links: [{ label: "About us", href: "/#about" }, { label: "Products", href: "/products" }, { label: "Contact", href: "/contact" }] },
+            { heading: "Navigation", links: [{ label: "About us", href: "/about" }, { label: "Products", href: "/products" }, { label: "Contact", href: "/contact" }] },
             { heading: "Legal", links: [{ label: "Privacy policy", href: "#" }, { label: "Legal disclaimer", href: "#" }, { label: "FDA notices", href: "#" }] },
           ].map((col) => (
             <div key={col.heading} className="flex flex-col gap-6">
@@ -354,7 +357,9 @@ function AnimatedRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/saber-c" element={<SaberCDetail />} />
+          <Route path="/saber-xa" element={<SaberXADetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/news" element={<News />} />
           <Route path="/partners" element={<Partners />} />

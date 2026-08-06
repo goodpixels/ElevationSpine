@@ -339,16 +339,16 @@ function HeroSection() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="font-heading font-bold text-[46px] md:text-[64px] lg:text-[74px] text-white leading-[1.04] mb-5"
+                className="font-heading font-bold text-[42px] md:text-[56px] lg:text-[64px] text-white leading-[1.04] mb-5 max-w-[600px]"
               >
-                Traditional fusion <span className="text-[#2ac4f4]">redefined</span>
+                SABER-C AVIA: <span className="text-[#2ac4f4]">One Tray. Every Case.</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="font-sans font-normal text-[14px] md:text-[16px] text-white/80 leading-relaxed mb-8 max-w-[370px]"
+                className="font-sans font-normal text-[14px] md:text-[16px] text-white/80 leading-relaxed mb-8 max-w-[450px]"
               >
-                Through proprietary Saber technology, Elevation Spine enables surgeons to perform spinal fusion more efficiently.
+                Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
