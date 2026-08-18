@@ -112,12 +112,10 @@ export function TextRevealTitle({
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
   { label: "News", href: "/news" },
-  { label: "Partners", href: "/partners" },
-  { label: "Contact", href: "/contact" },
+  { label: "Partners & Contact", href: "/partners" },
   { label: "Resources", href: "/resources" }
 ];
 
@@ -140,37 +138,31 @@ function Navbar() {
 
   return (
     <>
-      {/* ── Navbar: 3 pills grouped tightly together with subtle floating depth ── */}
+      {/* ── Navbar: Angular unified bar with reduced border radius ── */}
       <motion.nav
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="fixed z-50 inset-x-0 top-6 px-4 md:px-8 pointer-events-none"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="fixed z-50 inset-x-0 top-5 px-4 md:px-8 pointer-events-none"
       >
-        <div className="flex items-center justify-center gap-[2px] max-w-[1600px] mx-auto">
+        <div className="flex items-center justify-between gap-3 max-w-[1400px] mx-auto pointer-events-auto bg-white/95 backdrop-blur-xl border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-[5px] px-4 md:px-5 py-2.5">
 
-          {/* ── Logo pill ── */}
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="pointer-events-auto shrink-0"
+          {/* ── Combined Logo ── */}
+          <Link
+            to="/"
+            onClick={() => handleNavClick("/")}
+            className="flex items-center gap-3 shrink-0 py-1 px-1 group transition-transform duration-200 hover:scale-[1.02]"
           >
-            <Link
-              to="/"
-              onClick={() => handleNavClick("/")}
-              className="flex items-center h-[64px] px-6 rounded-[22px] bg-white/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-black/[0.06] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(42,196,244,0.15)] hover:border-[#2ac4f4]/40"
-            >
-              <img
-                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
-                alt="Elevation Spine"
-                className="h-[44px] w-auto object-contain"
-                style={{ maxWidth: 200 }}
-              />
-            </Link>
-          </motion.div>
+            <img
+              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+              alt="Elevation Spine"
+              className="h-[42px] md:h-[48px] w-auto object-contain"
+              style={{ maxWidth: 230 }}
+            />
+          </Link>
 
-          {/* ── Nav links pill ── */}
-          <div className="pointer-events-auto hidden md:flex items-center gap-1 px-5 h-[64px] rounded-[22px] bg-white/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-black/[0.06]">
+          {/* ── Nav links & Action button ── */}
+          <div className="hidden md:flex items-center gap-1.5 lg:gap-2">
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
@@ -182,16 +174,16 @@ function Navbar() {
                   key={link.label}
                   to={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative font-heading text-[14px] font-medium transition-all duration-200 px-4 py-2 rounded-[14px] whitespace-nowrap ${
+                  className={`relative font-heading text-[14px] font-medium transition-all duration-200 px-3.5 py-2 rounded-[4px] whitespace-nowrap ${
                     isActive
-                      ? "text-[#0a0e17] font-semibold"
-                      : "text-[#475569] hover:text-[#2ac4f4] hover:bg-black/[0.03]"
+                      ? "text-[#0a0e17] font-semibold bg-black/[0.04]"
+                      : "text-[#475569] hover:text-[#2ac4f4] hover:bg-black/[0.02]"
                   }`}
                 >
                   {isActive && (
                     <motion.div
-                      layoutId="activeNavPill"
-                      className="absolute inset-0 rounded-[14px] bg-[#2ac4f4]/15 border border-[#2ac4f4]/30"
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 inset-x-2 h-[2px] bg-[#2ac4f4]"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -199,25 +191,20 @@ function Navbar() {
                 </Link>
               );
             })}
-          </div>
 
-          {/* ── Login pill ── */}
-          <motion.div
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            className="pointer-events-auto hidden md:flex shrink-0"
-          >
+            <div className="w-px h-5 bg-black/[0.1] mx-1" />
+
             <Link
               to="/login"
-              className="flex items-center h-[64px] px-8 gap-2.5 rounded-[22px] bg-[#2ac4f4] text-[#0a0e17] font-heading text-[14px] font-bold shadow-[0_6px_24px_rgba(42,196,244,0.4)] transition-all duration-300 hover:bg-[#6ecff4] hover:shadow-[0_8px_32px_rgba(42,196,244,0.5)] shrink-0 whitespace-nowrap"
+              className="flex items-center gap-1.5 px-5 py-2 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] font-heading text-[13px] font-bold shadow-[0_4px_16px_rgba(42,196,244,0.35)] transition-all duration-200 hover:bg-[#6ecff4] hover:shadow-[0_6px_20px_rgba(42,196,244,0.45)] whitespace-nowrap ml-1"
             >
               <span>→</span> Login
             </Link>
-          </motion.div>
+          </div>
 
           {/* Mobile hamburger */}
           <button
-            className="pointer-events-auto md:hidden text-[#1a2535] p-3 flex flex-col gap-1.5 bg-white/95 rounded-[22px] border border-black/[0.06] shadow-[0_4px_16px_rgba(0,0,0,0.10)] h-[64px] w-[64px] items-center justify-center ml-auto cursor-pointer"
+            className="md:hidden text-[#1a2535] p-2 flex flex-col gap-1.5 rounded-[4px] border border-black/[0.08] bg-black/[0.02] h-[44px] w-[44px] items-center justify-center cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -235,10 +222,10 @@ function Navbar() {
             initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed top-[96px] inset-x-4 z-40 overflow-hidden rounded-[24px] bg-white/95 backdrop-blur-2xl border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.15)]"
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed top-[84px] inset-x-4 z-40 overflow-hidden rounded-[6px] bg-white/95 backdrop-blur-2xl border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.15)]"
           >
-            <div className="flex flex-col gap-1.5 p-4">
+            <div className="flex flex-col gap-1 p-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -247,7 +234,7 @@ function Navbar() {
                     setMobileOpen(false);
                     handleNavClick(link.href);
                   }}
-                  className="font-heading text-[15px] font-medium text-[#1a2535] px-4 py-3 rounded-[14px] hover:bg-black/5 transition-colors"
+                  className="font-heading text-[15px] font-medium text-[#1a2535] px-4 py-3 rounded-[4px] hover:bg-black/5 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -255,7 +242,7 @@ function Navbar() {
               <Link
                 to="/login"
                 onClick={() => setMobileOpen(false)}
-                className="font-heading text-[14px] font-bold text-center text-[#0a0e17] bg-[#2ac4f4] hover:bg-[#6ecff4] px-4 py-3.5 rounded-[16px] mt-2 block transition-all shadow-md"
+                className="font-heading text-[14px] font-bold text-center text-[#0a0e17] bg-[#2ac4f4] hover:bg-[#6ecff4] px-4 py-3 rounded-[4px] mt-2 block transition-all shadow-sm"
               >
                 → Login
               </Link>
@@ -275,29 +262,36 @@ function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ amount: 0.15 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between gap-16"
+        className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between gap-16"
       >
-        <div className="max-w-[660px] flex flex-col gap-9">
-          <h3 className="font-heading font-bold text-white text-[36px] tracking-[-0.9px]">
-            Elevation Spine
-          </h3>
-          <p className="font-sans text-white/50 text-[18px] md:text-[21px] leading-[1.45]">
+        <div className="max-w-[660px] flex flex-col gap-8">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+              alt="Elevation Spine"
+              className="h-[46px] w-auto object-contain brightness-0 invert opacity-90 mb-4"
+            />
+            <p className="font-mono text-[#2ac4f4] text-[12px] uppercase tracking-widest font-semibold">
+              Integrated Fixation Spinal Technologies
+            </p>
+          </div>
+          <p className="font-sans text-white/60 text-[15px] md:text-[16px] leading-[1.6]">
             Leading the industry in zero-profile spinal fixation solutions. Our mission is to simplify complex surgical procedures through elegant mechanical engineering.
           </p>
-          <div className="flex flex-col gap-1.5 font-sans text-white/70 text-[15px]">
+          <div className="flex flex-col gap-1.5 font-sans text-white/70 text-[14px]">
             <p>Phone: (844) 415-0226</p>
             <p>Email: info@elevationspine.com</p>
             <p className="mt-2">2511 Garden Road | Suite B125</p>
             <p>Monterey, California 93940</p>
           </div>
-          <p className="font-sans text-white/40 text-[14px]">
+          <p className="font-sans text-white/40 text-[13px]">
             © 2026 Elevation Spine. All rights reserved.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-12 md:gap-[72px]">
           {[
-            { heading: "Navigation", links: [{ label: "About us", href: "/about" }, { label: "Products", href: "/products" }, { label: "Contact", href: "/contact" }] },
+            { heading: "Navigation", links: [{ label: "About us", href: "/about" }, { label: "Products", href: "/products" }, { label: "News", href: "/news" }, { label: "Partners & Contact", href: "/partners" }, { label: "Resources", href: "/resources" }] },
             { heading: "Legal", links: [{ label: "Privacy policy", href: "#" }, { label: "Legal disclaimer", href: "#" }, { label: "FDA notices", href: "#" }] },
           ].map((col) => (
             <div key={col.heading} className="flex flex-col gap-6">
@@ -306,7 +300,7 @@ function Footer() {
               </p>
               <nav className="flex flex-col gap-3">
                 {col.links.map((l) => (
-                  <Link key={l.label} to={l.href} className="font-sans text-white/60 text-[16px] hover:text-[#2ac4f4] transition-colors duration-200">
+                  <Link key={l.label} to={l.href} className="font-sans text-white/60 text-[15px] hover:text-[#2ac4f4] transition-colors duration-200">
                     {l.label}
                   </Link>
                 ))}
@@ -322,7 +316,7 @@ function Footer() {
                 target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2 }}
-                className="bg-white/10 border border-white/10 rounded-full w-[52px] h-[52px] flex items-center justify-center hover:bg-white/20 hover:text-[#2ac4f4] transition-colors text-white"
+                className="bg-white/10 border border-white/10 rounded-[5px] w-[48px] h-[48px] flex items-center justify-center hover:bg-white/20 hover:text-[#2ac4f4] transition-colors text-white"
               >
                 <Linkedin className="w-5 h-5" />
               </motion.a>
@@ -331,7 +325,7 @@ function Footer() {
                 target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2 }}
-                className="bg-white/10 border border-white/10 rounded-full w-[52px] h-[52px] flex items-center justify-center hover:bg-white/20 hover:text-red-500 transition-colors text-white"
+                className="bg-white/10 border border-white/10 rounded-[5px] w-[48px] h-[48px] flex items-center justify-center hover:bg-white/20 hover:text-red-500 transition-colors text-white"
               >
                 <Youtube className="w-6 h-6" />
               </motion.a>
@@ -363,7 +357,7 @@ function AnimatedRoutes() {
           <Route path="/products" element={<Products />} />
           <Route path="/news" element={<News />} />
           <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Partners />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resourcesadmin" element={<ResourcesAdmin />} />
           <Route path="/login" element={<Login />} />

@@ -61,7 +61,7 @@ export default function SaberCDetail() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-24 right-6 z-50 bg-[#0a0e17] text-white px-6 py-3.5 rounded-2xl shadow-2xl border border-[#2ac4f4]/40 flex items-center gap-3 font-heading text-sm"
+            className="fixed top-24 right-6 z-50 bg-[#0a0e17] text-white px-6 py-3.5 rounded-[8px] shadow-2xl border border-[#2ac4f4]/40 flex items-center gap-3 font-heading text-sm"
           >
             <CheckCircle2 className="w-5 h-5 text-[#2ac4f4]" />
             {toastMessage}
@@ -82,7 +82,7 @@ export default function SaberCDetail() {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-[#0a0e17] border border-white/10 p-8 rounded-3xl w-full max-w-md shadow-2xl"
+              className="bg-[#0a0e17] border border-white/10 p-8 rounded-[12px] w-full max-w-md shadow-2xl"
             >
               <h3 className="text-2xl font-heading font-bold mb-2">Request a Demo</h3>
               <p className="text-white/60 text-sm mb-6">See how SABER-C® AVIA™ can streamline your OR workflow.</p>
@@ -90,19 +90,19 @@ export default function SaberCDetail() {
               <form onSubmit={handleDemoSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-mono text-white/50 mb-1">Name</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Dr. Jane Smith" />
+                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Dr. Jane Smith" />
                 </div>
                 <div>
                   <label className="block text-xs font-mono text-white/50 mb-1">Hospital / Clinic</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="General Hospital" />
+                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="General Hospital" />
                 </div>
                 <div>
                   <label className="block text-xs font-mono text-white/50 mb-1">Email</label>
-                  <input required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="jane@hospital.com" />
+                  <input required type="email" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="jane@hospital.com" />
                 </div>
                 <div className="pt-4 flex gap-3">
-                  <button type="button" onClick={() => setShowDemoModal(false)} className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-white/70 hover:bg-white/5 transition-colors font-medium text-sm">Cancel</button>
-                  <button type="submit" disabled={demoSubmitted} className="flex-1 px-4 py-3 rounded-xl bg-[#2ac4f4] text-[#0a0e17] hover:bg-[#1aafde] transition-colors font-bold text-sm flex items-center justify-center gap-2">
+                  <button type="button" onClick={() => setShowDemoModal(false)} className="flex-1 px-4 py-3 rounded-[4px] border border-white/10 text-white/70 hover:bg-white/5 transition-colors font-medium text-sm">Cancel</button>
+                  <button type="submit" disabled={demoSubmitted} className="flex-1 px-4 py-3 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] hover:bg-[#1aafde] transition-colors font-bold text-sm flex items-center justify-center gap-2">
                     {demoSubmitted ? <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="w-4 h-4 border-2 border-[#0a0e17] border-t-transparent rounded-full" /> : "Submit"}
                   </button>
                 </div>
@@ -113,13 +113,13 @@ export default function SaberCDetail() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-24 overflow-hidden border-b border-white/5">
+      <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-16 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2ac4f4]/5 to-transparent pointer-events-none" />
-        <div className="max-w-[1280px] mx-auto relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center text-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl">
-            <motion.div variants={fadeUp} className="inline-flex items-center border border-[#2ac4f4]/30 rounded-full px-4 py-1.5 mb-8 bg-[#2ac4f4]/10">
+            <motion.div variants={fadeUp} className="inline-flex items-center border border-[#2ac4f4]/30 rounded-[3px] px-3.5 py-1 mb-8 bg-[#2ac4f4]/10">
               <span className="font-mono font-medium text-[12px] tracking-widest uppercase text-[#2ac4f4]">
-                SABER-C® AVIA™
+                Saber-C | AVIA™
               </span>
             </motion.div>
             
@@ -128,12 +128,19 @@ export default function SaberCDetail() {
             </motion.h1>
             
             <motion.p variants={fadeUp} className="text-[#94a3b8] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-              Anterior cervical fixation shouldn't require multiple trays. Saber-C AVIA combines zero-profile plate stability with complete fixation flexibility—spike or screw options in one instrument set. Surgeons decide fixation in the OR, not before surgery.
+              Anterior cervical fixation shouldn't require multiple trays. Saber-C | AVIA™ combines zero-profile plate stability with complete fixation flexibility—spike or screw options in one instrument set. Surgeons decide fixation in the OR, not before surgery.
             </motion.p>
             
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
-              <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-4 rounded-full shadow-[0_8px_24px_rgba(42,196,244,0.3)] hover:bg-[#1aafde] transition-all hover:scale-105 flex items-center gap-2">
-                Request Demo <ChevronRight className="w-4 h-4" />
+              <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-4 rounded-[4px] shadow-[0_8px_24px_rgba(42,196,244,0.3)] hover:bg-[#6ecff4] transition-all flex items-center gap-2 cursor-pointer">
+                Request Clinical Demo <ChevronRight className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => triggerToast("Downloading Saber-C | AVIA™ Official Instructions for Use (IFU)...")}
+                className="bg-white/10 text-white font-heading font-semibold text-[14px] px-7 py-4 rounded-[4px] border border-white/20 hover:bg-white/20 transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <Download className="w-4 h-4 text-[#2ac4f4]" />
+                Download Public IFU
               </button>
             </motion.div>
           </motion.div>
@@ -141,14 +148,14 @@ export default function SaberCDetail() {
       </section>
 
       {/* Section 1: The Problem It Solves & Section 2: The AVIA Solution */}
-      <section className="py-24 px-6 md:px-12 bg-[#050811] relative">
-        <div className="max-w-[1280px] mx-auto">
+      <section className="py-24 px-6 md:px-12 lg:px-16 bg-[#050811] relative">
+        <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             
             {/* The Problem */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-              className="bg-red-500/5 border border-red-500/10 rounded-[32px] p-10 md:p-14"
+              className="bg-red-500/5 border border-red-500/10 rounded-[8px] p-10 md:p-14"
             >
               <h3 className="font-heading text-3xl font-bold mb-6 text-white/90">The Problem</h3>
               <ul className="space-y-6">
@@ -170,7 +177,7 @@ export default function SaberCDetail() {
             {/* The AVIA Solution */}
             <motion.div 
               initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-[#2ac4f4]/5 border border-[#2ac4f4]/20 rounded-[32px] p-10 md:p-14 relative overflow-hidden"
+              className="bg-[#2ac4f4]/5 border border-[#2ac4f4]/20 rounded-[8px] p-10 md:p-14 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-[#2ac4f4]/10 rounded-full blur-3xl" />
               <h3 className="font-heading text-3xl font-bold mb-6 text-white">The AVIA Solution</h3>
@@ -178,12 +185,15 @@ export default function SaberCDetail() {
                 {[
                   "One tray with complete fixation options",
                   "Spike fixation pre-loaded and ready",
-                  "Screw fixation instrumentation included",
-                  "Decide fixation strategy in the OR based on anatomy"
+                  "Screw options available in the same set",
+                  "Zero-profile design with plate stability",
+                  "3D-printed porous titanium for biological fusion"
                 ].map((text, i) => (
                   <li key={i} className="flex gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-[#2ac4f4] shrink-0 mt-0.5" />
-                    <span className="text-white/90 text-lg leading-snug font-medium">{text}</span>
+                    <div className="w-6 h-6 rounded-full bg-[#2ac4f4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#2ac4f4]" />
+                    </div>
+                    <span className="text-white/90 text-lg leading-snug">{text}</span>
                   </li>
                 ))}
               </ul>
@@ -222,9 +232,9 @@ export default function SaberCDetail() {
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white/[0.02] border border-white/10 rounded-[24px] p-8 hover:bg-white/[0.04] transition-colors"
+                className="bg-white/[0.02] border border-white/10 rounded-[12px] p-8 hover:bg-white/[0.04] transition-colors"
               >
-                <div className="w-16 h-16 rounded-2xl bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-6">
                   {col.icon}
                 </div>
                 <h3 className="text-2xl font-heading font-bold mb-6">{col.title}</h3>
@@ -246,11 +256,11 @@ export default function SaberCDetail() {
       <section className="py-24 px-6 md:px-12 bg-[#050811] border-t border-white/5 overflow-hidden">
         <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-16">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:w-1/2 w-full">
-            <div className="relative aspect-square rounded-[32px] overflow-hidden border border-white/10 bg-black flex items-center justify-center">
-              <img src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png" alt="Porous titanium lattice" className="w-[120%] h-[120%] object-contain opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent" />
+            <div className="relative aspect-square rounded-[16px] overflow-hidden border border-white/10 bg-black flex items-center justify-center p-6">
+              <img src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png" alt="Saber-C | AVIA™ Porous Titanium Implant" className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent pointer-events-none" />
               <div className="absolute bottom-6 left-6 right-6">
-                <p className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Willis Render: Porous Titanium Lattice</p>
+                <p className="font-mono text-[10px] text-[#2ac4f4] uppercase tracking-widest font-semibold">Saber-C | AVIA™ Zero-Profile Fixation Construct</p>
               </div>
             </div>
           </motion.div>
@@ -268,7 +278,7 @@ export default function SaberCDetail() {
                 </div>
               ))}
             </div>
-            <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
+            <div className="bg-white/5 border border-white/10 p-5 rounded-[8px]">
               <p className="text-sm text-white/50 italic">
                 *Reference: Walsh et al., NASSJ 2025
               </p>
@@ -285,7 +295,7 @@ export default function SaberCDetail() {
             <p className="text-[#94a3b8]">Precision engineered to fit patient anatomy.</p>
           </div>
           
-          <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
+          <div className="bg-white/5 border border-white/10 rounded-[12px] overflow-hidden">
             <table className="w-full text-left">
               <tbody className="divide-y divide-white/10">
                 {[
@@ -322,7 +332,7 @@ export default function SaberCDetail() {
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="bg-[#0a0e17] border border-white/10 p-8 rounded-3xl"
+                className="bg-[#0a0e17] border border-white/10 p-8 rounded-[12px]"
               >
                 <div className="w-12 h-12 rounded-full bg-[#2ac4f4] text-[#0a0e17] font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(42,196,244,0.4)]">
                   {step.num}
@@ -336,9 +346,9 @@ export default function SaberCDetail() {
       </section>
 
       {/* Section 7: Surgical Resources & Section 8: CTA */}
-      <section className="py-24 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+      <section className="py-24 px-6 md:px-12 lg:px-16 border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[#2ac4f4]/5" />
-        <div className="max-w-[1280px] mx-auto relative z-10">
+        <div className="max-w-[1400px] mx-auto relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
@@ -346,36 +356,71 @@ export default function SaberCDetail() {
             <div>
               <h2 className="font-heading text-4xl font-bold mb-8">Surgical Resources</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { icon: <FileText />, title: "Technique Guide", subtitle: "Spike Fixation" },
-                  { icon: <FileText />, title: "Technique Guide", subtitle: "Screw Fixation" },
-                  { icon: <PlayCircle />, title: "Surgical Video", subtitle: "Full Walkthrough" },
-                  { icon: <ClipboardList />, title: "Instrumentation", subtitle: "Checklist" },
-                ].map((res, i) => (
-                  <button key={i} className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-xl transition-all group text-left">
-                    <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-[#2ac4f4] group-hover:scale-110 transition-transform">
-                      {res.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-heading font-bold text-sm text-white">{res.title}</h4>
-                      <p className="text-xs text-white/50">{res.subtitle}</p>
-                    </div>
-                  </button>
-                ))}
+                <button 
+                  onClick={() => triggerToast("Downloading Saber-C | AVIA™ Instructions for Use (IFU)...")}
+                  className="flex items-center gap-4 bg-[#2ac4f4]/15 border border-[#2ac4f4]/40 p-4 rounded-[6px] transition-all group text-left cursor-pointer hover:bg-[#2ac4f4]/25"
+                >
+                  <div className="w-12 h-12 rounded-[4px] bg-[#2ac4f4]/20 flex items-center justify-center text-[#2ac4f4] group-hover:scale-110 transition-transform">
+                    <Download className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Instructions for Use (IFU)</h4>
+                    <p className="text-xs text-[#2ac4f4] font-mono font-semibold">Public Download</p>
+                  </div>
+                </button>
+
+                <Link 
+                  to="/resources"
+                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
+                >
+                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Technique Guide</h4>
+                    <p className="text-xs text-white/50">Portal Access Only</p>
+                  </div>
+                </Link>
+
+                <Link 
+                  to="/resources"
+                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
+                >
+                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
+                    <PlayCircle className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Surgical Video</h4>
+                    <p className="text-xs text-white/50">Portal Access Only</p>
+                  </div>
+                </Link>
+
+                <Link 
+                  to="/resources"
+                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
+                >
+                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
+                    <ClipboardList className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Instrumentation Checklist</h4>
+                    <p className="text-xs text-white/50">Portal Access Only</p>
+                  </div>
+                </Link>
               </div>
             </div>
 
             {/* Section 8: CTA */}
-            <div className="bg-[#0a0e17] border border-white/10 rounded-[32px] p-10 flex flex-col justify-center text-center items-center shadow-2xl">
+            <div className="bg-[#0a0e17] border border-white/10 rounded-[8px] p-10 flex flex-col justify-center text-center items-center shadow-2xl">
               <h2 className="font-heading text-3xl font-bold mb-4">Ready to Elevate Your Practice?</h2>
-              <p className="text-white/60 mb-8 max-w-sm">Experience the SABER-C® AVIA™ difference with a comprehensive product demonstration.</p>
+              <p className="text-white/60 mb-8 max-w-sm">Experience the Saber-C | AVIA™ difference with a comprehensive clinical demonstration.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-bold px-8 py-4 rounded-full hover:bg-[#1aafde] transition-colors flex items-center justify-center gap-2">
+                <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-bold px-8 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer">
                   Request Demo
                 </button>
-                <Link to="/contact" className="bg-white/10 text-white border border-white/20 font-bold px-8 py-4 rounded-full hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
-                  Contact Support
+                <Link to="/partners" className="bg-white/10 text-white border border-white/20 font-bold px-8 py-3.5 rounded-[4px] hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
+                  Contact Specialist
                 </Link>
               </div>
             </div>
