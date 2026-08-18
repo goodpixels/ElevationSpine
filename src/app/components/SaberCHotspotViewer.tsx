@@ -153,9 +153,18 @@ export default function SaberCHotspotViewer() {
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-white/10 pb-6 relative z-10">
         <div>
-          <div className="inline-flex items-center gap-2 bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 rounded-full px-3.5 py-1 text-xs font-mono text-[#7fd0ff] mb-2 uppercase tracking-widest font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-[#2ac4f4]" />
-            Interactive Engineering Inspection
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 rounded-full px-3.5 py-1 text-xs font-mono text-[#7fd0ff] uppercase tracking-widest font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-[#2ac4f4]" />
+              Interactive Engineering Inspection
+            </div>
+            <div className="inline-flex items-center px-3 py-1 rounded-[4px] bg-white/5 border border-white/10">
+              <img 
+                src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg" 
+                alt="Saber-C AVIA™" 
+                className="h-4.5 w-auto object-contain opacity-90"
+              />
+            </div>
           </div>
           <h2 className="font-heading text-2xl md:text-4xl font-bold tracking-tight text-white flex items-center gap-3">
             SABER-C™ <span className="text-[#2ac4f4]">Construct Breakdown</span>

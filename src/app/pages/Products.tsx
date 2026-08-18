@@ -9,6 +9,7 @@ const productsData = [
     shortTitle: "Saber-C | AVIA™",
     dotColor: "bg-[#2ac4f4]",
     title: "Saber-C | AVIA™",
+    logoUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg",
     description: "Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png",
@@ -134,11 +135,22 @@ function ProductCard({ product }: { product: any }) {
 
       {/* Left Content */}
       <div className="p-8 md:p-12 lg:col-span-6 flex flex-col justify-center relative z-10">
-        <div className="flex items-center gap-2.5 mb-3">
-          <span className={`w-2.5 h-2.5 rounded-full ${product.dotColor} shadow-sm group-hover:scale-125 transition-transform duration-300`} />
-          <span className="font-mono text-xs text-slate-400 uppercase tracking-wider font-semibold">
-            {product.shortTitle} Platform
-          </span>
+        <div className="flex items-center justify-between gap-4 mb-3">
+          <div className="flex items-center gap-2.5">
+            <span className={`w-2.5 h-2.5 rounded-full ${product.dotColor} shadow-sm group-hover:scale-125 transition-transform duration-300`} />
+            <span className="font-mono text-xs text-slate-400 uppercase tracking-wider font-semibold">
+              {product.shortTitle} Platform
+            </span>
+          </div>
+          {product.logoUrl && (
+            <div className="bg-[#0a0e17] px-3 py-1.5 rounded-[5px] border border-black/10 shadow-sm flex items-center shrink-0">
+              <img 
+                src={product.logoUrl} 
+                alt={`${product.title} Logo`} 
+                className="h-4 sm:h-5 w-auto object-contain"
+              />
+            </div>
+          )}
         </div>
 
         <h2 className="font-heading font-bold text-[#0a0e17] text-[30px] md:text-[36px] tracking-tight mb-4 group-hover:text-[#0891b2] transition-colors duration-300 flex items-center justify-between">

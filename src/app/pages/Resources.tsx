@@ -44,6 +44,7 @@ export interface ProductItem {
   code: string;
   description: string;
   color: string;
+  logoUrl?: string;
 }
 
 export interface FolderItem {
@@ -74,6 +75,7 @@ export const INITIAL_PRODUCTS: ProductItem[] = [
     code: "SABER-C | AVIA",
     description: "Anterior Cervical Fixation System with Integrated Zero-Profile Fixation",
     color: "#2ac4f4",
+    logoUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg",
   },
   {
     id: "saber-xa",
@@ -401,6 +403,18 @@ export const INITIAL_FILES: FileItem[] = [
     size: "34.5 MB",
     gated: true,
     dateAdded: "2026-05-18",
+  },
+  {
+    id: "sc-logo-vector-1",
+    productId: "saber-c",
+    folderId: "Porous Branding",
+    title: "Saber-C | AVIA™ Official White Vector Logo (SVG)",
+    description: "Official master vector brand logo for Saber-C | AVIA™ zero-profile cervical fixation construct.",
+    format: "png",
+    size: "42 KB",
+    gated: false,
+    dateAdded: "2026-08-18",
+    previewUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg",
   },
   {
     id: "sc-press-1",
@@ -1190,6 +1204,43 @@ export default function Resources() {
             <div className="bg-white rounded-b-[6px] border-x border-b border-black/[0.08] p-4 sm:p-6 shadow-sm">
               {!selectedFolderId ? (
                 <div>
+                  {/* Product Header Banner */}
+                  {selectedProductId !== "all" && currentProduct && (
+                    <div className="mb-6 p-4 rounded-[6px] bg-[#0a0e17] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-white/10 shadow-sm">
+                      <div className="flex items-center gap-4">
+                        {currentProduct.logoUrl ? (
+                          <div className="bg-white/10 p-2 rounded-[4px] border border-white/10 shrink-0">
+                            <img src={currentProduct.logoUrl} alt={currentProduct.name} className="h-6 sm:h-7 w-auto object-contain" />
+                          </div>
+                        ) : (
+                          <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: currentProduct.color }} />
+                        )}
+                        <div>
+                          <h3 className="font-heading font-bold text-base text-white">{currentProduct.name}</h3>
+                          <p className="text-white/60 text-xs mt-0.5">{currentProduct.description}</p>
+                        </div>
+                      </div>
+                      {currentProduct.id === "saber-c" && (
+                        <Link
+                          to="/saber-c"
+                          className="text-xs font-heading font-bold text-[#2ac4f4] hover:text-white transition-colors flex items-center gap-1.5 shrink-0 bg-white/5 hover:bg-white/10 px-3 py-2 rounded-[4px] border border-[#2ac4f4]/30"
+                        >
+                          <span>View Product Page</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                      {currentProduct.id === "saber-xa" && (
+                        <Link
+                          to="/saber-xa"
+                          className="text-xs font-heading font-bold text-[#2ac4f4] hover:text-white transition-colors flex items-center gap-1.5 shrink-0 bg-white/5 hover:bg-white/10 px-3 py-2 rounded-[4px] border border-[#2ac4f4]/30"
+                        >
+                          <span>View Product Page</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
                     <span className="font-mono text-xs text-slate-500 uppercase tracking-wider font-semibold">
                       {selectedProductId === "all" ? "Resource Categories" : `Folders in ${currentProduct.name}`}

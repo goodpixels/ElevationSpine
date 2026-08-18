@@ -84,6 +84,13 @@ export default function SaberCDetail() {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               className="bg-[#0a0e17] border border-white/10 p-8 rounded-[12px] w-full max-w-md shadow-2xl"
             >
+              <div className="flex items-center justify-between mb-4">
+                <img 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg" 
+                  alt="Saber-C AVIA" 
+                  className="h-6 w-auto object-contain opacity-90"
+                />
+              </div>
               <h3 className="text-2xl font-heading font-bold mb-2">Request a Demo</h3>
               <p className="text-white/60 text-sm mb-6">See how SABER-C® AVIA™ can streamline your OR workflow.</p>
               
@@ -116,11 +123,17 @@ export default function SaberCDetail() {
       <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-16 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2ac4f4]/5 to-transparent pointer-events-none" />
         <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center text-center">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl">
-            <motion.div variants={fadeUp} className="inline-flex items-center border border-[#2ac4f4]/30 rounded-[3px] px-3.5 py-1 mb-8 bg-[#2ac4f4]/10">
-              <span className="font-mono font-medium text-[12px] tracking-widest uppercase text-[#2ac4f4]">
-                Saber-C | AVIA™
-              </span>
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl flex flex-col items-center">
+            
+            {/* Saber-C AVIA Logo Header */}
+            <motion.div variants={fadeUp} className="mb-8">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-[6px] bg-white/[0.04] border border-[#2ac4f4]/30 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                <img
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg"
+                  alt="Saber-C AVIA™"
+                  className="h-7 sm:h-8 md:h-9 w-auto object-contain"
+                />
+              </div>
             </motion.div>
             
             <motion.h1 variants={fadeUp} className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] tracking-tight mb-8">
@@ -412,6 +425,11 @@ export default function SaberCDetail() {
 
             {/* Section 8: CTA */}
             <div className="bg-[#0a0e17] border border-white/10 rounded-[8px] p-10 flex flex-col justify-center text-center items-center shadow-2xl">
+              <img 
+                src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg" 
+                alt="Saber-C AVIA™" 
+                className="h-8 md:h-10 w-auto object-contain mb-6 opacity-95 drop-shadow-[0_4px_12px_rgba(42,196,244,0.25)]"
+              />
               <h2 className="font-heading text-3xl font-bold mb-4">Ready to Elevate Your Practice?</h2>
               <p className="text-white/60 mb-8 max-w-sm">Experience the Saber-C | AVIA™ difference with a comprehensive clinical demonstration.</p>
               
