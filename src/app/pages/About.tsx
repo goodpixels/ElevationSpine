@@ -7,7 +7,7 @@ const teamMembers = [
     name: "Charlie Gilbride",
     role: "Founder, President & Chief Executive Officer",
     linkedin: "https://www.linkedin.com/in/charles-gilbride-3a027a2/",
-    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785982841/Charlie_uxl45h.jpg",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/f_auto,q_auto,w_800/v1785982841/Charlie_uxl45h.jpg",
     shortBio: "Founder, President, and CEO with 30+ years of medical device experience bringing the Saber® Technology platform to market.",
     sections: [
       {
@@ -28,7 +28,7 @@ const teamMembers = [
     name: "John Kirwan",
     role: "Vice President, Research & Development",
     linkedin: "https://www.linkedin.com/in/john-kirwan-16744310/",
-    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785982843/John_kbdj0n.jpg",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/f_auto,q_auto,w_800/v1785982843/John_kbdj0n.jpg",
     shortBio: "Engineering leader overseeing product design, biomechanical testing, and clinical validation with 30+ years of experience.",
     sections: [
       {
@@ -53,7 +53,7 @@ const teamMembers = [
     name: "Zeke Isaacs",
     role: "Vice President, Sales & Distribution",
     linkedin: "https://www.linkedin.com/in/zeke-isaacs-2ab70942/",
-    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785982840/Zeke_sbavfj.jpg",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/f_auto,q_auto,w_800/v1785982840/Zeke_sbavfj.jpg",
     shortBio: "Commercial leader scaling national device distribution networks through clinical evidence and authentic surgeon relationships.",
     sections: [
       {
@@ -74,7 +74,7 @@ const teamMembers = [
     name: "Jim Steinkotter",
     role: "Vice President, Operations (COO)",
     linkedin: "https://www.linkedin.com/in/jimsteinkoetter/",
-    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785982845/Jim_rkea1f.jpg",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/f_auto,q_auto,w_800/v1785982845/Jim_rkea1f.jpg",
     shortBio: "Operational expert scaling supply chain and manufacturing operations with nearly 20 years of medical device experience.",
     sections: [
       {
@@ -193,7 +193,7 @@ export default function About() {
               <div className="relative w-full md:w-2/5 p-8 md:p-10 flex flex-col shrink-0 overflow-hidden text-white bg-[#0a0e17]">
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="rounded-[8px] overflow-hidden mb-6 border border-white/20 shadow-2xl bg-white">
-                    <img src={selectedMember.image} alt={selectedMember.name} className="w-full h-auto block object-contain" />
+                    <img src={selectedMember.image} alt={selectedMember.name} decoding="async" className="w-full h-auto block object-contain" />
                   </div>
                   <h3 className="font-heading font-bold text-2xl mb-1">{selectedMember.name}</h3>
                   <p className="font-mono text-[#2ac4f4] text-xs uppercase tracking-wider mb-6 font-semibold">
@@ -295,6 +295,8 @@ export default function About() {
                 <img 
                   src={member.image} 
                   alt={member.name} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top transition-all duration-500 scale-100 group-hover:scale-[1.03]"
                 />
                 {/* Blue overlay: active by default, fades out on hover */}
