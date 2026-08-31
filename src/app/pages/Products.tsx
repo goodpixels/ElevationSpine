@@ -6,26 +6,26 @@ import { TextRevealTitle } from "../App.tsx";
 const productsData = [
   {
     id: "saber-c",
-    shortTitle: "Saber-C | AVIA™",
+    shortTitle: "Saber-C AVIA™",
     dotColor: "bg-[#2ac4f4]",
-    title: "Saber-C | AVIA™",
+    title: "Saber-C AVIA™",
     logoUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg",
-    description: "Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.",
+    description: "Porous 3D printed titanium anterior cervical fixation system with a zero-profile plate construct and spike or screw fixation options.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png",
     link: "/saber-c",
-    cta: "View Device Details",
+    cta: "Explore Saber-C AVIA",
   },
   {
     id: "saber-xa",
     shortTitle: "Saber-XA™",
     dotColor: "bg-[#0891b2]",
     title: "Saber-XA™",
-    description: "The first and only 3D-printed titanium expandable ALIF implant with true intra-operative customization of height and lordosis, integrated anterior plating, and comprehensive fixation options.",
+    description: "Expandable anterior lumbar interbody technology with intraoperative height and lordotic adjustment and integrated fixation options.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787015670/SABER_X-A_ylfzww.png",
     link: "/saber-xa",
-    cta: "View Device Details",
+    cta: "Explore Saber-XA",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function Products() {
             className="font-heading font-bold text-[#1a2535] text-[40px] md:text-[56px] leading-[1.1] tracking-tight max-w-3xl"
           />
           <p className="text-[#4a5568] text-[16px] md:text-[17px] leading-relaxed mt-4 max-w-2xl">
-            Streamlined spinal implants engineered to reduce operating room steps, eliminate secondary plating, and optimize biological fusion.
+            Differentiated spinal implant systems designed to simplify procedural workflow through integrated fixation and versatile implant options.
           </p>
         </motion.div>
 

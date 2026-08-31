@@ -31,39 +31,39 @@ const newsItems: NewsItem[] = [
   },
   {
     date: "July 28, 2026",
-    title: "Elevation Spine Receives FDA 510(k) Clearance for Saber-C | AVIA™",
+    title: "Elevation Spine Receives FDA 510(k) Clearance for Saber-C AVIA™",
     excerpt: "A complete anterior cervical fixation system with a porous 3D-printed titanium interbody has been cleared by the FDA.",
     category: "Regulatory",
     link: "https://www.businesswire.com/news/home/20260728765422/en/Elevation-Spine-Receives-FDA-510k-Clearance-for-Saber-C-AVIA-A-Complete-Anterior-Cervical-Fixation-System-with-a-Porous-3D-Printed-Titanium-Interbody",
     content: [
-      "**Elevation Spine Receives FDA 510(k) Clearance for Saber-C | AVIA™, a Complete Anterior Cervical Fixation System with a Porous 3D-Printed Titanium Interbody**",
-      "MONTEREY, Calif.–(BUSINESS WIRE)–Elevation Spine today announced that the U.S. Food and Drug Administration (FDA) has granted 510(k) Clearance for Saber-C | AVIA™, the flagship anterior cervical platform in the Saber product family.",
-      "Saber-C | AVIA™ is engineered as a zero-profile anterior cervical discectomy and fusion (ACDF) construct with the biomechanical stability historically associated with traditional plating, featuring a porous 3D-printed titanium interbody with both spike and screw fixation options.",
+      "**Elevation Spine Receives FDA 510(k) Clearance for Saber-C AVIA™, a Complete Anterior Cervical Fixation System with a Porous 3D-Printed Titanium Interbody**",
+      "MONTEREY, Calif.–(BUSINESS WIRE)–Elevation Spine today announced that the U.S. Food and Drug Administration (FDA) has granted 510(k) Clearance for Saber-C AVIA™, the flagship anterior cervical platform in the Saber product family.",
+      "Saber-C AVIA™ is engineered as a zero-profile anterior cervical discectomy and fusion (ACDF) construct with the biomechanical stability historically associated with traditional plating, featuring a porous 3D-printed titanium interbody with both spike and screw fixation options.",
       "“Our dedicated Saber-C surgeon community gave us valuable feedback, and those conversations shaped what came next,” said Charlie Gilbride, Founder, President & CEO of Elevation Spine. “We focused on purposeful instrumentation, a porous 3D titanium implant supported by preclinical research, and thoughtful refinements that build on the strengths of the original platform.”",
-      "Saber-C | AVIA™ ships with both spike and screw instrumentation in a single tray for every case, offering maximum versatility in the operating room without instrument switching.",
-      "Saber-C | AVIA™ is available immediately for surgical use in the United States.",
+      "Saber-C AVIA™ ships with both spike and screw instrumentation in a single tray for every case, offering maximum versatility in the operating room without instrument switching.",
+      "Saber-C AVIA™ is available immediately for surgical use in the United States.",
       "**About Elevation Spine**",
       "Elevation Spine, headquartered in Monterey, CA, is the leading spinal medical device developer of integrated-fixation technologies. elevationspine.com"
     ]
   },
   {
     date: "June 22, 2026",
-    title: "Elevation Spine Surpasses 5,000 Saber-C | AVIA™ Implantations",
+    title: "Elevation Spine Surpasses 5,000 Saber-C AVIA™ Implantations",
     excerpt: "Marking a significant milestone for its integrated cervical fixation platform, highlighting surgeon adoption and next-generation advancements.",
     category: "Press Release",
     link: "https://www.businesswire.com/news/home/20260622253536/en/Elevation-Spine-Surpasses-5000-Saber-C-Implantations-Marking-a-Significant-Milestone-for-Its-Integrated-Cervical-Fixation-Platform",
     content: [
-      "**Elevation Spine Surpasses 5,000 Saber-C | AVIA™ Implantations, Marking a Significant Milestone for Its Integrated Cervical Fixation Platform**",
-      "MONTEREY, Calif.–(BUSINESS WIRE)–Elevation Spine announced today that its Saber-C | AVIA™ Anterior Cervical Fusion System has surpassed 5,000 implantations, a milestone that reflects growing surgeon adoption of its proprietary integrated-fixation approach to anterior cervical discectomy and fusion (ACDF).",
+      "**Elevation Spine Surpasses 5,000 Saber-C AVIA™ Implantations, Marking a Significant Milestone for Its Integrated Cervical Fixation Platform**",
+      "MONTEREY, Calif.–(BUSINESS WIRE)–Elevation Spine announced today that its Saber-C AVIA™ Anterior Cervical Fusion System has surpassed 5,000 implantations, a milestone that reflects growing surgeon adoption of its proprietary integrated-fixation approach to anterior cervical discectomy and fusion (ACDF).",
       "“Five thousand implantations is more than a number. It’s five thousand data points from surgeons in the OR telling us what works, what they need, and where to go next,” said Charlie Gilbride, Founder, President & CEO of Elevation Spine.",
-      "“I’ve used Saber-C | AVIA™ across a range of cases and the consistency is what stands out. The spike fixation deploys predictably, the workflow is clean, and I’m not managing a separate plating step,” noted Dr. Tien Le, MD, Total Spine & Brain Institute.",
+      "“I’ve used Saber-C AVIA™ across a range of cases and the consistency is what stands out. The spike fixation deploys predictably, the workflow is clean, and I’m not managing a separate plating step,” noted Dr. Tien Le, MD, Total Spine & Brain Institute.",
       "**About Elevation Spine**",
       "Elevation Spine is a Monterey, CA-based developer of integrated-fixation spinal technologies. elevationspine.com"
     ]
   },
   {
     date: "March 15, 2025",
-    title: "Preclinical Data on Saber-C | AVIA™ Porous Titanium Architecture Published in NASSJ",
+    title: "Preclinical Data on Saber-C AVIA™ Porous Titanium Architecture Published in NASSJ",
     excerpt: "New preclinical research authored by Walsh et al. highlights the osseointegration and superior bone formation capabilities of Elevation Spine's proprietary 3D-printed porous titanium interbody architecture.",
     category: "Clinical Research",
     link: "https://www.nassjournal.org"

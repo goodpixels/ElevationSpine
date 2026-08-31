@@ -14,6 +14,9 @@ import ResourcesAdmin from './pages/ResourcesAdmin.tsx';
 import Login from './pages/Login.tsx';
 import About from './pages/About.tsx';
 import SaberXADetail from './SaberXADetail.tsx';
+import Privacy from './pages/Privacy.tsx';
+import Legal from './pages/Legal.tsx';
+import FDANotices from './pages/FDANotices.tsx';
 
 // ─── Scroll To Top Component ────────────────────────────────────────────────
 function ScrollToTop() {
@@ -276,7 +279,7 @@ function Footer() {
             </p>
           </div>
           <p className="font-sans text-white/60 text-[15px] md:text-[16px] leading-[1.6]">
-            Leading the industry in zero-profile spinal fixation solutions. Our mission is to simplify complex surgical procedures through elegant mechanical engineering.
+            Developing differentiated spinal fusion technologies through the proprietary Saber platform. Integrated fixation, implant innovation, and streamlined instrumentation for cervical and lumbar procedures.
           </p>
           <div className="flex flex-col gap-1.5 font-sans text-white/70 text-[14px]">
             <p>Phone: (844) 415-0226</p>
@@ -287,12 +290,15 @@ function Footer() {
           <p className="font-sans text-white/40 text-[13px]">
             © 2026 Elevation Spine. All rights reserved.
           </p>
+          <p className="font-sans text-white/30 text-[11px] leading-relaxed mt-3 max-w-[560px]">
+            When Saber-C AVIA™ is used with spikes, supplemental fixation is required. Please refer to the Instructions for Use for a complete list of indications, contraindications, warnings, and precautions.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-12 md:gap-[72px]">
           {[
             { heading: "Navigation", links: [{ label: "About us", href: "/about" }, { label: "Products", href: "/products" }, { label: "News", href: "/news" }, { label: "Partners & Contact", href: "/partners" }, { label: "Resources", href: "/resources" }] },
-            { heading: "Legal", links: [{ label: "Privacy policy", href: "#" }, { label: "Legal disclaimer", href: "#" }, { label: "FDA notices", href: "#" }] },
+            { heading: "Legal", links: [{ label: "Privacy policy", href: "/privacy" }, { label: "Legal disclaimer", href: "/legal" }, { label: "FDA notices", href: "/fda-notices" }] },
           ].map((col) => (
             <div key={col.heading} className="flex flex-col gap-6">
               <p className="font-heading font-semibold text-white/40 text-[11px] tracking-[1.5px]">
@@ -361,6 +367,9 @@ function AnimatedRoutes() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/resourcesadmin" element={<ResourcesAdmin />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/fda-notices" element={<FDANotices />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

@@ -1,21 +1,19 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { motion, AnimatePresence, useScroll } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   ShieldAlert,
   Download,
-  Send,
-  Layers,
-  Zap,
-  Activity,
   CheckCircle2,
   ChevronRight,
-  Maximize2,
   FileText,
   PlayCircle,
-  ClipboardList
+  ClipboardList,
+  ExternalLink,
+  Lock,
+  BookOpen,
+  Wrench
 } from "lucide-react";
-import { TextRevealTitle } from "./App.tsx";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -47,7 +45,7 @@ export default function SaberCDetail() {
     setTimeout(() => {
       setDemoSubmitted(false);
       setShowDemoModal(false);
-      triggerToast("Demo request received! An Elevation Spine specialist will contact you.");
+      triggerToast("Request received. An Elevation Spine representative will contact you.");
     }, 1500);
   };
 
@@ -69,7 +67,7 @@ export default function SaberCDetail() {
         )}
       </AnimatePresence>
 
-      {/* Demo Modal */}
+      {/* Demo / Info Request Modal */}
       <AnimatePresence>
         {showDemoModal && (
           <motion.div
@@ -91,26 +89,32 @@ export default function SaberCDetail() {
                   className="h-6 w-auto object-contain opacity-90"
                 />
               </div>
-              <h3 className="text-2xl font-heading font-bold mb-2">Request a Demo</h3>
-              <p className="text-white/60 text-sm mb-6">See how SABER-C® AVIA™ can streamline your OR workflow.</p>
+              <h3 className="text-2xl font-heading font-bold mb-2">Request Product Information</h3>
+              <p className="text-white/60 text-sm mb-6">Learn more about Saber-C AVIA™ for your practice.</p>
               
               <form onSubmit={handleDemoSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-mono text-white/50 mb-1">Name</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Dr. Jane Smith" />
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-mono text-white/50 mb-1">First Name</label>
+                    <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Jane" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono text-white/50 mb-1">Last Name</label>
+                    <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Smith" />
+                  </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-mono text-white/50 mb-1">Hospital / Clinic</label>
-                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="General Hospital" />
+                  <label className="block text-xs font-mono text-white/50 mb-1">Organization</label>
+                  <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="Hospital / Practice" />
                 </div>
                 <div>
                   <label className="block text-xs font-mono text-white/50 mb-1">Email</label>
                   <input required type="email" className="w-full bg-white/5 border border-white/10 rounded-[4px] px-4 py-3 text-white outline-none focus:border-[#2ac4f4] transition-colors" placeholder="jane@hospital.com" />
                 </div>
                 <div className="pt-4 flex gap-3">
-                  <button type="button" onClick={() => setShowDemoModal(false)} className="flex-1 px-4 py-3 rounded-[4px] border border-white/10 text-white/70 hover:bg-white/5 transition-colors font-medium text-sm">Cancel</button>
-                  <button type="submit" disabled={demoSubmitted} className="flex-1 px-4 py-3 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] hover:bg-[#1aafde] transition-colors font-bold text-sm flex items-center justify-center gap-2">
-                    {demoSubmitted ? <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="w-4 h-4 border-2 border-[#0a0e17] border-t-transparent rounded-full" /> : "Submit"}
+                  <button type="button" onClick={() => setShowDemoModal(false)} className="flex-1 px-4 py-3 rounded-[4px] border border-white/10 text-white/70 hover:bg-white/5 transition-colors font-medium text-sm cursor-pointer">Cancel</button>
+                  <button type="submit" disabled={demoSubmitted} className="flex-1 px-4 py-3 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] hover:bg-[#1aafde] transition-colors font-bold text-sm flex items-center justify-center gap-2 cursor-pointer">
+                    {demoSubmitted ? <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="w-4 h-4 border-2 border-[#0a0e17] border-t-transparent rounded-full" /> : "Submit Request"}
                   </button>
                 </div>
               </form>
@@ -119,13 +123,15 @@ export default function SaberCDetail() {
         )}
       </AnimatePresence>
 
-      {/* Hero Section */}
+      {/* ═══════════════════════════════════════════════════════════════════════
+          HERO SECTION
+      ═══════════════════════════════════════════════════════════════════════ */}
       <section className="relative pt-32 pb-24 px-6 md:px-12 lg:px-16 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2ac4f4]/5 to-transparent pointer-events-none" />
         <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center text-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl flex flex-col items-center">
             
-            {/* Saber-C AVIA Logo Header */}
+            {/* Product Logo Badge */}
             <motion.div variants={fadeUp} className="mb-8">
               <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-[6px] bg-white/[0.04] border border-[#2ac4f4]/30 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
                 <img
@@ -136,313 +142,433 @@ export default function SaberCDetail() {
               </div>
             </motion.div>
             
-            <motion.h1 variants={fadeUp} className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] tracking-tight mb-8">
-              Complete. <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">By Design.</span>
+            {/* Headline */}
+            <motion.h1 variants={fadeUp} className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] tracking-tight mb-6">
+              Zero profile. Zero compromises.{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2ac4f4] to-[#7fd0ff]">One tray.</span>
             </motion.h1>
             
-            <motion.p variants={fadeUp} className="text-[#94a3b8] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-              Anterior cervical fixation shouldn't require multiple trays. Saber-C | AVIA™ combines zero-profile plate stability with complete fixation flexibility—spike or screw options in one instrument set. Surgeons decide fixation in the OR, not before surgery.
+            {/* Supporting copy */}
+            <motion.p variants={fadeUp} className="text-[#94a3b8] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-6">
+              A complete anterior cervical fixation system combining porous 3D printed titanium, plate-level stability, and the choice of spike or screw fixation.
             </motion.p>
+
+            {/* Key callout */}
+            <motion.div variants={fadeUp} className="mb-10">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-[6px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/25">
+                <span className="font-mono text-[#2ac4f4] text-xs sm:text-sm tracking-[2px] font-bold uppercase">
+                  One System · Two Fixation Options · One Tray
+                </span>
+              </div>
+            </motion.div>
             
+            {/* CTA Buttons */}
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
               <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-4 rounded-[4px] shadow-[0_8px_24px_rgba(42,196,244,0.3)] hover:bg-[#6ecff4] transition-all flex items-center gap-2 cursor-pointer">
-                Request Clinical Demo <ChevronRight className="w-4 h-4" />
+                Request Product Information <ChevronRight className="w-4 h-4" />
               </button>
-              <button 
-                onClick={() => triggerToast("Downloading Saber-C | AVIA™ Official Instructions for Use (IFU)...")}
-                className="bg-white/10 text-white font-heading font-semibold text-[14px] px-7 py-4 rounded-[4px] border border-white/20 hover:bg-white/20 transition-all flex items-center gap-2 cursor-pointer"
+              <Link 
+                to="/resources"
+                className="bg-white/10 text-white font-heading font-semibold text-[14px] px-7 py-4 rounded-[4px] border border-white/20 hover:bg-white/20 transition-all flex items-center gap-2"
               >
-                <Download className="w-4 h-4 text-[#2ac4f4]" />
-                Download Public IFU
-              </button>
+                <BookOpen className="w-4 h-4 text-[#2ac4f4]" />
+                View Resources
+              </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 1: The Problem It Solves & Section 2: The AVIA Solution */}
-      <section className="py-24 px-6 md:px-12 lg:px-16 bg-[#050811] relative">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            
-            {/* The Problem */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-              className="bg-red-500/5 border border-red-500/10 rounded-[8px] p-10 md:p-14"
-            >
-              <h3 className="font-heading text-3xl font-bold mb-6 text-white/90">The Problem</h3>
-              <ul className="space-y-6">
-                {[
-                  "Anterior cervical fixation typically requires multiple instrument trays",
-                  "Surgeons must choose fixation approach pre-op",
-                  "Tray switching creates OR inefficiency"
-                ].map((text, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <div className="w-2 h-2 rounded-full bg-red-500" />
-                    </div>
-                    <span className="text-white/70 text-lg leading-snug">{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* The AVIA Solution */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-[#2ac4f4]/5 border border-[#2ac4f4]/20 rounded-[8px] p-10 md:p-14 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-[#2ac4f4]/10 rounded-full blur-3xl" />
-              <h3 className="font-heading text-3xl font-bold mb-6 text-white">The AVIA Solution</h3>
-              <ul className="space-y-6 relative z-10">
-                {[
-                  "One tray with complete fixation options",
-                  "Spike fixation pre-loaded and ready",
-                  "Screw options available in the same set",
-                  "Zero-profile design with plate stability",
-                  "3D-printed porous titanium for biological fusion"
-                ].map((text, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded-full bg-[#2ac4f4]/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#2ac4f4]" />
-                    </div>
-                    <span className="text-white/90 text-lg leading-snug">{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: The Platform (3-Column Feature Blocks) */}
-      <section className="py-24 px-6 md:px-12 border-t border-white/5">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl font-bold mb-4">The Platform</h2>
-            <p className="text-[#94a3b8] max-w-2xl mx-auto">A unified approach to anterior cervical fusion.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Layers className="w-8 h-8 text-[#2ac4f4]" />,
-                title: "Zero-Profile Construct",
-                points: ["Anterior cervical plate with stability", "Supported biomechanical performance of traditional plating", "Streamlined zero-profile design"]
-              },
-              {
-                icon: <Activity className="w-8 h-8 text-[#2ac4f4]" />,
-                title: "Fixation Options",
-                points: ["Pre-loaded in-line Saber spikes (standard and long)", "Straight and angled screw instrumentation", "Dedicated low-profile screw inserter", "Both available without tray switch"]
-              },
-              {
-                icon: <Zap className="w-8 h-8 text-[#2ac4f4]" />,
-                title: "Advanced Implant",
-                points: ["3D-printed porous titanium body", "Lattice engineered to mirror trabecular bone", "Supports bone and marrow infiltration", "Peer-reviewed science behind material choice"]
-              }
-            ].map((col, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white/[0.02] border border-white/10 rounded-[12px] p-8 hover:bg-white/[0.04] transition-colors"
-              >
-                <div className="w-16 h-16 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-6">
-                  {col.icon}
-                </div>
-                <h3 className="text-2xl font-heading font-bold mb-6">{col.title}</h3>
-                <ul className="space-y-4">
-                  {col.points.map((pt, j) => (
-                    <li key={j} className="flex gap-3 text-white/60 text-sm leading-relaxed">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#2ac4f4] mt-1.5 shrink-0" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: The Implant Built for Fusion */}
-      <section className="py-24 px-6 md:px-12 bg-[#050811] border-t border-white/5 overflow-hidden">
-        <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-16">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:w-1/2 w-full">
-            <div className="relative aspect-square rounded-[16px] overflow-hidden border border-white/10 bg-black flex items-center justify-center p-6">
-              <img src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png" alt="Saber-C | AVIA™ Porous Titanium Implant" className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent pointer-events-none" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="font-mono text-[10px] text-[#2ac4f4] uppercase tracking-widest font-semibold">Saber-C | AVIA™ Zero-Profile Fixation Construct</p>
-              </div>
-            </div>
-          </motion.div>
-          
-          <div className="lg:w-1/2 w-full">
-            <h2 className="font-heading text-4xl font-bold mb-6">The Implant Built for Fusion</h2>
-            <p className="text-lg text-white/70 mb-8">
-              Engineered from the ground up to support osseointegration, trabecular simulation, and optimal bone support.
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 1: PLATFORM OVERVIEW
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 bg-[#050811] relative border-b border-white/5">
+        <div className="max-w-[1200px] mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Platform Overview</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 leading-snug">
+              Every case is different. Saber-C AVIA is built for that reality.
+            </h2>
+            <p className="text-[#94a3b8] text-lg md:text-xl leading-relaxed">
+              Cervical anatomy, surgical preferences, and fusion goals vary. Saber-C AVIA brings meaningful flexibility into one platform through a zero-profile plate construct, spike or screw fixation, multiple lordotic options, and a porous titanium interbody engineered to support bone integration.
             </p>
-            <div className="space-y-6 mb-10">
-              {['Osseointegration', 'Trabecular simulation', 'Bone support'].map((benefit, i) => (
-                <div key={i} className="flex items-center gap-4 border-b border-white/10 pb-4">
-                  <CheckCircle2 className="text-[#2ac4f4] w-5 h-5" />
-                  <span className="text-xl font-heading">{benefit}</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 2: ZERO-PROFILE CONSTRUCT
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 relative border-b border-white/5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Zero-Profile Design</p>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 leading-snug">
+                Zero-profile construct with plate-level integrity.
+              </h2>
+              <p className="text-[#94a3b8] text-lg leading-relaxed mb-8">
+                Saber-C AVIA combines an anterior cervical plate and interbody within a zero-profile construct designed to sit flush with the vertebral body.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  "Implant sits flush with the vertebral body",
+                  "Combines anterior cervical plate, interbody, and fixation",
+                  "Low-profile design can help address difficult cervical levels and procedures involving adjacent hardware"
+                ].map((pt, i) => (
+                  <li key={i} className="flex gap-3 text-white/70 text-[15px] leading-relaxed">
+                    <CheckCircle2 className="w-5 h-5 text-[#2ac4f4] shrink-0 mt-0.5" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}>
+              <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden border border-white/10 bg-black flex items-center justify-center p-8">
+                <img 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png" 
+                  alt="Saber-C AVIA™ Zero-Profile Construct" 
+                  className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <p className="font-mono text-[10px] text-[#2ac4f4] uppercase tracking-widest font-semibold">Saber-C AVIA™ Zero-Profile Fixation Construct</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 3: FIXATION FLEXIBILITY
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 bg-[#050811] border-b border-white/5">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Fixation Flexibility</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 max-w-2xl mx-auto">
+              Spike or screw. Choose what works for the case.
+            </h2>
+          </motion.div>
+
+          {/* Spike & Screw side by side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* Spike option */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="bg-white/[0.02] border border-white/10 rounded-[12px] p-8 md:p-10 relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#2ac4f4] to-transparent" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center">
+                  <ShieldAlert className="w-6 h-6 text-[#2ac4f4]" />
+                </div>
+                <h3 className="text-2xl font-heading font-bold">Spike Fixation</h3>
+              </div>
+              <p className="text-white/70 text-[15px] leading-relaxed mb-4">
+                Preloaded inline Saber spikes provide a streamlined, single step fixation workflow. Standard and long spike options are available.
+              </p>
+              {/* Spike disclaimer */}
+              <div className="bg-amber-500/10 border border-amber-500/20 rounded-[6px] p-4 mt-4">
+                <p className="text-amber-400/90 text-xs leading-relaxed font-medium flex items-start gap-2">
+                  <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
+                  When Saber-C AVIA™ is used with spikes, supplemental fixation is required.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Screw option */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white/[0.02] border border-white/10 rounded-[12px] p-8 md:p-10 relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-[#2ac4f4]" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center">
+                  <Wrench className="w-6 h-6 text-[#2ac4f4]" />
+                </div>
+                <h3 className="text-2xl font-heading font-bold">Screw Fixation</h3>
+              </div>
+              <p className="text-white/70 text-[15px] leading-relaxed">
+                Straight and angled instrumentation supports screw fixation when screws better fit the surgeon's technique, surgical goals, or patient anatomy.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Closing line */}
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="text-center text-[#2ac4f4] font-heading font-semibold text-lg mb-20">
+            Both fixation options are supported within the AVIA system without changing platforms.
+          </motion.p>
+
+          {/* Fixation Corridor Comparison */}
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+            className="bg-white/[0.02] border border-white/10 rounded-[12px] p-10 md:p-14"
+          >
+            <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Fixation Corridor</p>
+            <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">A More Direct Fixation Corridor</h3>
+            <p className="text-[#94a3b8] text-lg leading-relaxed mb-8 max-w-2xl">
+              Low-profile instrumentation and inline spike deployment are designed to support access through a smaller working corridor, including difficult to reach cervical levels.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                "Inline deployment",
+                "Reduced instrument angulation",
+                "Streamlined access to difficult levels"
+              ].map((callout, i) => (
+                <div key={i} className="flex items-center gap-3 bg-[#2ac4f4]/5 border border-[#2ac4f4]/15 rounded-[6px] px-5 py-4">
+                  <CheckCircle2 className="w-5 h-5 text-[#2ac4f4] shrink-0" />
+                  <span className="text-white/80 text-sm font-medium">{callout}</span>
                 </div>
               ))}
             </div>
-            <div className="bg-white/5 border border-white/10 p-5 rounded-[8px]">
-              <p className="text-sm text-white/50 italic">
-                *Reference: Walsh et al., NASSJ 2025
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Section 5: Specifications Table */}
-      <section className="py-24 px-6 md:px-12 border-t border-white/5 relative">
-        <div className="max-w-[1000px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl font-bold mb-4">Technical Specifications</h2>
-            <p className="text-[#94a3b8]">Precision engineered to fit patient anatomy.</p>
-          </div>
-          
-          <div className="bg-white/5 border border-white/10 rounded-[12px] overflow-hidden">
-            <table className="w-full text-left">
-              <tbody className="divide-y divide-white/10">
-                {[
-                  { label: "Footprints", value: "12×15mm, 14×17mm" },
-                  { label: "Heights", value: "5-9mm" },
-                  { label: "Lordosis", value: "6° and 12°" },
-                  { label: "Material", value: "3D-printed porous titanium" },
-                ].map((row, i) => (
-                  <tr key={i} className="hover:bg-white/[0.02] transition-colors">
-                    <th className="py-6 px-8 font-heading text-white/60 font-medium w-1/3">{row.label}</th>
-                    <td className="py-6 px-8 font-sans text-white text-lg">{row.value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 6: In-OR Workflow */}
-      <section className="py-24 px-6 md:px-12 bg-[#050811] border-t border-white/5">
-        <div className="max-w-[1280px] mx-auto text-center">
-          <h2 className="font-heading text-4xl font-bold mb-16">In-OR Workflow Efficiency</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#2ac4f4]/30 to-transparent -z-10" />
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 4: POROUS TITANIUM ARCHITECTURE
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 relative border-b border-white/5 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Porous Titanium</p>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 leading-snug">
+                Engineered for osseointegration.
+              </h2>
+              <p className="text-[#94a3b8] text-lg leading-relaxed mb-8">
+                The Saber-C AVIA interbody features a 3D printed porous titanium lattice with 55% porosity. The architecture is engineered to support blood and marrow infiltration at the implant interface and provide pathways for bone ingrowth into the porous domains.
+              </p>
+
+              {/* Published preclinical evidence */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-[8px] p-6 mb-6">
+                <p className="font-mono text-[10px] text-[#2ac4f4] uppercase tracking-widest font-bold mb-3">Published Preclinical Evidence</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-4">
+                  A peer reviewed study by Walsh et al. in <em>NASSJ</em> evaluated porous titanium and 3D printed PEEK implants in a validated ovine interbody fusion model at 8 and 16 weeks.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Greater bone formation within the porous titanium walls compared with 3D printed PEEK at 8 and 16 weeks",
+                    "Histologic evidence of bone ingrowth within the porous titanium domains",
+                    "Continued fusion progression from 8 to 16 weeks"
+                  ].map((finding, i) => (
+                    <li key={i} className="flex gap-3 text-white/60 text-sm leading-relaxed">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#2ac4f4] mt-2 shrink-0" />
+                      {finding}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-amber-500/5 border border-amber-500/15 rounded-[6px] p-4">
+                <p className="text-amber-400/70 text-xs italic leading-relaxed">
+                  These findings are based on preclinical (animal) data and may not be predictive of clinical outcomes in humans. Reference: Walsh et al., NASSJ 2025.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="flex flex-col gap-6">
+              {/* Porous lattice visual */}
+              <div className="relative aspect-square rounded-[12px] overflow-hidden border border-white/10 bg-black flex items-center justify-center p-8">
+                <img 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png" 
+                  alt="Saber-C AVIA™ Porous Titanium Architecture" 
+                  className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent pointer-events-none" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <p className="font-mono text-[10px] text-[#2ac4f4] uppercase tracking-widest font-semibold">55% Porous Titanium Architecture</p>
+                </div>
+              </div>
+
+              {/* Stats badges */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 rounded-[8px] p-5 text-center">
+                  <span className="font-heading font-bold text-[#2ac4f4] text-3xl">55%</span>
+                  <p className="font-mono text-[10px] text-white/50 uppercase tracking-widest mt-1">Porosity</p>
+                </div>
+                <div className="bg-white/[0.03] border border-white/10 rounded-[8px] p-5 text-center">
+                  <span className="font-heading font-bold text-white text-3xl">3D</span>
+                  <p className="font-mono text-[10px] text-white/50 uppercase tracking-widest mt-1">Printed Titanium</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 5: PRODUCT RANGE
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 bg-[#050811] border-b border-white/5">
+        <div className="max-w-[1200px] mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Product Range</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Meaningful options in one complete platform.</h2>
+            <p className="text-[#94a3b8] max-w-2xl mx-auto text-lg">
+              Saber-C AVIA is designed to give surgeons greater flexibility without requiring a change in implant platform when anatomy, lordotic goals, or fixation preferences vary.
+            </p>
+          </motion.div>
+
+          {/* Specifications Grid */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <div className="bg-white/[0.02] border border-white/10 rounded-[12px] overflow-hidden">
+              <table className="w-full text-left">
+                <tbody className="divide-y divide-white/10">
+                  {[
+                    { label: "Footprints", value: "12 × 15 mm  ·  14 × 17 mm" },
+                    { label: "Heights", value: "5, 6, 7, 8, 9 mm" },
+                    { label: "Lordosis", value: "6°  ·  12° (12° available in 6–9 mm heights only)" },
+                    { label: "Spike Fixation", value: "Standard  ·  Long" },
+                    { label: "Screw Lengths", value: "12, 14, 16, 18, 20 mm" },
+                    { label: "Material", value: "3D printed porous titanium" },
+                  ].map((row, i) => (
+                    <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                      <th className="py-5 px-6 md:px-8 font-heading text-white/50 font-medium w-1/3 text-sm">{row.label}</th>
+                      <td className="py-5 px-6 md:px-8 font-sans text-white text-[15px]">{row.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 6: REFINED INSTRUMENTATION
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 border-b border-white/5">
+        <div className="max-w-[1200px] mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12">
+            <p className="font-mono text-[#2ac4f4] text-[11px] tracking-[2px] font-bold uppercase mb-5">Instrumentation</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Refined instrumentation. Streamlined workflow.</h2>
+            <p className="text-[#94a3b8] text-lg leading-relaxed max-w-2xl">
+              Saber-C AVIA introduces a redesigned, lower profile instrumentation set developed to support efficient implant delivery and both spike and screw fixation workflows.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { num: "01", title: "Single Tray Setup", desc: "One tray eliminates switching and streamlines instrumentation setup." },
-              { num: "02", title: "Intra-operative Decision", desc: "Sequence showing fixation decision flexibility right in the OR." },
-              { num: "03", title: "Time/Efficiency", desc: "No instrument switching means faster procedures and reduced time under anesthesia." }
-            ].map((step, i) => (
+              "Lower profile instrumentation",
+              "Preloaded inline spike deployment",
+              "Straight and angled screw instrumentation",
+              "Dedicated low-profile screw inserter",
+              "Spike and screw options within one system"
+            ].map((callout, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="bg-[#0a0e17] border border-white/10 p-8 rounded-[12px]"
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
+                className="flex items-center gap-3 bg-white/[0.02] border border-white/10 rounded-[8px] px-6 py-5 hover:bg-white/[0.04] transition-colors"
               >
-                <div className="w-12 h-12 rounded-full bg-[#2ac4f4] text-[#0a0e17] font-bold text-xl flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(42,196,244,0.4)]">
-                  {step.num}
-                </div>
-                <h3 className="text-xl font-heading font-bold mb-3">{step.title}</h3>
-                <p className="text-white/60 text-sm">{step.desc}</p>
+                <CheckCircle2 className="w-5 h-5 text-[#2ac4f4] shrink-0" />
+                <span className="text-white/80 text-sm font-medium">{callout}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section 7: Surgical Resources & Section 8: CTA */}
-      <section className="py-24 px-6 md:px-12 lg:px-16 border-t border-white/5 relative overflow-hidden">
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 7: RESOURCES & FINAL CTA
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 md:px-12 lg:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[#2ac4f4]/5" />
         <div className="max-w-[1400px] mx-auto relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Section 7: Surgical Resources */}
+            {/* Resources */}
             <div>
-              <h2 className="font-heading text-4xl font-bold mb-8">Surgical Resources</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button 
-                  onClick={() => triggerToast("Downloading Saber-C | AVIA™ Instructions for Use (IFU)...")}
-                  className="flex items-center gap-4 bg-[#2ac4f4]/15 border border-[#2ac4f4]/40 p-4 rounded-[6px] transition-all group text-left cursor-pointer hover:bg-[#2ac4f4]/25"
-                >
-                  <div className="w-12 h-12 rounded-[4px] bg-[#2ac4f4]/20 flex items-center justify-center text-[#2ac4f4] group-hover:scale-110 transition-transform">
-                    <Download className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-sm text-white">Instructions for Use (IFU)</h4>
-                    <p className="text-xs text-[#2ac4f4] font-mono font-semibold">Public Download</p>
-                  </div>
-                </button>
-
-                <Link 
-                  to="/resources"
-                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
-                >
-                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
-                    <FileText className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-sm text-white">Technique Guide</h4>
-                    <p className="text-xs text-white/50">Portal Access Only</p>
-                  </div>
-                </Link>
-
-                <Link 
-                  to="/resources"
-                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
-                >
-                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
-                    <PlayCircle className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-sm text-white">Surgical Video</h4>
-                    <p className="text-xs text-white/50">Portal Access Only</p>
-                  </div>
-                </Link>
-
-                <Link 
-                  to="/resources"
-                  className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/50 p-4 rounded-[6px] transition-all group text-left"
-                >
-                  <div className="w-12 h-12 rounded-[4px] bg-white/5 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
-                    <ClipboardList className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-sm text-white">Instrumentation Checklist</h4>
-                    <p className="text-xs text-white/50">Portal Access Only</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-
-            {/* Section 8: CTA */}
-            <div className="bg-[#0a0e17] border border-white/10 rounded-[8px] p-10 flex flex-col justify-center text-center items-center shadow-2xl">
-              <img 
-                src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg" 
-                alt="Saber-C AVIA™" 
-                className="h-8 md:h-10 w-auto object-contain mb-6 opacity-95 drop-shadow-[0_4px_12px_rgba(42,196,244,0.25)]"
-              />
-              <h2 className="font-heading text-3xl font-bold mb-4">Ready to Elevate Your Practice?</h2>
-              <p className="text-white/60 mb-8 max-w-sm">Experience the Saber-C | AVIA™ difference with a comprehensive clinical demonstration.</p>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8">Product Resources</h2>
               
-              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-bold px-8 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer">
-                  Request Demo
-                </button>
-                <Link to="/partners" className="bg-white/10 text-white border border-white/20 font-bold px-8 py-3.5 rounded-[4px] hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
-                  Contact Specialist
-                </Link>
+              {/* Public Resources */}
+              <p className="font-mono text-[#2ac4f4] text-[10px] tracking-[2px] font-bold uppercase mb-4">Public Resources</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {[
+                  { title: "Saber-C AVIA™ Brochure", icon: <FileText className="w-5 h-5" />, access: "Download" },
+                  { title: "System Overview", icon: <BookOpen className="w-5 h-5" />, access: "Download" },
+                  { title: "Published Porous Titanium Study", icon: <ExternalLink className="w-5 h-5" />, access: "View Publication" },
+                  { title: "Product Animation", icon: <PlayCircle className="w-5 h-5" />, access: "Watch" },
+                ].map((resource, i) => (
+                  <button 
+                    key={i}
+                    onClick={() => triggerToast(`Accessing ${resource.title}...`)}
+                    className="flex items-center gap-3 bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 p-4 rounded-[6px] transition-all group text-left cursor-pointer hover:bg-[#2ac4f4]/20"
+                  >
+                    <div className="w-10 h-10 rounded-[4px] bg-[#2ac4f4]/15 flex items-center justify-center text-[#2ac4f4] group-hover:scale-110 transition-transform shrink-0">
+                      {resource.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-heading font-bold text-xs text-white truncate">{resource.title}</h4>
+                      <p className="text-[10px] text-[#2ac4f4] font-mono font-semibold">{resource.access}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Professional Portal Resources */}
+              <p className="font-mono text-white/40 text-[10px] tracking-[2px] font-bold uppercase mb-4">Professional Portal</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { title: "Surgical Technique Guide", icon: <ClipboardList className="w-5 h-5" /> },
+                  { title: "Instructions for Use", icon: <Download className="w-5 h-5" /> },
+                  { title: "Training Materials", icon: <BookOpen className="w-5 h-5" /> },
+                  { title: "Tips and Tricks", icon: <FileText className="w-5 h-5" /> },
+                ].map((resource, i) => (
+                  <Link 
+                    key={i}
+                    to="/resources"
+                    className="flex items-center gap-3 bg-white/5 border border-white/10 hover:border-[#2ac4f4]/40 p-4 rounded-[6px] transition-all group text-left"
+                  >
+                    <div className="w-10 h-10 rounded-[4px] bg-white/5 flex items-center justify-center text-white/50 group-hover:scale-110 transition-transform shrink-0">
+                      {resource.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-heading font-bold text-xs text-white truncate">{resource.title}</h4>
+                      <p className="text-[10px] text-white/40 flex items-center gap-1"><Lock className="w-3 h-3" /> Portal Access</p>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
 
+            {/* Final CTA */}
+            <div className="bg-[#0a0e17] border border-white/10 rounded-[8px] p-10 flex flex-col justify-between shadow-2xl">
+              <div className="flex flex-col items-center text-center">
+                <img 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg" 
+                  alt="Saber-C AVIA™" 
+                  className="h-8 md:h-10 w-auto object-contain mb-6 opacity-95 drop-shadow-[0_4px_12px_rgba(42,196,244,0.25)]"
+                />
+                <h2 className="font-heading text-3xl font-bold mb-4">Learn More About Saber-C AVIA</h2>
+                <p className="text-white/60 mb-8 max-w-sm">Connect with our team to learn how Saber-C AVIA can support your practice.</p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-8">
+                  <button onClick={() => setShowDemoModal(true)} className="bg-[#2ac4f4] text-[#0a0e17] font-bold px-8 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                    Request Information
+                  </button>
+                  <Link to="/resources" className="bg-white/10 text-white border border-white/20 font-bold px-8 py-3.5 rounded-[4px] hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
+                    Access Product Resources
+                  </Link>
+                </div>
+              </div>
+
+              {/* Required disclaimer */}
+              <div className="border-t border-white/10 pt-6 mt-auto">
+                <p className="text-white/30 text-[11px] leading-relaxed">
+                  When Saber-C AVIA™ is used with spikes, supplemental fixation is required. Please refer to the Instructions for Use for a complete list of indications, contraindications, warnings, and precautions.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

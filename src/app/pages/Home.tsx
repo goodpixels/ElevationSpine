@@ -179,7 +179,7 @@ function Navbar() {
 const saberCVideos = [
   {
     id: "saberc-animation",
-    title: "Saber-C | AVIA™ — Final Animation Walkthrough",
+    title: "Saber-C AVIA™ — Final Animation Walkthrough",
     desc: "Engineered for movement, designed for comfort",
     url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787016076/SaberC-FinalAnimation_na701a.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
@@ -193,14 +193,14 @@ const saberCVideos = [
   },
   {
     id: "insertion",
-    title: "Saber-C | AVIA™ — In-Line Insertion Demo",
+    title: "Saber-C AVIA™ — In-Line Insertion Demo",
     desc: "Single-step delivery into the disc space",
     url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
   },
   {
     id: "screw",
-    title: "Saber-C | AVIA™ — Divergent Screw Fixation",
+    title: "Saber-C AVIA™ — Divergent Screw Fixation",
     desc: "Zero-profile integrated fixation system",
     url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
@@ -230,7 +230,7 @@ function VideoGalleryModal({ onClose }: { onClose: () => void }) {
         {/* Header */}
         <div className="flex items-center justify-between px-8 py-5 border-b border-white/[0.08]">
           <div>
-            <p className="font-mono text-[#7fd0ff] text-[11px] tracking-[2px] mb-1">Saber-C | AVIA™ Video Library</p>
+            <p className="font-mono text-[#7fd0ff] text-[11px] tracking-[2px] mb-1">Saber-C AVIA™ Video Library</p>
             <h3 className="font-heading font-bold text-white text-[18px]">{activeVideo.title}</h3>
           </div>
           <button
@@ -552,11 +552,11 @@ function MissionSection() {
               {/* Right Column details and animated image slide */}
               <div className="md:col-span-8 flex flex-col gap-6 text-left">
                 <p className="font-heading font-semibold text-[#2ac4f4] text-[20px] md:text-[24px] leading-relaxed">
-                  Our mission is to redefine spinal fusion surgery by delivering leading-edge zero-profile interbody systems that eliminate traditional secondary plating and accelerate recovery.
+                  Our mission is to redefine spinal fusion surgery by delivering differentiated zero-profile interbody systems that simplify procedural workflow and give surgeons meaningful fixation options.
                 </p>
                 
                 <p className="text-[#4a5568] text-[15px] md:text-[17px] leading-relaxed">
-                  By integrating rigid fixation directly into the cage, our platform minimizes soft tissue disruption, optimizes sagittal balance, and reduces overall operating room time. Elevation Spine devices conform seamlessly to patient anatomy, locking securely in place to provide immediate rigid stability that supports long-term fusion.
+                  By integrating fixation directly into the interbody construct, our platform is designed to streamline the surgical workflow, reduce instrument complexity, and support versatile fixation approaches across cervical and lumbar procedures.
                 </p>
 
                 {/* Pinned Image Container with Slide-in animation */}
@@ -635,29 +635,25 @@ const productsData = [
     id: "saber-c",
     tag: "FDA 510(k) Cleared",
     tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
-    title: "Saber-C | AVIA™",
-    description: "Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.",
+    title: "Saber-C AVIA™",
+    description: "Complete anterior cervical fixation system combining a zero-profile plate construct and porous 3D printed titanium interbody with the choice of spike or screw fixation.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png",
     imageClassName: "w-full h-full object-contain p-8 md:p-12 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]",
     link: "/saber-c",
-    cta: "View Device Details",
+    cta: "Explore Saber-C AVIA",
   },
   {
     id: "saber-xa",
-    tag: "Pipeline Development",
-    tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
+    tag: "FDA 510(k) Cleared",
+    tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
     title: "Saber-XA™",
-    description: "The first and only 3D-printed titanium expandable ALIF implant with true intra-operative customization of height and lordosis, integrated anterior plating, and comprehensive fixation options.",
+    description: "Expandable anterior lumbar interbody technology designed to provide intraoperative control of height and lordosis with integrated fixation options.",
     visualType: "image",
     visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787015670/SABER_X-A_ylfzww.png",
     imageClassName: "w-full h-full object-contain p-8 md:p-16 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]",
     link: "/saber-xa",
-    cta: "View Device Details",
-    statusUpdate: {
-      title: "Status update",
-      text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
-    },
+    cta: "Explore Saber-XA",
   },
 ];
 
@@ -892,10 +888,10 @@ function ComparisonSection() {
       <div className="max-w-[1280px] mx-auto">
         <RevealSection className="text-center mb-12">
           <h2 className="font-heading font-bold text-[#1a2535] text-[28px] md:text-[38px] leading-[1.15] tracking-tight max-w-[800px] mx-auto mb-4">
-            <span className="text-[#2ac4f4]">Saber-C | AVIA™</span> Fixation Corridor Compared To Traditional Screw Fixation
+            <span className="text-[#2ac4f4]">Saber-C AVIA™</span> Fixation Corridor Compared To Traditional Screw Fixation
           </h2>
           <p className="font-sans text-[#64748b] text-[15px] md:text-[17px] leading-relaxed max-w-[740px] mx-auto">
-            Low-profile instrumentation combined with in-line spike fixation allows Saber-C | AVIA™ to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
+            Low-profile instrumentation combined with in-line spike fixation allows Saber-C AVIA™ to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
           </p>
         </RevealSection>
 
@@ -906,7 +902,7 @@ function ComparisonSection() {
             <div className="relative z-10 flex flex-col h-full">
               <h3 className="font-heading font-bold text-[#0a0e17] text-[18px] md:text-[20px] mb-4 flex items-center justify-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#2ac4f4]" />
-                Saber-C | AVIA™ In-Line Spike Fixation
+                Saber-C AVIA™ In-Line Spike Fixation
               </h3>
               
               {/* Image Container with precise cropping */}
@@ -969,7 +965,7 @@ const featureCards = [
       </svg>
     ),
     title: "FDA 510(k) Cleared",
-    desc: "SABER-C™ holds full FDA 510(k) clearance and is commercially distributed across leading US healthcare networks with proven safety and efficacy profiles.",
+    desc: "Saber-C AVIA™ and Saber-XA™ hold full FDA 510(k) clearances and are commercially available across US healthcare networks.",
     link: "Learn More",
   },
   {
@@ -979,7 +975,7 @@ const featureCards = [
       </svg>
     ),
     title: "Zero-Profile Fixation",
-    desc: "Proprietary in-line screw deployment eliminates secondary anterior plating, reducing operative time, soft tissue disruption, and adjacence-segment complications.",
+    desc: "Proprietary in-line fixation integrates plate architecture directly within the interbody construct, designed to streamline the surgical workflow.",
     link: "Learn More",
   },
   {
@@ -1394,15 +1390,22 @@ function WorkflowSection() {
             </div>
             
             {/* Bottom stats indicators placed below the video */}
-            <div className="flex justify-end gap-3 mt-6 pointer-events-none">
-              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                <span className="font-heading font-bold text-[#2ac4f4] text-[24px] leading-none">85%</span>
-                <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
+            <div className="flex flex-wrap justify-end gap-3 mt-6 pointer-events-none">
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">55%</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Porous Architecture</span>
               </div>
-              
-              <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[9px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                <span className="font-heading font-bold text-[24px] leading-none">2-S</span>
-                <span className="font-heading text-[10px] tracking-widest mt-1 uppercase">Fixation</span>
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">2</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Fixation Options</span>
+              </div>
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">2</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Footprints</span>
+              </div>
+              <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[22px] leading-none">6°/12°</span>
+                <span className="font-heading text-[9px] tracking-widest mt-1 uppercase">Lordotic Options</span>
               </div>
             </div>
           </div>

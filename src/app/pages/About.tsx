@@ -20,7 +20,7 @@ const teamMembers = [
       },
       {
         title: "Vision for the Saber® Platform",
-        content: "Charlie believes that spine surgery innovation should be grounded in three core principles: (1) Rigorous clinical evidence, not marketing hype; (2) Surgeon simplicity in the operating room; and (3) Direct engagement with the surgical community. Under his leadership, Elevation Spine has secured strategic funding, built a talented team of engineers and surgeons, and developed the Saber-C | AVIA and Saber-XA platforms."
+        content: "Charlie believes that spine surgery innovation should be grounded in three core principles: (1) Rigorous clinical evidence, not marketing hype; (2) Surgeon simplicity in the operating room; and (3) Direct engagement with the surgical community. Under his leadership, Elevation Spine has secured strategic funding, built a talented team of engineers and surgeons, and developed the Saber-C and Saber-XA platforms."
       }
     ]
   },
@@ -41,7 +41,7 @@ const teamMembers = [
       },
       {
         title: "Key Expertise at Elevation",
-        content: "At Elevation Spine, John has been instrumental in the development of the Saber-C | AVIA platform, specifically overseeing the engineering of the proprietary 3D-printed porous titanium interbody architecture. He partnered with leading academic researchers to generate the Walsh et al. NASSJ 2025 preclinical data demonstrating osseointegration and superior bone formation."
+        content: "At Elevation Spine, John has been instrumental in the development of the Saber-C AVIA platform, specifically overseeing the engineering of the proprietary 3D-printed porous titanium interbody architecture. He partnered with leading academic researchers to generate the Walsh et al. NASSJ 2025 preclinical data demonstrating osseointegration and superior bone formation."
       },
       {
         title: "Education",
@@ -232,7 +232,10 @@ export default function About() {
       </AnimatePresence>
 
       <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
+
+        {/* ═══ COMPANY OVERVIEW ═══ */}
+
+        {/* Page Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -240,13 +243,83 @@ export default function About() {
           className="mb-14 text-left max-w-3xl"
         >
           <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
-            Meet The Team
+            About Elevation Spine
           </p>
-          <h1 className="font-heading font-bold text-[#1a2535] text-[44px] md:text-[56px] leading-[1.1] tracking-tight mb-4">
-            Leadership
+          <h1 className="font-heading font-bold text-[#1a2535] text-[44px] md:text-[56px] leading-[1.1] tracking-tight mb-5">
+            Elevating the Standard of Spinal Fusion
           </h1>
           <p className="text-[#4a5568] text-[16px] md:text-[17px] leading-relaxed">
-            We are a lean, focused team united by a single mission: make complex spine surgery simple without sacrificing outcomes.
+            Elevation Spine is a medical device company focused on developing differentiated spinal fusion technologies. Through the proprietary Saber platform, the company combines integrated fixation, implant innovation, and streamlined instrumentation to help surgeons address cervical and lumbar fusion procedures.
+          </p>
+        </motion.div>
+
+        {/* Mission / Technology / Approach */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+        >
+          <div className="bg-white rounded-[8px] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.06]">
+            <div className="w-12 h-12 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-5">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6 text-[#2ac4f4]">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+              </svg>
+            </div>
+            <h3 className="font-heading font-bold text-[#1a2535] text-xl mb-3">Our Mission</h3>
+            <p className="text-[#4a5568] text-[15px] leading-relaxed">
+              To redefine spinal fusion through thoughtfully engineered technologies that simplify procedural workflow while giving surgeons meaningful options for fixation and implant selection.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-[8px] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.06]">
+            <div className="w-12 h-12 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-5">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6 text-[#2ac4f4]">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 className="font-heading font-bold text-[#1a2535] text-xl mb-3">Our Technology</h3>
+            <p className="text-[#4a5568] text-[15px] leading-relaxed">
+              Saber technology represents Elevation Spine's differentiated approach to integrated spinal fixation. The platform combines interbody technology, anterior plate architecture, and versatile fixation options within procedural systems designed around surgeon workflow.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-[8px] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.06]">
+            <div className="w-12 h-12 rounded-[8px] bg-[#2ac4f4]/10 border border-[#2ac4f4]/20 flex items-center justify-center mb-5">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6 text-[#2ac4f4]">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+            </div>
+            <h3 className="font-heading font-bold text-[#1a2535] text-xl mb-3">Our Approach</h3>
+            <ul className="text-[#4a5568] text-[15px] leading-relaxed space-y-2">
+              <li className="flex items-start gap-2"><span className="text-[#2ac4f4] mt-1">•</span> Surgeon informed product development</li>
+              <li className="flex items-start gap-2"><span className="text-[#2ac4f4] mt-1">•</span> Integrated fixation technologies</li>
+              <li className="flex items-start gap-2"><span className="text-[#2ac4f4] mt-1">•</span> Streamlined instrumentation</li>
+              <li className="flex items-start gap-2"><span className="text-[#2ac4f4] mt-1">•</span> Cervical and lumbar platform development</li>
+              <li className="flex items-start gap-2"><span className="text-[#2ac4f4] mt-1">•</span> Direct collaboration with surgeons and distribution partners</li>
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* ═══ LEADERSHIP TEAM ═══ */}
+
+        {/* Team Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14 text-left max-w-3xl"
+        >
+          <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
+            Meet The Team
+          </p>
+          <h2 className="font-heading font-bold text-[#1a2535] text-[32px] md:text-[40px] leading-[1.1] tracking-tight mb-4">
+            Leadership
+          </h2>
+          <p className="text-[#4a5568] text-[16px] md:text-[17px] leading-relaxed">
+            A lean, focused team united by a commitment to developing meaningful spinal fusion technologies.
           </p>
         </motion.div>
 

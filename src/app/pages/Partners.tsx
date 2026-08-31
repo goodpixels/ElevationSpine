@@ -58,7 +58,7 @@ export default function Partners() {
                   {
                     icon: <Award className="w-5 h-5 text-[#2ac4f4]" />,
                     title: "Differentiated Zero-Profile Technology",
-                    desc: "Proprietary in-line fixation that eliminates secondary plating and accelerates procedural workflow."
+                    desc: "Proprietary in-line fixation that integrates plate architecture within the interbody construct, designed to streamline procedural workflow."
                   },
                   {
                     icon: <ShieldCheck className="w-5 h-5 text-[#2ac4f4]" />,
