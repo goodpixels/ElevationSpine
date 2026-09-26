@@ -482,7 +482,7 @@ const missionImages = [
     caption: "Streamlined single-tray surgical sequence for OR efficiency",
   },
   {
-    url: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386328/El_Spine_products-7_rp7ry0.jpg",
+    url: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386322/El_Spine_products-7_s0qshq.jpg",
     title: "Integrated Spike Fixation",
     caption: "Pre-loaded in-line fixation providing rigid stability",
   },
