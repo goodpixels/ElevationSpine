@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Link, useNavigate } from "react-router";
 
-const BG_PORTAL = "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783571259/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
+const BG_PORTAL = "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386324/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export default function Login() {
       >
         <Link to="/" className="flex justify-center mb-8">
           <img
-            src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+            src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
             alt="Elevation Spine"
             className="h-[44px] w-auto object-contain brightness-0 invert"
           />

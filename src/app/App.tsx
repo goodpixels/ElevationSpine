@@ -157,7 +157,7 @@ function Navbar() {
             className="flex items-center gap-3 shrink-0 py-1 px-1 group transition-transform duration-200 hover:scale-[1.02]"
           >
             <img
-              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+              src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
               alt="Elevation Spine"
               className="h-[42px] md:h-[48px] w-auto object-contain"
               style={{ maxWidth: 230 }}
@@ -270,7 +270,7 @@ function Footer() {
         <div className="max-w-[660px] flex flex-col gap-8">
           <div>
             <img
-              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+              src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
               alt="Elevation Spine"
               className="h-[46px] w-auto object-contain brightness-0 invert opacity-90 mb-4"
             />

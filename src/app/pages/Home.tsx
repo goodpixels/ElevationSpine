@@ -51,7 +51,7 @@ function RevealSection({
 function ElevationLogo() {
   return (
     <img
-      src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+      src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
       alt="Elevation Spine"
       className="h-[38px] w-auto object-contain"
       style={{ maxWidth: 170 }}
@@ -96,7 +96,7 @@ function Navbar() {
             className="pointer-events-auto flex items-center h-[64px] px-5 rounded-[22px] bg-white/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.10)] border border-black/[0.06] shrink-0"
           >
             <img
-              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+              src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
               alt="Elevation Spine"
               className="h-[44px] w-auto object-contain"
               style={{ maxWidth: 200 }}
@@ -182,28 +182,28 @@ const saberCVideos = [
     title: "Saber-C AVIA™ — Final Animation Walkthrough",
     desc: "Engineered for movement, designed for comfort",
     url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787016076/SaberC-FinalAnimation_na701a.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
   },
   {
     id: "company-trailer",
     title: "Elevation Spine — Company Vision & Technology Trailer",
     desc: "Single-tray simplicity, zero-profile procedural stability",
     url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787015467/Trailer_v2B-HD_doraqy.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
   },
   {
     id: "insertion",
     title: "Saber-C AVIA™ — In-Line Insertion Demo",
     desc: "Single-step delivery into the disc space",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386320/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
   },
   {
     id: "screw",
     title: "Saber-C AVIA™ — Divergent Screw Fixation",
     desc: "Zero-profile integrated fixation system",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
   },
 ];
 
@@ -326,7 +326,7 @@ function HeroSection() {
           onTimeUpdate={handleTimeUpdate}
           poster="/img/hero-poster.jpg"
         >
-          <source src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4#t=7" type="video/mp4" />
+          <source src="https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4#t=7" type="video/mp4" />
         </video>
 
         {/* Overlay gradients for text legibility */}
@@ -472,17 +472,17 @@ function TypingTitle({ text }: { text: string }) {
 
 const missionImages = [
   {
-    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783558935/El_Spine_products-7_s0qshq.jpg",
+    url: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386322/El_Spine_products-7_s0qshq.jpg",
     title: "Zero-Profile Implant Architecture",
     caption: "Minimizes tissue disruption & eliminates secondary plates",
   },
   {
-    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784759902/El_Spine_products-19_zvzhgl.jpg",
+    url: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386330/El_Spine_products-19_zvzhgl.jpg",
     title: "Slimline™ Precision Instrumentation",
     caption: "Streamlined single-tray surgical sequence for OR efficiency",
   },
   {
-    url: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784759901/El_Spine_products-7_rp7ry0.jpg",
+    url: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386328/El_Spine_products-7_rp7ry0.jpg",
     title: "Integrated Spike Fixation",
     caption: "Pre-loaded in-line fixation providing rigid stability",
   },
@@ -908,7 +908,7 @@ function ComparisonSection() {
               {/* Image Container with precise cropping */}
               <div className="rounded-[10px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] mb-5 flex items-center justify-center bg-white">
                 <img 
-                  src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Saber-C-Fixation_go5mcv.png" 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386332/Saber-C-Fixation_go5mcv.png" 
                   alt="Saber-C Fixation" 
                   className="absolute w-full h-full object-cover object-center scale-[1.15] group-hover:scale-[1.20] transition-transform duration-700 ease-out" 
                 />
@@ -942,7 +942,7 @@ function ComparisonSection() {
               {/* Image Container with precise cropping */}
               <div className="rounded-[10px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center bg-white">
                 <img 
-                  src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Traditional-Fixation_o0nuww.png" 
+                  src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386333/Traditional-Fixation_o0nuww.png" 
                   alt="Traditional Screw Fixation" 
                   className="absolute w-full h-full object-cover object-center scale-[1.15] group-hover:scale-[1.20] transition-transform duration-700 ease-out" 
                 />
@@ -1252,7 +1252,7 @@ const workflowSteps = [
     title: "Trialing & Sizing",
     desc: "Use the low-profile trial instruments to determine height, footprint, and lordotic angle under fluoroscopy.",
     bgColor: "bg-slate-900 border border-slate-800 text-white shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
-    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774182/Trailing_teg7cn.png",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386335/Trailing_teg7cn.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M9 9h3.75M16.5 12h.008v.008h-.008V12zm0 3h.008v.008h-.008V15zm0-6h.008v.008h-.008V9zM2.25 21h19.5M8.25 21v-3.375c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21" />
@@ -1264,7 +1264,7 @@ const workflowSteps = [
     title: "Implant Loading",
     desc: "Secure the SABER-C™ implant onto the unified inserter guide. Pre-pack the porous core with autologous bone graft.",
     bgColor: "bg-slate-950 border border-slate-900 text-white shadow-[0_12px_40px_rgba(0,0,0,0.25)]",
-    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774183/Implant-Loading_clhza9.png",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386337/Implant-Loading_clhza9.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#2ac4f4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -1276,7 +1276,7 @@ const workflowSteps = [
     title: "In-line Insertion",
     desc: "Deliver the implant into the disc space using a direct anterior approach. The low-profile inserter allows maximum visibility.",
     bgColor: "bg-[#0f2847] text-white shadow-[0_20px_50px_rgba(15,40,71,0.4)]",
-    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774187/In-Line-Insertion_tiklge.png",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386338/In-Line-Insertion_tiklge.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10 text-[#6ecff4] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -1288,7 +1288,7 @@ const workflowSteps = [
     title: "Rigid Screw Fixation",
     desc: "Secure the zero-profile implant onto the inserter. The integrated fixation elements remain shielded during delivery.",
     bgColor: "bg-[#060c18] text-[#e2e8f0] shadow-[0_20px_50px_rgba(6,12,24,0.4)]",
-    image: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784774189/Rigid-Screw-Fixation_syjyn0.png",
+    image: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386341/Rigid-Screw-Fixation_syjyn0.png",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="w-10 h-10 text-[#0a0e17] mb-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
