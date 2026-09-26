@@ -216,7 +216,7 @@ export const VIDEO_LIBRARY: VideoLibraryItem[] = [
     category: "3D Animation",
     duration: "1:42",
     url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787016076/SaberC-FinalAnimation_na701a.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
     isGated: false,
     description: "Full cinematic walkthrough demonstrating zero-profile interbody delivery, PorOss wicking architecture, and seamless integrated screw/spike options.",
   },
@@ -228,7 +228,7 @@ export const VIDEO_LIBRARY: VideoLibraryItem[] = [
     category: "Institutional",
     duration: "2:15",
     url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787015467/Trailer_v2B-HD_doraqy.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386320/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
     isGated: false,
     description: "Overview of Elevation Spine's founding philosophy, featuring single-tray simplicity, zero secondary plating, and accelerated fusion science.",
   },
@@ -239,8 +239,8 @@ export const VIDEO_LIBRARY: VideoLibraryItem[] = [
     subtitle: "PorOss 3D printed titanium capillary action",
     category: "Biomechanical Science",
     duration: "0:48",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
     isGated: true,
     description: "High-magnification visualization of fluid and blood wicking through the micro-porous PorOss titanium lattice matrix.",
   },
@@ -251,8 +251,8 @@ export const VIDEO_LIBRARY: VideoLibraryItem[] = [
     subtitle: "Direct visualization and anatomical disc space placement",
     category: "Surgical Delivery",
     duration: "1:15",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386320/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
     isGated: true,
     description: "Step-by-step surgical insertion technique showing in-line guidance and zero-profile construct seating.",
   },
@@ -263,8 +263,8 @@ export const VIDEO_LIBRARY: VideoLibraryItem[] = [
     subtitle: "High-angle biomechanical purchase without plate profile",
     category: "Surgical Delivery",
     duration: "1:08",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
-    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1790386345/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    thumb: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386318/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
     isGated: true,
     description: "Biomechanical demonstration of multi-axial self-locking screws providing rigid cervical stabilization without adjacent-level plate overhang.",
   },
@@ -369,7 +369,7 @@ export const INITIAL_FILES: FileItem[] = [
     size: "8.4 MB",
     gated: true,
     dateAdded: "2026-06-20",
-    previewUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png",
+    previewUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386326/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png",
   },
   {
     id: "sc-launch-1",
@@ -750,6 +750,15 @@ export default function Resources() {
       file.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesProduct && matchesFolder && matchesQuery;
   });
+
+  // Hide folders with no files for this product (admins still see them all).
+  const visibleFolders = INITIAL_FOLDERS.filter(
+    (folder) =>
+      isAdminMode ||
+      files.some(
+        (f) => (selectedProductId === "all" || f.productId === selectedProductId) && f.folderId === folder.id
+      )
+  );
 
   const getFormatIcon = (format: string) => {
     switch (format) {
@@ -1246,7 +1255,7 @@ export default function Resources() {
                       {selectedProductId === "all" ? "Resource Categories" : `Folders in ${currentProduct.name}`}
                     </span>
                     <span className="font-mono text-xs text-slate-400">
-                      {selectedProductId === "all" ? `${INITIAL_PRODUCTS.length} Categories` : `${INITIAL_FOLDERS.length} Folders Available`}
+                      {selectedProductId === "all" ? `${INITIAL_PRODUCTS.length} Categories` : `${visibleFolders.length} Folders Available`}
                     </span>
                   </div>
 
@@ -1287,7 +1296,7 @@ export default function Resources() {
                         );
                       })
                     ) : (
-                      INITIAL_FOLDERS.map((folder) => {
+                      visibleFolders.map((folder) => {
                         const folderFileCount = files.filter(
                           (f) =>
                             (selectedProductId === "all" || f.productId === selectedProductId) &&

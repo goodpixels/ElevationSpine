@@ -215,7 +215,7 @@ export default function SaberCHotspotViewer() {
           {/* Main Image Container - Size precisely to the image to ensure accurate point placement */}
           <div className="relative w-full max-w-[640px] select-none flex items-center justify-center scale-[1.38] md:scale-[1.45] transition-transform duration-500 origin-center -mt-6 md:-mt-28">
             <motion.img
-              src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784688640/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png"
+              src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386326/Saber-C_BEAUTY-01-Implant_Contruct_Spikes_ISO_dnjphd.png"
               alt="Saber-C Implant Construct ISO View"
               className="w-full h-auto block filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)] relative z-10"
               initial={{ opacity: 0, scale: 0.95 }}

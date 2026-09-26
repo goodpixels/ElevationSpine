@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Link, useNavigate } from "react-router";
+import { usePageMeta } from "../components/site.tsx";
 
-const BG_PORTAL = "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783571259/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
+const BG_PORTAL = "https://res.cloudinary.com/mrjnagvc/image/upload/v1790386324/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
 
 export default function Login() {
+  usePageMeta("Partner Portal | Elevation Spine", "Partner Portal login for Elevation Spine distributors and sales representatives.");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,14 +49,14 @@ export default function Login() {
       <div className="absolute inset-0 bg-[#0a0e17]/80 backdrop-blur-sm" />
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
+        initial={{ scale: 0.98, y: 8 }}
+        animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="relative z-10 w-full max-w-[460px] px-6"
       >
         <Link to="/" className="flex justify-center mb-8">
           <img
-            src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782183292/Elevation-Logo-ForAnimations_xlwquh.svg"
+            src="https://res.cloudinary.com/mrjnagvc/image/upload/v1790386315/Elevation-Logo-ForAnimations_xlwquh.svg"
             alt="Elevation Spine"
             className="h-[44px] w-auto object-contain brightness-0 invert"
           />
@@ -75,15 +77,15 @@ export default function Login() {
 
           <div className="p-8 md:p-10">
             <div className="flex items-center justify-between mb-1">
-              <h3 className="font-heading font-bold text-white text-[26px] md:text-[28px] tracking-tight">
-                Sales Portal Login
-              </h3>
+              <h1 className="font-heading font-bold text-white text-[26px] md:text-[28px] tracking-tight">
+                Partner Portal
+              </h1>
               <span className="bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 text-[#7fd0ff] text-[10px] font-mono font-bold px-2.5 py-1 rounded-[4px] uppercase shrink-0">
-                Sales Reps Only
+                Partners
               </span>
             </div>
             <p className="text-white/50 text-[14px] mb-6">
-              Access commercial collateral, price lists, order forms & clinical decks.
+              Sign in to access product documents and sales materials.
             </p>
 
             {/* SSO Social Logins (Google & Apple) */}
@@ -147,10 +149,12 @@ export default function Login() {
             {/* Email / Password Form */}
             <form className="flex flex-col gap-4" onSubmit={handleLogin}>
               <div className="flex flex-col gap-1.5">
-                <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
-                  Sales rep email
+                <label htmlFor="portal-email" className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
+                  Email
                 </label>
                 <input
+                  id="portal-email"
+                  autoComplete="email"
                   type="email"
                   required
                   value={email}
@@ -165,10 +169,12 @@ export default function Login() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
+                <label htmlFor="portal-password" className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
                   Password
                 </label>
                 <input
+                  id="portal-password"
+                  autoComplete="current-password"
                   type="password"
                   required
                   value={password}
@@ -187,7 +193,7 @@ export default function Login() {
                 style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}
               >
                 <Link
-                  to="/partners"
+                  to="/partners?audience=distributor&section=contact"
                   className="font-heading text-white/50 hover:text-[#2ac4f4] text-[13px] font-medium transition-colors underline decoration-white/20 hover:decoration-[#2ac4f4]"
                 >
                   Request access
