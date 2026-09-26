@@ -175,7 +175,7 @@ export default function About() {
       </AnimatePresence>
 
       {/* Header. TODO: swap in the team/office photo from Martin when it arrives. */}
-      <header className="bg-[#0a0e17] text-white px-6 md:px-12 lg:px-16 pt-40 pb-20">
+      <header className="atmos overflow-hidden text-white px-6 md:px-12 lg:px-16 pt-40 pb-24">
         <div className="max-w-[1400px] mx-auto">
           <h1 className="font-heading font-bold text-[44px] md:text-[60px] leading-[1.05] tracking-tight mb-5">About Elevation Spine</h1>
           <p className="text-white/75 text-[17px] md:text-[19px] leading-relaxed max-w-2xl">
@@ -203,7 +203,7 @@ export default function About() {
                 type="button"
                 key={member.name}
                 onClick={() => setSelectedMember(member)}
-                className="text-left bg-white rounded-[8px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.06] group cursor-pointer hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(42,196,244,0.12)] transition-all duration-300 flex flex-col"
+                className="lift text-left bg-white rounded-[8px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.06] hover:border-[#2ac4f4]/40 group cursor-pointer flex flex-col"
               >
                 <div className="aspect-[4/5] overflow-hidden relative bg-white w-full">
                   <img
@@ -211,7 +211,7 @@ export default function About() {
                     alt={member.name}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">

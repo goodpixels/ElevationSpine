@@ -1,0 +1,204 @@
+/* ─── Floaty motion system ───────────────────────────────────────────────────
+   html[data-motion] is set before first paint by the inline script in
+   index.html (?motion=off opts out). Blocks below the fold are tagged by
+   src/app/components/Motion.tsx and float into place as they scroll in.
+   Nothing on screen at load is ever hidden (client requirement). Only
+   opacity and transform animate; no blur, no filters. */
+
+:root {
+  --ease-float: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-float: 1.8s;
+}
+
+html[data-motion] [data-reveal] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.985);
+  transition:
+    opacity var(--t-float) var(--ease-float) var(--d, 0s),
+    transform var(--t-float) var(--ease-float) var(--d, 0s);
+}
+
+/* Figures settle from a slight zoom. */
+html[data-motion] [data-reveal="zoom"] {
+  transform: translateY(24px) scale(1.04);
+  transition:
+    opacity 2.2s var(--ease-float) var(--d, 0s),
+    transform 2.4s var(--ease-float) var(--d, 0s);
+}
+
+/* Headings stay put; each word rises and fades in turn. */
+html[data-motion] [data-reveal="text"] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+html[data-motion] [data-reveal="text"] .mw {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  transition:
+    opacity 1.4s var(--ease-float),
+    transform 1.4s var(--ease-float);
+  transition-delay: calc(var(--w, 0) * 90ms);
+}
+
+html[data-motion] [data-reveal][data-in],
+html[data-motion] [data-reveal="text"][data-in] .mw {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Hover: things lift, softly ─────────────────────────────────────────── */
+
+.lift {
+  transition:
+    transform 0.6s var(--ease-float),
+    box-shadow 0.6s var(--ease-float),
+    border-color 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(10, 14, 23, 0.12);
+}
+.lift img {
+  transition: transform 1.2s var(--ease-float);
+}
+.lift:hover img {
+  transform: scale(1.04);
+}
+
+.btn-lift {
+  transition:
+    transform 0.35s var(--ease-float),
+    background-color 0.2s ease,
+    box-shadow 0.35s ease;
+}
+.btn-lift:hover { transform: translateY(-2px); }
+.btn-lift:active { transform: translateY(0); }
+
+/* ─── Menus float down out of the header ─────────────────────────────────── */
+
+.float-panel {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s var(--ease-float),
+    visibility 0s linear 0.3s;
+}
+.float-panel[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition:
+    opacity 0.35s ease,
+    transform 0.55s var(--ease-float),
+    visibility 0s;
+}
+
+/* ─── Idle float for product renders ─────────────────────────────────────── */
+
+@keyframes idle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.idle-float {
+  animation: idle-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ─── Dark banners: soft light instead of flat black ─────────────────────── */
+
+.atmos {
+  position: relative;
+  isolation: isolate;
+  background-color: #070b14;
+  background-image:
+    radial-gradient(60% 70% at 85% 20%, rgba(42, 196, 244, 0.16), transparent 70%),
+    radial-gradient(50% 60% at 10% 100%, rgba(8, 145, 178, 0.14), transparent 70%),
+    linear-gradient(180deg, #0a1120 0%, #070b14 100%);
+}
+/* Faint engineering grid, fading out toward the edges. */
+.atmos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 70% at 60% 40%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 60% 40%, #000 20%, transparent 75%);
+}
+/* A slow drifting glow keeps the banner alive. */
+.atmos::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 55%;
+  aspect-ratio: 1;
+  right: -10%;
+  top: -30%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(42, 196, 244, 0.12), transparent 65%);
+  animation: glow-drift 18s ease-in-out infinite alternate;
+}
+@keyframes glow-drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-12%, 18%); }
+}
+
+/* Closing call-to-action band: brand gradient with the same soft light. */
+.cta-band {
+  background-color: #07202c;
+  background-image:
+    radial-gradient(60% 120% at 100% 0%, rgba(42, 196, 244, 0.28), transparent 60%),
+    radial-gradient(50% 120% at 0% 100%, rgba(8, 145, 178, 0.22), transparent 60%),
+    linear-gradient(120deg, #0a1120 0%, #0b2533 100%);
+}
+
+/* ─── Parallax (scroll-driven, compositor only, progressive) ─────────────── */
+
+@supports (animation-timeline: view()) {
+  @keyframes parallax-media {
+    from { transform: translateY(0) scale(1.06); }
+    to { transform: translateY(12%) scale(1.06); }
+  }
+  /* Home hero video drifts slower than the page as it scrolls away. */
+  .parallax-hero {
+    animation: parallax-media linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+
+  @keyframes parallax-soft {
+    from { transform: translateY(-3%) scale(1.06); }
+    to { transform: translateY(3%) scale(1.06); }
+  }
+  /* Photographs drift slightly within their frames. */
+  .parallax-img {
+    animation: parallax-soft linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+/* Continuous motion honours the OS setting; the scroll reveal only stands
+   down when the visitor opted out with ?motion=off. */
+@media (prefers-reduced-motion: reduce) {
+  .idle-float,
+  .atmos::after,
+  .parallax-hero,
+  .parallax-img { animation: none !important; }
+}
+html:not([data-motion]) [data-reveal],
+html:not([data-motion]) [data-reveal] .mw {
+  opacity: 1 !important;
+  transform: none !important;
+}

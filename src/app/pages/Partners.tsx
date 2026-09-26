@@ -157,7 +157,7 @@ function ContactForm({ initialAudience, initialProduct }: { initialAudience: Aud
         <button
           type="submit"
           disabled={status === "sending"}
-          className="w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] py-4 rounded-[4px] mt-2 shadow-[0_6px_20px_rgba(42,196,244,0.35)] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+          className="btn-lift w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] py-4 rounded-[4px] mt-2 shadow-[0_6px_20px_rgba(42,196,244,0.35)] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           Submit <ArrowRight className="w-4 h-4" />
         </button>
@@ -191,8 +191,7 @@ export default function Partners() {
   return (
     <div className="min-h-screen bg-white">
       {/* Partner header */}
-      <section className="bg-[#0a0e17] text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#2ac4f4] opacity-[0.06] blur-[160px] rounded-full pointer-events-none" />
+      <section className="atmos text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24 overflow-hidden">
         <div className="max-w-[1400px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-heading font-bold text-[44px] md:text-[56px] leading-[1.08] tracking-tight mb-5">Partner With Us</h1>
@@ -202,7 +201,7 @@ export default function Partners() {
             <button
               type="button"
               onClick={becomePartner}
-              className="inline-flex items-center gap-2 bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors shadow-[0_6px_20px_rgba(42,196,244,0.3)] cursor-pointer"
+              className="btn-lift inline-flex items-center gap-2 bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] hover:bg-[#6ecff4] shadow-[0_6px_20px_rgba(42,196,244,0.3)] cursor-pointer"
             >
               Become a Partner <ArrowRight className="w-4 h-4" />
             </button>
@@ -227,7 +226,7 @@ export default function Partners() {
               <p className="text-[#4a5568] text-[17px] md:text-[18px] mt-2">Want more information?</p>
             </div>
             <div className="rounded-[8px] overflow-hidden bg-[#0f1520] aspect-[16/10]">
-              <img src={cldImage("xa-el-spine-products-23", 1200)} alt="Saber-XA interbody and plate" className="w-full h-full object-cover" loading="lazy" />
+              <img src={cldImage("xa-el-spine-products-23", 1200)} alt="Saber-XA interbody and plate" className="parallax-img w-full h-full object-cover" loading="lazy" />
             </div>
             <address className="not-italic flex flex-col gap-3 text-[15px] text-[#1a2535]">
               <a href="tel:8444150226" className="flex items-center gap-3 hover:text-[#0891b2]">

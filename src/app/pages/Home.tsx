@@ -14,7 +14,7 @@ function Hero() {
   return (
     <section className="relative w-full min-h-[75vh] md:min-h-[92vh] bg-[#0a0e17] overflow-hidden">
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="parallax-hero absolute inset-0 w-full h-full object-cover"
         src={HERO_LOOP}
         poster={HERO_POSTER}
         autoPlay
@@ -55,12 +55,12 @@ function SystemCard({
   imageNote?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-black/[0.08] rounded-[8px] overflow-hidden flex flex-col shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+    <div className="lift bg-white border border-black/[0.08] hover:border-[#2ac4f4]/40 rounded-[8px] overflow-hidden flex flex-col shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
       <Link to={product.href} className="block bg-[#0f1520] aspect-[16/10] overflow-hidden" tabIndex={-1} aria-hidden="true">
         <img
           src={cldImage(product.render, 1200)}
           alt=""
-          className="w-full h-full object-contain p-6 hover:scale-[1.03] transition-transform duration-500"
+          className="w-full h-full object-contain p-6"
         />
       </Link>
       <div className="p-7 md:p-9 flex flex-col flex-1">

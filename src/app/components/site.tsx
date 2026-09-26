@@ -154,8 +154,8 @@ export function ClickToPlayVideo({
           className="group absolute inset-0 w-full h-full cursor-pointer"
           aria-label={`Play video: ${title}`}
         >
-          <img src={poster} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-          <span className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors" />
+          <img src={poster} alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]" loading="lazy" />
+          <span className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors duration-500" />
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#2ac4f4] text-[#0a0e17] flex items-center justify-center shadow-[0_8px_30px_rgba(42,196,244,0.45)] group-hover:scale-105 transition-transform">
             <Play className="w-7 h-7 md:w-8 md:h-8 fill-current ml-1" />
           </span>
@@ -168,7 +168,7 @@ export function ClickToPlayVideo({
 // ─── Buttons & layout bits ──────────────────────────────────────────────────
 
 const btnBase =
-  "inline-flex items-center justify-center gap-2 font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] transition-colors duration-200";
+  "btn-lift inline-flex items-center justify-center gap-2 font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px]";
 
 export function PrimaryButton({ to, children }: { to: string; children: React.ReactNode }) {
   return (
@@ -201,7 +201,7 @@ export function contactHref(product?: "avia" | "xa", audience?: "distributor") {
 /** Closing call-to-action band used on both product pages. */
 export function ClosingCta({ product }: { product: "avia" | "xa" }) {
   return (
-    <section className="bg-[#0a0e17] border-t border-white/10 px-6 md:px-12 lg:px-16 py-20">
+    <section className="cta-band border-t border-white/10 px-6 md:px-12 lg:px-16 py-20 md:py-24">
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <h2 className="font-heading font-bold text-white text-[28px] md:text-[36px] tracking-tight">
           Want more information?

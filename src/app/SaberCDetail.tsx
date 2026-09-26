@@ -62,7 +62,7 @@ export default function SaberCDetail() {
   return (
     <div className="bg-white font-sans">
       {/* 1. Hero */}
-      <section className="bg-[#070b14] text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24">
+      <section className="atmos overflow-hidden text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <ProductLockup lockup={AVIA.lockup} descriptor={AVIA.descriptor} as="h1" size="lg" dark />
@@ -75,14 +75,16 @@ export default function SaberCDetail() {
             </div>
           </div>
           <div>
-            <img src={cldImage("avia-hero-231", 1600)} alt="Saber-C AVIA construct" className="w-full h-auto" />
+            <div className="idle-float">
+              <img src={cldImage("avia-hero-231", 1600)} alt="Saber-C AVIA construct" className="w-full h-auto drop-shadow-[0_30px_60px_rgba(42,196,244,0.18)]" />
+            </div>
             <SpikeDisclaimer dark className="mt-3 text-center" />
           </div>
         </div>
       </section>
 
       {/* 2. Animation */}
-      <section className={`bg-[#0a0e17] text-white ${sectionPad}`}>
+      <section className={`bg-gradient-to-b from-[#070b14] to-[#0c1626] text-white ${sectionPad}`}>
         <div className="max-w-[1200px] mx-auto">
           <h2 className="font-heading font-bold text-[30px] md:text-[40px] tracking-tight mb-8">See the System</h2>
           <ClickToPlayVideo
@@ -114,7 +116,7 @@ export default function SaberCDetail() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {components.map((c) => (
               <figure key={c.label}>
-                <div className="bg-[#0f1520] rounded-[8px] aspect-[4/3] overflow-hidden">
+                <div className="lift bg-[#0f1520] rounded-[8px] aspect-[4/3] overflow-hidden">
                   <img src={cldImage(c.image, 900)} alt={c.label} loading="lazy" className={`w-full h-full ${"photo" in c ? "object-cover" : "object-contain p-6"}`} />
                 </div>
                 {c.spikes && <SpikeDisclaimer className="mt-2" />}
@@ -131,7 +133,7 @@ export default function SaberCDetail() {
           <h2 className="font-heading font-bold text-[#0a0e17] text-[30px] md:text-[40px] tracking-tight mb-10">Specifications</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 bg-white border border-black/[0.08] rounded-[8px] overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-black/[0.08]">
             {specs.map((s) => (
-              <div key={s.label} className="p-6 md:p-8">
+              <div key={s.label} className="p-6 md:p-8 transition-colors duration-500 hover:bg-[#2ac4f4]/[0.04]">
                 <p className="font-mono font-semibold uppercase tracking-[0.15em] text-[12px] text-[#0891b2] mb-2">{s.label}</p>
                 <p className="font-heading font-bold text-[#0a0e17] text-[20px] md:text-[22px]">{s.value}</p>
               </div>
@@ -188,7 +190,7 @@ export default function SaberCDetail() {
             {reasons.map((r) => (
               <article key={r.title}>
                 <div className="bg-[#0f1520] rounded-[8px] aspect-[4/3] overflow-hidden mb-5">
-                  <img src={cldImage(r.image, 900)} alt="" loading="lazy" className="w-full h-full object-cover" />
+                  <img src={cldImage(r.image, 900)} alt="" loading="lazy" className="parallax-img w-full h-full object-cover" />
                 </div>
                 <h3 className="font-heading font-bold text-[#0a0e17] text-[22px] mb-2">{r.title}</h3>
                 <p className="text-[#4a5568] text-[15px] md:text-[16px] leading-relaxed">{r.body}</p>

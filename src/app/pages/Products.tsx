@@ -4,7 +4,7 @@ import { AVIA, XA, ProductLockup, SpikeDisclaimer, cldImage, usePageMeta } from 
 
 function ProductCard({ product, spikeNote = false }: { product: typeof AVIA; spikeNote?: boolean }) {
   return (
-    <div className="bg-white border border-black/[0.08] rounded-[8px] overflow-hidden flex flex-col shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
+    <div className="lift bg-white border border-black/[0.08] hover:border-[#2ac4f4]/40 rounded-[8px] overflow-hidden flex flex-col shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
       <div className="bg-[#0f1520] aspect-[16/10]">
         <img src={cldImage(product.render, 1400)} alt={`${product.lockup} render`} className="w-full h-full object-contain p-8" />
       </div>
@@ -22,7 +22,7 @@ function ProductCard({ product, spikeNote = false }: { product: typeof AVIA; spi
         <p className="font-sans text-[#4a5568] text-[15px] md:text-[16px] leading-relaxed mt-6 mb-8">{product.sentence}</p>
         <Link
           to={product.href}
-          className="mt-auto self-start inline-flex items-center gap-2 bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors shadow-[0_6px_20px_rgba(42,196,244,0.3)]"
+          className="btn-lift mt-auto self-start inline-flex items-center gap-2 bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors shadow-[0_6px_20px_rgba(42,196,244,0.3)]"
         >
           View System <ArrowRight className="w-4 h-4" />
         </Link>

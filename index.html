@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <!-- Motion switch: set before first paint. ?motion=off opts out in this browser, ?motion=on restores. -->
+    <script>(function(){try{var h=document.documentElement;var q=new URLSearchParams(location.search);var m=q.get("motion");if(m==="off")localStorage.setItem("es-motion","off");if(m==="on")localStorage.removeItem("es-motion");if(localStorage.getItem("es-motion")==="off")return;h.setAttribute("data-motion","")}catch(e){}})();</script>
     <!-- Netlify Forms detection: the React forms post to these by form-name. -->
     <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
       <input type="email" name="email" />

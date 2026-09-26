@@ -49,7 +49,7 @@ export default function SaberXADetail() {
   return (
     <div className="bg-white font-sans">
       {/* 1. Hero */}
-      <section className="bg-[#070b14] text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24">
+      <section className="atmos overflow-hidden text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <ProductLockup lockup={XA.lockup} descriptor={XA.descriptor} as="h1" size="lg" dark />
@@ -58,13 +58,15 @@ export default function SaberXADetail() {
               <PrimaryButton to={contactHref("xa")}>Request Information</PrimaryButton>
             </div>
           </div>
-          <img src={cldImage("xa-hero-construct-316", 1600)} alt="Saber-XA construct" className="w-full h-auto" />
+          <div className="idle-float">
+            <img src={cldImage("xa-hero-construct-316", 1600)} alt="Saber-XA construct" className="w-full h-auto drop-shadow-[0_30px_60px_rgba(42,196,244,0.18)]" />
+          </div>
         </div>
       </section>
 
       {/* 2. Animation (hidden until the XA animation is delivered) */}
       {XA_ANIMATION && (
-        <section className={`bg-[#0a0e17] text-white ${sectionPad}`}>
+        <section className={`bg-gradient-to-b from-[#070b14] to-[#0c1626] text-white ${sectionPad}`}>
           <div className="max-w-[1200px] mx-auto">
             <h2 className="font-heading font-bold text-[30px] md:text-[40px] tracking-tight mb-8">See the System</h2>
             <ClickToPlayVideo src={cldVideo(XA_ANIMATION)} poster={cldPoster(XA_ANIMATION, 5)} title="Saber-XA product animation" />
@@ -95,7 +97,7 @@ export default function SaberXADetail() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {components.map((c) => (
               <figure key={c.label}>
-                <div className="bg-[#0f1520] rounded-[8px] aspect-[4/3] overflow-hidden">
+                <div className="lift bg-[#0f1520] rounded-[8px] aspect-[4/3] overflow-hidden">
                   <img src={cldImage(c.image, 900)} alt={c.label} loading="lazy" className="w-full h-full object-contain p-6" />
                 </div>
                 <figcaption className="font-heading font-bold text-[#0a0e17] text-[16px] mt-3">{c.label}</figcaption>
@@ -111,7 +113,7 @@ export default function SaberXADetail() {
           <h2 className="font-heading font-bold text-[#0a0e17] text-[30px] md:text-[40px] tracking-tight mb-10">Specifications</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {specs.map((s) => (
-              <div key={s.title} className="bg-white border border-black/[0.08] rounded-[8px] overflow-hidden flex flex-col">
+              <div key={s.title} className="lift bg-white border border-black/[0.08] hover:border-[#2ac4f4]/40 rounded-[8px] overflow-hidden flex flex-col">
                 <div className="bg-[#0f1520] aspect-[4/3]">
                   <img src={cldImage(s.image, 700)} alt={s.title} loading="lazy" className="w-full h-full object-contain p-4" />
                 </div>
@@ -137,13 +139,13 @@ export default function SaberXADetail() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <figure>
               <div className="bg-[#0f1520] rounded-[8px] aspect-[16/10] overflow-hidden">
-                <img src={cldImage("xa-el-spine-products-18", 1200)} alt="Saber-XA spikes" loading="lazy" className="w-full h-full object-cover" />
+                <img src={cldImage("xa-el-spine-products-18", 1200)} alt="Saber-XA spikes" loading="lazy" className="parallax-img w-full h-full object-cover" />
               </div>
               <figcaption className="font-heading font-semibold text-[#0a0e17] text-[15px] mt-3">Spikes, in-line spike fixation</figcaption>
             </figure>
             <figure>
               <div className="bg-[#0f1520] rounded-[8px] aspect-[16/10] overflow-hidden">
-                <img src={cldImage("xa-el-spine-products-16", 1200)} alt="Saber-XA screws" loading="lazy" className="w-full h-full object-cover" />
+                <img src={cldImage("xa-el-spine-products-16", 1200)} alt="Saber-XA screws" loading="lazy" className="parallax-img w-full h-full object-cover" />
               </div>
               <figcaption className="font-heading font-semibold text-[#0a0e17] text-[15px] mt-3">Screws, straight and angled instruments</figcaption>
             </figure>

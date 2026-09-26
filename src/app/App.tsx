@@ -14,6 +14,7 @@ import SaberXADetail from './SaberXADetail.tsx';
 import Privacy from './pages/Privacy.tsx';
 import Legal from './pages/Legal.tsx';
 import FDANotices from './pages/FDANotices.tsx';
+import Motion from "./components/Motion.tsx";
 
 // Legal and FDA pages stay out of the footer until Jim signs off.
 const SHOW_LEGAL_AND_FDA = false;
@@ -107,18 +108,16 @@ function ProductsDropdown({ active }: { active: boolean }) {
         Products
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </Link>
-      {open && (
-        <div className="absolute left-0 top-full pt-2 z-50">
+      <div className="float-panel absolute left-0 top-full pt-2 z-50" data-open={open}>
           <div className="w-[260px] bg-white border border-black/[0.08] rounded-[6px] shadow-[0_16px_40px_rgba(0,0,0,0.12)] p-2">
             {productLinks.map((p) => (
-              <Link key={p.href} to={p.href} className="block px-3 py-2.5 rounded-[4px] hover:bg-black/[0.03]">
+              <Link key={p.href} to={p.href} className="block px-3 py-2.5 rounded-[4px] hover:bg-black/[0.03] transition-colors">
                 <span className="block font-heading font-bold text-[14px] text-[#0a0e17]">{p.label}</span>
                 <span className="block font-mono text-[10px] uppercase tracking-[0.15em] text-[#0891b2] mt-0.5">{p.sub}</span>
               </Link>
             ))}
           </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -165,7 +164,7 @@ function Navbar() {
 
             <Link
               to="/login"
-              className="flex items-center gap-1.5 px-5 py-2 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] font-heading text-[13px] font-bold shadow-[0_4px_16px_rgba(42,196,244,0.35)] transition-colors duration-200 hover:bg-[#6ecff4] whitespace-nowrap ml-1"
+              className="btn-lift flex items-center gap-1.5 px-5 py-2 rounded-[4px] bg-[#2ac4f4] text-[#0a0e17] font-heading text-[13px] font-bold shadow-[0_4px_16px_rgba(42,196,244,0.35)] transition-colors duration-200 hover:bg-[#6ecff4] whitespace-nowrap ml-1"
             >
               Partner Portal
             </Link>
@@ -185,8 +184,10 @@ function Navbar() {
       </nav>
 
       {/* Mobile menu: renders fully visible on open, no fade-in gate */}
-      {mobileOpen && (
-        <div className="md:hidden fixed top-[88px] inset-x-4 z-40 rounded-[6px] bg-white border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
+      <div
+        className="float-panel md:hidden fixed top-[88px] inset-x-4 z-40 rounded-[6px] bg-white border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.15)]"
+        data-open={mobileOpen}
+      >
           <div className="flex flex-col gap-1 p-3">
             {navLinks.map((link) => (
               <div key={link.label}>
@@ -214,8 +215,7 @@ function Navbar() {
               Partner Portal
             </Link>
           </div>
-        </div>
-      )}
+      </div>
     </>
   );
 }
@@ -416,6 +416,7 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <main className="relative z-10 flex-1 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+        <Motion />
         <AppRoutes />
       </main>
       <Footer />

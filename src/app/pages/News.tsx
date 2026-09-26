@@ -9,14 +9,14 @@ export function NewsCard({ item }: { item: PressRelease }) {
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group bg-[#f8fafc] border border-black/[0.06] rounded-[8px] overflow-hidden flex flex-col hover:border-[#2ac4f4]/50 hover:shadow-[0_16px_40px_rgba(42,196,244,0.12)] transition-all duration-300"
+      className="lift group bg-[#f8fafc] border border-black/[0.06] rounded-[8px] overflow-hidden flex flex-col hover:border-[#2ac4f4]/50"
     >
       <div className="aspect-[16/9] bg-[#0f1520] overflow-hidden">
         <img
           src={cldImage(item.image, 900)}
           alt=""
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          className="w-full h-full object-cover"
         />
       </div>
       <div className="p-6 md:p-7 flex flex-col flex-1">
