@@ -1,252 +1,253 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, ArrowRight, ShieldCheck, TrendingUp, Users, Award, MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router";
+import { CheckCircle2, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
+import { ClickToPlayVideo, cldImage, cldPoster, cldVideo, usePageMeta } from "../components/site.tsx";
 
-export default function Partners() {
-  const [audience, setAudience] = useState<"Distributor" | "Surgeon" | "ASC">("Distributor");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+// Zeke's recruitment video. TODO: replace with the final export (the current
+// file has a burned-in timecode) and add captions.
+const RECRUITMENT_VIDEO = "distributor-promotional-video";
 
-  const handleSubmit = (e: React.FormEvent) => {
+type Audience = "Distributor" | "Surgeon" | "ASC";
+
+const audienceLabels: Record<Audience, string> = {
+  Distributor: "Distributor Agency",
+  Surgeon: "Clinical / Surgeon",
+  ASC: "ASC Facility",
+};
+
+const productOptions = [
+  { value: "", label: "General inquiry" },
+  { value: "avia", label: "Saber-C AVIA" },
+  { value: "xa", label: "Saber-XA" },
+];
+
+const inputClass =
+  "bg-[#f8fafc] border border-black/[0.12] rounded-[4px] px-4 py-3 text-[14px] text-[#0a0e17] focus:outline-none focus:border-[#2ac4f4] focus:ring-2 focus:ring-[#2ac4f4]/20 transition-colors";
+const labelClass = "font-mono text-[#475569] text-[11px] uppercase tracking-widest font-semibold";
+
+function Field({
+  id,
+  label,
+  required,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className={labelClass}>
+        {label}
+        {required && <span aria-hidden="true"> *</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function ContactForm({ initialAudience, initialProduct }: { initialAudience: Audience; initialProduct: string }) {
+  const [audience, setAudience] = useState<Audience>(initialAudience);
+  const [product, setProduct] = useState(initialProduct);
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+
+  useEffect(() => setAudience(initialAudience), [initialAudience]);
+  useEffect(() => setProduct(initialProduct), [initialProduct]);
+
+  const orgLabel = audience === "Distributor" ? "Agency Name" : audience === "Surgeon" ? "Hospital / Practice Name" : "ASC Facility Name";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+    setStatus("sending");
+    const data = new FormData(e.currentTarget);
+    data.set("form-name", "contact");
+    data.set("audience", audience);
+    try {
+      // Netlify Forms: the matching static form lives in index.html.
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setStatus("done");
+    } catch {
+      setStatus("error");
+    }
   };
 
-  return (
-    <div className="pt-32 pb-24 px-6 md:px-12 lg:px-16 min-h-screen bg-[#0a0e17] text-white overflow-hidden relative">
-      {/* Background accents / radial glows matching the dark gradient aesthetic */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#2ac4f4] opacity-[0.06] blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0284c7] opacity-[0.04] blur-[140px] rounded-full pointer-events-none" />
-      
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        
-        {/* Page Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-[840px] mb-16 text-left"
-        >
-          <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
-            Distribution & Clinical Partnership
-          </p>
-          <h1 className="font-heading font-bold text-white text-[44px] md:text-[56px] leading-[1.1] tracking-tight mb-5">
-            Partner with Elevation Spine
-          </h1>
-          <p className="text-white/70 text-[16px] md:text-[18px] leading-relaxed">
-            We actively collaborate with specialized spine distributors, high-volume surgical teams, and ambulatory surgery centers nationwide to deliver zero-profile fixation innovations that elevate patient outcomes.
-          </p>
-        </motion.div>
-
-        {/* 2-Column Grid: Value Proposition + Interactive Unified Inquiry Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
-          {/* Left Column: Commercial & Clinical Network Highlights */}
-          <motion.div 
-            initial={{ opacity: 0, x: -25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-5 flex flex-col gap-6"
-          >
-            <div className="bg-white/[0.04] border border-white/10 rounded-[8px] p-8 md:p-10 backdrop-blur-md">
-              <h3 className="font-heading font-bold text-2xl text-white mb-6">
-                Why Partner with Elevation Spine?
-              </h3>
-              
-              <ul className="flex flex-col gap-6">
-                {[
-                  {
-                    icon: <Award className="w-5 h-5 text-[#2ac4f4]" />,
-                    title: "Differentiated Zero-Profile Technology",
-                    desc: "Proprietary in-line fixation that integrates plate architecture within the interbody construct, designed to streamline procedural workflow."
-                  },
-                  {
-                    icon: <ShieldCheck className="w-5 h-5 text-[#2ac4f4]" />,
-                    title: "Robust FDA Clearances & IP",
-                    desc: "Comprehensive 510(k) clearances and patented spike delivery mechanisms backed by peer-reviewed research."
-                  },
-                  {
-                    icon: <TrendingUp className="w-5 h-5 text-[#2ac4f4]" />,
-                    title: "High-Margin Commercial Structure",
-                    desc: "Competitive compensation models and protected territory agreements for top-tier agency partners."
-                  },
-                  {
-                    icon: <Users className="w-5 h-5 text-[#2ac4f4]" />,
-                    title: "Dedicated Field Support & Training",
-                    desc: "Hands-on clinical training, wet labs, and direct access to our executive engineering and leadership team."
-                  }
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-[5px] bg-[#2ac4f4]/15 border border-[#2ac4f4]/30 flex items-center justify-center shrink-0 mt-0.5">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-heading font-bold text-white text-[16px] mb-1">{item.title}</h4>
-                      <p className="text-white/60 text-[14px] leading-relaxed">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Direct Contact Card */}
-            <div className="bg-white/[0.03] border border-white/10 rounded-[8px] p-6 md:p-8 backdrop-blur-sm">
-              <h4 className="font-heading font-bold text-lg text-white mb-3">Corporate Headquarters</h4>
-              <div className="flex flex-col gap-1 text-[14px] text-white/70">
-                <p className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#2ac4f4]" />
-                  <span>2511 Garden Road | Suite B125, Monterey, CA 93940</span>
-                </p>
-                <p className="mt-2">Direct Phone: <a href="tel:8444150226" className="text-white hover:text-[#2ac4f4] underline">(844) 415-0226</a></p>
-                <p>Email: <a href="mailto:info@elevationspine.com" className="text-white hover:text-[#2ac4f4] underline">info@elevationspine.com</a></p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Unified Inquiry Form (No Top Image Crops) */}
-          <motion.div 
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="lg:col-span-7 bg-white rounded-[8px] p-8 md:p-12 text-[#0a0e17] shadow-2xl"
-          >
-            {/* Audience Switcher Tabs */}
-            <div className="flex border-b border-black/[0.08] mb-8 pb-3 gap-2 overflow-x-auto">
-              {(["Distributor", "Surgeon", "ASC"] as const).map((type) => {
-                const isActive = audience === type;
-                return (
-                  <button
-                    key={type}
-                    onClick={() => setAudience(type)}
-                    className={`relative py-2.5 px-4 font-heading text-[14px] font-semibold rounded-[4px] transition-all cursor-pointer whitespace-nowrap ${
-                      isActive 
-                        ? "bg-[#0a0e17] text-white shadow-sm" 
-                        : "text-[#64748b] hover:text-[#0a0e17] hover:bg-black/[0.04]"
-                    }`}
-                  >
-                    <span>{type === "Distributor" ? "Distributor Agency" : type === "Surgeon" ? "Clinical / Surgeon" : "ASC Facility"}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {formSubmitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="py-12 text-center flex flex-col items-center justify-center bg-emerald-50 rounded-[6px] border border-emerald-200 p-8"
-              >
-                <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-4 shadow-lg">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="font-heading font-bold text-2xl text-[#0a0e17]">Inquiry Received</h3>
-                <p className="text-[#64748b] text-[15px] mt-2 max-w-md leading-relaxed">
-                  Thank you for connecting with Elevation Spine. An executive team member will reach out within 24 hours to discuss territory availability, clinical evaluation, or contracting.
-                </p>
-              </motion.div>
-            ) : (
-              <div>
-                <h3 className="font-heading font-bold text-[24px] text-[#0a0e17] mb-1.5">
-                  {audience === "Distributor" && "Distributor Partnership Inquiry"}
-                  {audience === "Surgeon" && "Clinical & Surgical Evaluation"}
-                  {audience === "ASC" && "Ambulatory Surgery Center Program"}
-                </h3>
-                <p className="text-[#64748b] text-[14px] mb-8 leading-relaxed">
-                  {audience === "Distributor" && "Inquire about exclusive territory availability, agency qualifications, and commercial product onboarding."}
-                  {audience === "Surgeon" && "Connect directly with our medical affairs and engineering team to review surgical workflows, data, or request an in-service."}
-                  {audience === "ASC" && "Learn about our streamlined single-tray supply chain efficiencies, value analysis packages, and contracting terms."}
-                </p>
-
-                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">First Name</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={audience === "Surgeon" ? "Dr. Sarah" : "Alex"}
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">Last Name</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Jenkins"
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">Work Email</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="contact@organization.com"
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">Phone Number</label>
-                      <input
-                        type="tel"
-                        placeholder="(555) 000-0000"
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">
-                        {audience === "Distributor" ? "Agency Name" : audience === "Surgeon" ? "Hospital / Practice Name" : "ASC Facility Name"}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={audience === "Distributor" ? "Spine MedTech Partners" : "Spine & Orthopedic Center"}
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">State / Territory</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. California / West Coast"
-                        className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-[#64748b] text-[11px] uppercase tracking-widest font-semibold">Inquiry Details / Message</label>
-                    <textarea
-                      rows={3}
-                      required
-                      placeholder="Please share specific territories of interest, clinical questions, or preferred meeting times..."
-                      className="bg-[#f8fafc] border border-black/[0.1] rounded-[4px] px-4 py-3 text-[14px] focus:outline-none focus:border-[#2ac4f4] transition-colors resize-none"
-                    />
-                  </div>
-
-                  <button 
-                    type="submit"
-                    className="w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] py-4 rounded-[4px] mt-2 shadow-[0_6px_20px_rgba(42,196,244,0.35)] hover:bg-[#6ecff4] hover:shadow-[0_8px_24px_rgba(42,196,244,0.45)] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <span>Submit Inquiry</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
-              </div>
-            )}
-          </motion.div>
-
+  if (status === "done") {
+    return (
+      <div className="py-12 text-center flex flex-col items-center justify-center bg-emerald-50 rounded-[6px] border border-emerald-200 p-8" role="status">
+        <div className="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-4">
+          <CheckCircle2 className="w-7 h-7" />
         </div>
+        <h3 className="font-heading font-bold text-2xl text-[#0a0e17]">Thank you</h3>
+        <p className="text-[#64748b] text-[15px] mt-2 max-w-md leading-relaxed">We received your message and will be in touch.</p>
       </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex border-b border-black/[0.08] mb-8 pb-3 gap-2 overflow-x-auto" role="tablist" aria-label="I am a">
+        {(Object.keys(audienceLabels) as Audience[]).map((type) => (
+          <button
+            key={type}
+            type="button"
+            role="tab"
+            aria-selected={audience === type}
+            onClick={() => setAudience(type)}
+            className={`py-2.5 px-4 font-heading text-[14px] font-semibold rounded-[4px] transition-colors cursor-pointer whitespace-nowrap ${
+              audience === type ? "bg-[#0a0e17] text-white" : "text-[#64748b] hover:text-[#0a0e17] hover:bg-black/[0.04]"
+            }`}
+          >
+            {audienceLabels[type]}
+          </button>
+        ))}
+      </div>
+
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit} name="contact">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Field id="contact-first-name" label="First Name" required>
+            <input id="contact-first-name" name="first-name" type="text" required autoComplete="given-name" className={inputClass} />
+          </Field>
+          <Field id="contact-last-name" label="Last Name" required>
+            <input id="contact-last-name" name="last-name" type="text" required autoComplete="family-name" className={inputClass} />
+          </Field>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Field id="contact-email" label="Work Email" required>
+            <input id="contact-email" name="email" type="email" required autoComplete="email" className={inputClass} />
+          </Field>
+          <Field id="contact-phone" label="Phone Number">
+            <input id="contact-phone" name="phone" type="tel" autoComplete="tel" className={inputClass} />
+          </Field>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Field id="contact-organization" label={orgLabel} required>
+            <input id="contact-organization" name="organization" type="text" required autoComplete="organization" className={inputClass} />
+          </Field>
+          <Field id="contact-territory" label="State / Territory" required>
+            <input id="contact-territory" name="territory" type="text" required className={inputClass} />
+          </Field>
+        </div>
+
+        <Field id="contact-product" label="Product of Interest">
+          <select id="contact-product" name="product" value={product} onChange={(e) => setProduct(e.target.value)} className={inputClass}>
+            {productOptions.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </Field>
+
+        <Field id="contact-message" label="Message" required>
+          <textarea id="contact-message" name="message" rows={4} required className={`${inputClass} resize-none`} />
+        </Field>
+
+        {status === "error" && (
+          <p className="text-[14px] text-red-600" role="alert">
+            Something went wrong. Please try again or email info@elevationspine.com.
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] py-4 rounded-[4px] mt-2 shadow-[0_6px_20px_rgba(42,196,244,0.35)] hover:bg-[#6ecff4] transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+        >
+          Submit <ArrowRight className="w-4 h-4" />
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default function Partners() {
+  usePageMeta(
+    "Partners & Contact | Elevation Spine",
+    "Contact Elevation Spine or learn about becoming a distribution partner."
+  );
+
+  const [params, setParams] = useSearchParams();
+  const contactRef = useRef<HTMLElement>(null);
+
+  const audienceParam = params.get("audience");
+  const initialAudience: Audience = audienceParam === "distributor" ? "Distributor" : "Surgeon";
+  const productParam = params.get("product");
+  const initialProduct = productParam === "avia" || productParam === "xa" ? productParam : "";
+
+  useEffect(() => {
+    if (params.get("section") === "contact") {
+      contactRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [params]);
+
+  const becomePartner = () => setParams({ audience: "distributor", section: "contact" });
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Partner header */}
+      <section className="bg-[#0a0e17] text-white px-6 md:px-12 lg:px-16 pt-36 pb-20 md:pb-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#2ac4f4] opacity-[0.06] blur-[160px] rounded-full pointer-events-none" />
+        <div className="max-w-[1400px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="font-heading font-bold text-[44px] md:text-[56px] leading-[1.08] tracking-tight mb-5">Partner With Us</h1>
+            <p className="text-white/75 text-[17px] md:text-[18px] leading-relaxed max-w-[560px] mb-8">
+              Elevation Spine is expanding its network of independent distributors. If you work with spine surgeons in your territory, we would like to talk.
+            </p>
+            <button
+              type="button"
+              onClick={becomePartner}
+              className="inline-flex items-center gap-2 bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] hover:bg-[#6ecff4] transition-colors shadow-[0_6px_20px_rgba(42,196,244,0.3)] cursor-pointer"
+            >
+              Become a Partner <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          <figure>
+            <ClickToPlayVideo
+              src={cldVideo(RECRUITMENT_VIDEO)}
+              poster={cldPoster(RECRUITMENT_VIDEO, 8)}
+              title="Partner with Elevation Spine: Zeke Isaacs, Sales"
+            />
+            <figcaption className="font-sans text-white/60 text-[14px] mt-3">Zeke Isaacs, Sales</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section ref={contactRef} id="contact" className="scroll-mt-28 px-6 md:px-12 lg:px-16 py-20 md:py-24 bg-[#f8fafc]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            <div>
+              <h2 className="font-heading font-bold text-[#0a0e17] text-[36px] md:text-[44px] tracking-tight">Contact</h2>
+              <p className="text-[#4a5568] text-[17px] md:text-[18px] mt-2">Want more information?</p>
+            </div>
+            <div className="rounded-[8px] overflow-hidden bg-[#0f1520] aspect-[16/10]">
+              <img src={cldImage("xa-el-spine-products-23", 1200)} alt="Saber-XA interbody and plate" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <address className="not-italic flex flex-col gap-3 text-[15px] text-[#1a2535]">
+              <a href="tel:8444150226" className="flex items-center gap-3 hover:text-[#0891b2]">
+                <Phone className="w-4 h-4 text-[#0891b2]" /> (844) 415-0226
+              </a>
+              <a href="mailto:info@elevationspine.com" className="flex items-center gap-3 hover:text-[#0891b2]">
+                <Mail className="w-4 h-4 text-[#0891b2]" /> info@elevationspine.com
+              </a>
+              <p className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-[#0891b2] mt-1 shrink-0" />
+                2511 Garden Road, Suite B125, Monterey, California 93940
+              </p>
+            </address>
+          </div>
+
+          <div className="lg:col-span-7 bg-white rounded-[8px] p-8 md:p-12 border border-black/[0.06] shadow-[0_16px_50px_rgba(0,0,0,0.06)]">
+            <ContactForm initialAudience={initialAudience} initialProduct={initialProduct} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

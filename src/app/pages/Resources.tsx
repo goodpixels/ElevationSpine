@@ -751,6 +751,15 @@ export default function Resources() {
     return matchesProduct && matchesFolder && matchesQuery;
   });
 
+  // Hide folders with no files for this product (admins still see them all).
+  const visibleFolders = INITIAL_FOLDERS.filter(
+    (folder) =>
+      isAdminMode ||
+      files.some(
+        (f) => (selectedProductId === "all" || f.productId === selectedProductId) && f.folderId === folder.id
+      )
+  );
+
   const getFormatIcon = (format: string) => {
     switch (format) {
       case "xlsx":
@@ -1246,7 +1255,7 @@ export default function Resources() {
                       {selectedProductId === "all" ? "Resource Categories" : `Folders in ${currentProduct.name}`}
                     </span>
                     <span className="font-mono text-xs text-slate-400">
-                      {selectedProductId === "all" ? `${INITIAL_PRODUCTS.length} Categories` : `${INITIAL_FOLDERS.length} Folders Available`}
+                      {selectedProductId === "all" ? `${INITIAL_PRODUCTS.length} Categories` : `${visibleFolders.length} Folders Available`}
                     </span>
                   </div>
 
@@ -1287,7 +1296,7 @@ export default function Resources() {
                         );
                       })
                     ) : (
-                      INITIAL_FOLDERS.map((folder) => {
+                      visibleFolders.map((folder) => {
                         const folderFileCount = files.filter(
                           (f) =>
                             (selectedProductId === "all" || f.productId === selectedProductId) &&

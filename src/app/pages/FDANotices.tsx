@@ -1,11 +1,13 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
+import { usePageMeta } from "../components/site.tsx";
 
 export default function FDANotices() {
+  usePageMeta("FDA Notices | Elevation Spine", "FDA notices for Elevation Spine products.");
   return (
     <div className="pt-32 pb-24 px-6 md:px-12 lg:px-16 min-h-screen bg-[#f8fafc]">
       <div className="max-w-[800px] mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div initial={{ y: 12 }} animate={{ y: 0 }} transition={{ duration: 0.6 }}>
           <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">Regulatory</p>
           <h1 className="font-heading font-bold text-[#1a2535] text-[40px] md:text-[48px] leading-[1.1] tracking-tight mb-6">
             FDA Notices
