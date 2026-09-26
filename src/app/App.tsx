@@ -6,8 +6,6 @@ import Home from './pages/Home.tsx';
 import Products from './pages/Products.tsx';
 import News from './pages/News.tsx';
 import Partners from './pages/Partners.tsx';
-import Resources from './pages/Resources.tsx';
-import ResourcesAdmin from './pages/ResourcesAdmin.tsx';
 import Login from './pages/Login.tsx';
 import About from './pages/About.tsx';
 import SaberXADetail from './SaberXADetail.tsx';
@@ -379,15 +377,6 @@ function Footer() {
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
-/** Resources are portal only: anyone not signed in goes to the login page. */
-function PortalOnly({ children }: { children: React.ReactNode }) {
-  let signedIn = false;
-  try {
-    signedIn = localStorage.getItem("elevation_sales_auth") === "true";
-  } catch {}
-  return signedIn ? <>{children}</> : <Navigate to="/login" replace />;
-}
-
 function AppRoutes() {
   return (
     <Routes>
@@ -399,8 +388,9 @@ function AppRoutes() {
       <Route path="/news" element={<News />} />
       <Route path="/partners" element={<Partners />} />
       <Route path="/contact" element={<Navigate to="/partners?section=contact" replace />} />
-      <Route path="/resources" element={<PortalOnly><Resources /></PortalOnly>} />
-      <Route path="/resourcesadmin" element={<PortalOnly><ResourcesAdmin /></PortalOnly>} />
+      {/* Documents live in the partner-only shared folder linked from /login. */}
+      <Route path="/resources" element={<Navigate to="/login" replace />} />
+      <Route path="/resourcesadmin" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/legal" element={<Legal />} />
