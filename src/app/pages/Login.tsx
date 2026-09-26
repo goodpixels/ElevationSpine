@@ -61,7 +61,7 @@ export default function Login() {
         </Link>
 
         <div
-          className="overflow-hidden rounded-[28px]"
+          className="overflow-hidden rounded-[14px]"
           style={{
             background: "rgba(255,255,255,0.08)",
             backdropFilter: "blur(28px)",
@@ -78,7 +78,7 @@ export default function Login() {
               <h3 className="font-heading font-bold text-white text-[26px] md:text-[28px] tracking-tight">
                 Sales Portal Login
               </h3>
-              <span className="bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 text-[#7fd0ff] text-[10px] font-mono font-bold px-2.5 py-1 rounded-full uppercase shrink-0">
+              <span className="bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 text-[#7fd0ff] text-[10px] font-mono font-bold px-2.5 py-1 rounded-[4px] uppercase shrink-0">
                 Sales Reps Only
               </span>
             </div>
@@ -92,7 +92,7 @@ export default function Login() {
                 type="button"
                 onClick={() => handleSSOLogin("google")}
                 disabled={isLoading !== null}
-                className="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-200 cursor-pointer shadow-sm hover:border-white/30"
+                className="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm py-3 px-4 rounded-[6px] flex items-center justify-center gap-3 transition-all duration-200 cursor-pointer shadow-sm hover:border-white/30"
               >
                 {isLoading === "google" ? (
                   <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
@@ -123,7 +123,7 @@ export default function Login() {
                 type="button"
                 onClick={() => handleSSOLogin("apple")}
                 disabled={isLoading !== null}
-                className="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-200 cursor-pointer shadow-sm hover:border-white/30"
+                className="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm py-3 px-4 rounded-[6px] flex items-center justify-center gap-3 transition-all duration-200 cursor-pointer shadow-sm hover:border-white/30"
               >
                 {isLoading === "apple" ? (
                   <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
@@ -156,7 +156,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="rep@elevationspine.com"
-                  className="rounded-[12px] px-5 py-3 text-[14px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
+                  className="rounded-[6px] px-5 py-3 text-[14px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
                   style={{
                     background: "rgba(255,255,255,0.08)",
                     border: "1px solid rgba(255,255,255,0.15)",
@@ -174,7 +174,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="rounded-[12px] px-5 py-3 text-[14px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
+                  className="rounded-[6px] px-5 py-3 text-[14px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
                   style={{
                     background: "rgba(255,255,255,0.08)",
                     border: "1px solid rgba(255,255,255,0.15)",
@@ -187,7 +187,7 @@ export default function Login() {
                 style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}
               >
                 <Link
-                  to="/contact"
+                  to="/partners"
                   className="font-heading text-white/50 hover:text-[#2ac4f4] text-[13px] font-medium transition-colors underline decoration-white/20 hover:decoration-[#2ac4f4]"
                 >
                   Request access
@@ -197,7 +197,7 @@ export default function Login() {
                   disabled={isLoading !== null}
                   whileHover={{ scale: 1.04, y: -1 }}
                   whileTap={{ scale: 0.97 }}
-                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[13px] px-7 py-2.5 rounded-full shadow-[0_4px_20px_rgba(42,196,244,0.4)] cursor-pointer hover:bg-[#1aafde] flex items-center gap-2"
+                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[13px] px-7 py-2.5 rounded-[4px] shadow-[0_4px_20px_rgba(42,196,244,0.4)] cursor-pointer hover:bg-[#1aafde] flex items-center gap-2"
                 >
                   {isLoading === "email" ? (
                     <>

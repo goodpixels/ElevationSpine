@@ -178,22 +178,29 @@ function Navbar() {
 
 const saberCVideos = [
   {
-    id: "hero",
-    title: "SABER-C™ — Porous Structure Loop",
+    id: "saberc-animation",
+    title: "Saber-C AVIA™ — Final Animation Walkthrough",
     desc: "Engineered for movement, designed for comfort",
-    url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787016076/SaberC-FinalAnimation_na701a.mp4",
+    thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
+  },
+  {
+    id: "company-trailer",
+    title: "Elevation Spine — Company Vision & Technology Trailer",
+    desc: "Single-tray simplicity, zero-profile procedural stability",
+    url: "https://res.cloudinary.com/mrjnagvc/video/upload/v1787015467/Trailer_v2B-HD_doraqy.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
   },
   {
     id: "insertion",
-    title: "SABER-C™ — In-Line Insertion Demo",
+    title: "Saber-C AVIA™ — In-Line Insertion Demo",
     desc: "Single-step delivery into the disc space",
     url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709740/Saber-C_TECH-21-Angled_driver_insertion_q3mpem.png",
   },
   {
     id: "screw",
-    title: "SABER-C™ — Divergent Screw Fixation",
+    title: "Saber-C AVIA™ — Divergent Screw Fixation",
     desc: "Zero-profile integrated fixation system",
     url: "https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4",
     thumb: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png",
@@ -217,13 +224,13 @@ function VideoGalleryModal({ onClose }: { onClose: () => void }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 20 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-[960px] bg-[#0c111e] border border-white/10 rounded-[28px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.7)]"
+        className="w-full max-w-[960px] bg-[#0c111e] border border-white/10 rounded-[14px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.7)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-8 py-5 border-b border-white/[0.08]">
           <div>
-            <p className="font-mono text-[#7fd0ff] text-[11px] tracking-[2px] mb-1">SABER-C™ Video Library</p>
+            <p className="font-mono text-[#7fd0ff] text-[11px] tracking-[2px] mb-1">Saber-C AVIA™ Video Library</p>
             <h3 className="font-heading font-bold text-white text-[18px]">{activeVideo.title}</h3>
           </div>
           <button
@@ -255,13 +262,13 @@ function VideoGalleryModal({ onClose }: { onClose: () => void }) {
             <button
               key={vid.id}
               onClick={() => setActiveVideo(vid)}
-              className={`flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-[14px] border transition-all duration-200 text-left ${
+              className={`flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-[7px] border transition-all duration-200 text-left ${
                 activeVideo.id === vid.id
                   ? "bg-[#2ac4f4]/15 border-[#2ac4f4]/40"
                   : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.07]"
               }`}
             >
-              <div className="w-14 h-9 rounded-[8px] overflow-hidden shrink-0">
+              <div className="w-14 h-9 rounded-[4px] overflow-hidden shrink-0">
                 <img src={vid.thumb} alt={vid.title} className="w-full h-full object-cover" />
               </div>
               <div className="min-w-0">
@@ -304,137 +311,124 @@ function HeroSection() {
 
   return (
     <>
-      {/* Outer section: page bg shows around the rounded card — navbar floats over the top */}
-      <section className="relative w-full min-h-[70vh] md:min-h-screen bg-white px-4 md:px-6 lg:px-8 pt-4 pb-6">
-        {/* ── Rounded video card — fills viewport on desktop, 70vh on mobile ── */}
-        <div className="relative w-full h-[70vh] md:h-[calc(100vh-40px)] min-h-[450px] md:min-h-[580px] rounded-[24px] md:rounded-[32px] overflow-hidden">
+      {/* ── Outer section: Edge-to-edge straight-edge background video ── */}
+      <section className="relative w-full min-h-[75vh] md:min-h-screen bg-[#0a0e17] overflow-hidden">
+        {/* Full bleed video background without curved border crops */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e17] via-[#0f1520] to-[#1a2535]" />
+        <video
+          ref={heroVideoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onLoadedMetadata={handleLoadedMetadata}
+          onTimeUpdate={handleTimeUpdate}
+          poster="/img/hero-poster.jpg"
+        >
+          <source src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4#t=7" type="video/mp4" />
+        </video>
 
-          {/* Video background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e17] via-[#0f1520] to-[#1a2535]" />
-          <video
-            ref={heroVideoRef}
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            onLoadedMetadata={handleLoadedMetadata}
-            onTimeUpdate={handleTimeUpdate}
-            poster="/img/hero-poster.jpg"
-          >
-            <source src="https://res.cloudinary.com/dvm7fjhxs/video/upload/v1782182240/Saber-C_Porous_Websiteloop_Final_sk3y6y.mp4#t=7" type="video/mp4" />
-          </video>
+        {/* Overlay gradients for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17]/90 via-[#0a0e17]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e17]/75 via-[#0a0e17]/20 to-transparent" />
 
-          {/* Overlay gradients for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17]/85 via-[#0a0e17]/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e17]/65 via-[#0a0e17]/10 to-transparent" />
-
-          {/* ── Left content — aligned to bottom on mobile, centered on desktop ── */}
-          <div className="relative z-10 h-full flex flex-col justify-end md:justify-center px-6 md:px-[60px] lg:px-[80px] pt-8 pb-12 md:pb-28">
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="visible"
-              className="max-w-[580px]"
-            >
-              <motion.h1
-                variants={fadeUp}
-                className="font-heading font-bold text-[42px] md:text-[56px] lg:text-[64px] text-white leading-[1.04] mb-5 max-w-[600px]"
-              >
-                SABER-C AVIA: <span className="text-[#2ac4f4]">One Tray. Every Case.</span>
-              </motion.h1>
-
-              <motion.p
-                variants={fadeUp}
-                className="font-sans font-normal text-[14px] md:text-[16px] text-white/80 leading-relaxed mb-8 max-w-[450px]"
-              >
-                Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.
-              </motion.p>
-
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
-                {/* Primary CTA — teal filled */}
-                <a href="#products">
-                  <motion.button
-                    whileHover={{ scale: 1.04, y: -2, boxShadow: "0 14px 36px rgba(42,196,244,0.42)" }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-semibold text-[13px] px-7 py-[13px] rounded-full cursor-pointer flex items-center gap-2 shadow-[0_8px_24px_rgba(42,196,244,0.3)]"
-                  >
-                    <span className="text-[14px]">→</span> Explore products
-                  </motion.button>
-                </a>
-
-                {/* Secondary CTA — white ghost */}
-                <a href="#about">
-                  <motion.button
-                    whileHover={{ scale: 1.03, y: -1, backgroundColor: "rgba(255,255,255,0.15)" }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="bg-white/10 text-white font-heading font-semibold text-[13px] px-7 py-[13px] rounded-full cursor-pointer border border-white/30 backdrop-blur-sm"
-                  >
-                    Learn more
-                  </motion.button>
-                </a>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* ── Bottom-right floating Play Video card ── */}
+        {/* ── Left content — aligned to bottom on mobile, centered on desktop ── */}
+        <div className="relative z-10 h-full max-w-[1400px] mx-auto flex flex-col justify-end md:justify-center px-6 md:px-12 lg:px-16 pt-32 pb-16 md:pb-28 min-h-[75vh] md:min-h-screen">
           <motion.div
-            initial={{ opacity: 0, x: 20, y: 10 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:flex absolute bottom-7 md:bottom-9 right-6 md:right-9 z-20 items-end gap-3"
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+            className="max-w-[620px]"
           >
-            {/* Thumbnail chip */}
-            <motion.div
-              whileHover={{ scale: 1.04 }}
-              transition={{ duration: 0.25 }}
-              className="hidden sm:block w-[84px] h-[64px] rounded-[12px] overflow-hidden border border-white/15 shadow-[0_8px_28px_rgba(0,0,0,0.5)]"
-            >
-              <img
-                src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1782709515/Saber-C_TECH-19-Adjacent_Segment_Screws_copy_uog5bw.png"
-                alt="SABER-C device thumbnail"
-                className="w-full h-full object-cover"
-              />
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 bg-[#2ac4f4]/15 border border-[#2ac4f4]/35 rounded-[3px] px-3.5 py-1 text-xs font-mono text-[#2ac4f4] mb-6 uppercase tracking-widest font-semibold">
+              Zero-Profile Integrated Fixation
             </motion.div>
 
-            {/* Glass card */}
-            <motion.button
-              onClick={() => setVideoOpen(true)}
-              whileHover={{ y: -3, boxShadow: "0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(42,196,244,0.25)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="group bg-white/[0.09] backdrop-blur-2xl border border-white/15 rounded-[18px] px-5 py-4 text-left flex flex-col gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.4)] min-w-[200px] cursor-pointer"
+            <motion.h1
+              variants={fadeUp}
+              className="font-heading font-bold text-[40px] md:text-[56px] lg:text-[62px] text-white leading-[1.05] mb-5 tracking-tight"
             >
-              <p className="font-sans text-[13px] font-medium text-white leading-snug max-w-[175px]">
-                Engineered for movement,<br />designed for comfort
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-full bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 flex items-center justify-center group-hover:bg-[#2ac4f4]/35 transition-colors">
-                  <svg fill="none" viewBox="0 0 16 16" className="w-2.5 h-2.5">
-                    <path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#7fd0ff" />
-                  </svg>
-                </div>
-                <span className="font-heading text-[#7fd0ff] text-[11px] font-semibold">Play video</span>
-              </div>
-            </motion.button>
-          </motion.div>
+              SABER Systems: <br /><span className="text-[#2ac4f4]">One Tray. Every Case.</span>
+            </motion.h1>
 
-          {/* Scroll cue */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
-          >
-            <motion.div
-              animate={{ y: [0, 7, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-px h-8 bg-gradient-to-b from-transparent via-white to-transparent"
-            />
+            <motion.p
+              variants={fadeUp}
+              className="font-sans font-normal text-[15px] md:text-[17px] text-white/80 leading-relaxed mb-8 max-w-[540px]"
+            >
+              Complete anterior cervical and lumbar fixation systems combining zero-profile anterior plating stability with the flexibility to choose spike or screw fixation.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
+              {/* Primary CTA — teal filled */}
+              <a href="#products">
+                <motion.button
+                  whileHover={{ scale: 1.03, y: -1, boxShadow: "0 10px 28px rgba(42,196,244,0.4)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3.5 rounded-[4px] cursor-pointer flex items-center gap-2 shadow-[0_6px_20px_rgba(42,196,244,0.3)]"
+                >
+                  <span className="text-[14px]">→</span> Explore Products
+                </motion.button>
+              </a>
+
+              {/* Secondary CTA — white ghost */}
+              <a href="#about">
+                <motion.button
+                  whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="bg-white/10 text-white font-heading font-semibold text-[14px] px-7 py-3.5 rounded-[4px] cursor-pointer border border-white/25 backdrop-blur-sm"
+                >
+                  Clinical Mission
+                </motion.button>
+              </a>
+            </motion.div>
           </motion.div>
         </div>
+
+        {/* ── Bottom-right floating Play Video card ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 20, y: 10 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden md:flex absolute bottom-8 right-8 lg:right-16 z-20 items-end gap-3"
+        >
+          {/* Glass card */}
+          <motion.button
+            onClick={() => setVideoOpen(true)}
+            whileHover={{ y: -2, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="group bg-white/[0.08] backdrop-blur-xl border border-white/15 rounded-[5px] px-5 py-4 text-left flex flex-col gap-2 shadow-[0_12px_32px_rgba(0,0,0,0.4)] min-w-[210px] cursor-pointer"
+          >
+            <p className="font-sans text-[13px] font-medium text-white leading-snug">
+              Engineered for movement,<br />designed for comfort
+            </p>
+            <div className="flex items-center gap-2.5 mt-1">
+              <div className="w-6 h-6 rounded-[3px] bg-[#2ac4f4] text-[#0a0e17] flex items-center justify-center font-bold">
+                <svg fill="none" viewBox="0 0 16 16" className="w-2.5 h-2.5 fill-current">
+                  <path d="M5 3.5l8 4.5-8 4.5V3.5z" />
+                </svg>
+              </div>
+              <span className="font-heading text-[#7fd0ff] text-[12px] font-bold">Play Video Walkthrough</span>
+            </div>
+          </motion.button>
+        </motion.div>
+
+        {/* Scroll cue */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center pointer-events-none"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-8 bg-gradient-to-b from-transparent via-[#2ac4f4] to-transparent"
+          />
+        </motion.div>
       </section>
 
       {/* Video Gallery Modal */}
@@ -558,18 +552,18 @@ function MissionSection() {
               {/* Right Column details and animated image slide */}
               <div className="md:col-span-8 flex flex-col gap-6 text-left">
                 <p className="font-heading font-semibold text-[#2ac4f4] text-[20px] md:text-[24px] leading-relaxed">
-                  Our mission is to redefine spinal fusion surgery by delivering leading-edge zero-profile interbody systems that eliminate traditional secondary plating and accelerate recovery.
+                  Our mission is to redefine spinal fusion surgery by delivering differentiated zero-profile interbody systems that simplify procedural workflow and give surgeons meaningful fixation options.
                 </p>
                 
                 <p className="text-[#4a5568] text-[15px] md:text-[17px] leading-relaxed">
-                  By integrating rigid fixation directly into the cage, our platform minimizes soft tissue disruption, optimizes sagittal balance, and reduces overall operating room time. Elevation Spine devices conform seamlessly to patient anatomy, locking securely in place to provide immediate rigid stability that supports long-term fusion.
+                  By integrating fixation directly into the interbody construct, our platform is designed to streamline the surgical workflow, reduce instrument complexity, and support versatile fixation approaches across cervical and lumbar procedures.
                 </p>
 
                 {/* Pinned Image Container with Slide-in animation */}
-                <div className="relative rounded-[24px] overflow-hidden border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.08)] aspect-[21/10] min-h-[260px] bg-slate-100 mt-2">
+                <div className="relative rounded-[12px] overflow-hidden border border-black/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.08)] aspect-[21/10] min-h-[260px] bg-slate-100 mt-2">
                   
                   {/* Subtle Scroll Badge */}
-                  <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full text-white/70 text-[11px] font-sans tracking-wide">
+                  <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-[4px] text-white/70 text-[11px] font-sans tracking-wide">
                     <motion.span
                       animate={{ y: [0, 2.5, 0] }}
                       transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
@@ -607,7 +601,7 @@ function MissionSection() {
                       </div>
 
                       {/* Step number badge */}
-                      <div className="bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1 rounded-full font-mono text-white text-xs font-semibold shrink-0">
+                      <div className="bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1 rounded-[4px] font-mono text-white text-xs font-semibold shrink-0">
                         0{activeIdx + 1} / 03
                       </div>
                     </div>
@@ -641,25 +635,25 @@ const productsData = [
     id: "saber-c",
     tag: "FDA 510(k) Cleared",
     tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
-    title: "Saber-C™ Cervical Fusion System",
-    description: "Zero-Profile Anterior Cervical Plate with Integrated Spike and Screw Fixation Options. Features a PorOss™ 3D-printed titanium porous interbody paired with in-line fixation for maximum stability.",
+    title: "Saber-C AVIA™",
+    description: "Complete anterior cervical fixation system combining a zero-profile plate construct and porous 3D printed titanium interbody with the choice of spike or screw fixation.",
     visualType: "image",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
+    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png",
+    imageClassName: "w-full h-full object-contain p-8 md:p-12 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]",
     link: "/saber-c",
-    cta: "View Device Details",
+    cta: "Explore Saber-C AVIA",
   },
   {
     id: "saber-xa",
-    tag: "Pipeline development",
-    tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
-    title: "SABER-XA™",
-    description: "Next-generation lateral access fixation currently undergoing final validation and clinical advisory review.",
-    visualType: "blueprint",
-    visualUrl: "",
-    statusUpdate: {
-      title: "Status update",
-      text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
-    },
+    tag: "FDA 510(k) Cleared",
+    tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
+    title: "Saber-XA™",
+    description: "Expandable anterior lumbar interbody technology designed to provide intraoperative control of height and lordosis with integrated fixation options.",
+    visualType: "image",
+    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787015670/SABER_X-A_ylfzww.png",
+    imageClassName: "w-full h-full object-contain p-8 md:p-16 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]",
+    link: "/saber-xa",
+    cta: "Explore Saber-XA",
   },
 ];
 
@@ -722,7 +716,7 @@ function ProductsSection() {
         >
           <button 
             onClick={() => handleSelect(0)}
-            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 0 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
+            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-[4px] font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 0 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
           >
             <span className={`w-2 h-2 rounded-full bg-[#2ac4f4]`} />
             SABER-C™
@@ -730,7 +724,7 @@ function ProductsSection() {
           
           <button 
             onClick={() => handleSelect(1)}
-            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-full font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 1 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
+            className={`shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-[4px] font-heading text-[14px] font-bold transition-colors shadow-sm ${activeIndex === 1 ? 'bg-[#0a0e17] text-white border-transparent' : 'bg-white border border-black/10 text-slate-500 hover:text-slate-800'}`}
           >
             <span className="w-2 h-2 rounded-full bg-teal-500" />
             SABER-XA™
@@ -740,7 +734,7 @@ function ProductsSection() {
 
       <div className="max-w-[1420px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Left Content Card */}
-        <div className="lg:col-span-5 bg-white border border-black/[0.06] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.03)] p-8 md:p-12 flex flex-col justify-between min-h-[500px] relative overflow-hidden">
+        <div className="lg:col-span-5 bg-white border border-black/[0.06] rounded-[12px] shadow-[0_8px_32px_rgba(0,0,0,0.03)] p-8 md:p-12 flex flex-col justify-between min-h-[500px] relative overflow-hidden">
           {/* Progress Bars Indicators */}
           <div className="flex gap-3 mb-8 w-[180px] self-start">
             {productsData.map((_, idx) => (
@@ -773,7 +767,7 @@ function ProductsSection() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="flex flex-col gap-5 text-left"
               >
-                <div className={`inline-flex self-start items-center border rounded-full px-4 py-1.5 ${activeProduct.tagColor}`}>
+                <div className={`inline-flex self-start items-center border rounded-[3px] px-3.5 py-1 ${activeProduct.tagColor}`}>
                   <span className="font-mono font-medium text-[11px] tracking-wider uppercase">
                     {activeProduct.tag}
                   </span>
@@ -794,7 +788,7 @@ function ProductsSection() {
                         whileHover={{ scale: 1.02, backgroundColor: "rgba(42,196,244,0.15)" }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ duration: 0.2 }}
-                        className="bg-[#2ac4f4]/10 border border-[#2ac4f4]/35 rounded-[16px] flex items-center gap-4 px-6 py-4 text-[#0a0e17] cursor-pointer"
+                        className="bg-[#2ac4f4]/10 border border-[#2ac4f4]/35 rounded-[4px] flex items-center gap-4 px-6 py-4 text-[#0a0e17] cursor-pointer"
                       >
                         <svg fill="none" viewBox="0 0 24 30" className="w-4 h-5 shrink-0">
                           <path d={svgPaths.pc679c40} fill="#0891b2" />
@@ -811,7 +805,7 @@ function ProductsSection() {
                 )}
 
                 {activeProduct.statusUpdate && (
-                  <div className="mt-6 bg-slate-50 border border-black/[0.04] rounded-[16px] p-6 text-left">
+                  <div className="mt-6 bg-slate-50 border border-black/[0.04] rounded-[8px] p-6 text-left">
                     <p className="font-mono font-semibold text-[#64748b] text-[11px] tracking-wider mb-2 uppercase">
                       {activeProduct.statusUpdate.title}
                     </p>
@@ -827,7 +821,7 @@ function ProductsSection() {
         </div>
 
         {/* Right Visual Card */}
-        <div className="lg:col-span-7 bg-[#0a0e17] rounded-[24px] overflow-hidden relative min-h-[360px] lg:min-h-[520px] flex items-center justify-center border border-black/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.03)]">
+        <div className="lg:col-span-7 bg-gradient-to-br from-white via-[#f8fafc] to-[#eef2f6] rounded-[12px] overflow-hidden relative min-h-[340px] lg:min-h-[480px] flex items-center justify-center border border-black/[0.08] shadow-[0_12px_40px_rgba(0,0,0,0.05)] p-6 md:p-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -835,11 +829,11 @@ function ProductsSection() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -80, scale: 0.98 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 w-full h-full"
+              className="w-full h-full flex items-center justify-center relative"
             >
               {activeProduct.visualType === "video" ? (
                 <video
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-[8px]"
                   autoPlay
                   muted
                   loop
@@ -851,36 +845,13 @@ function ProductsSection() {
                 <img
                   src={activeProduct.visualUrl}
                   alt={activeProduct.title}
-                  className="w-full h-full object-cover"
+                  className="max-h-[280px] sm:max-h-[340px] md:max-h-[390px] w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]"
                 />
               ) : (
-                <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-[#0a101d] overflow-hidden">
-                  {/* Blueprint Grid Lines */}
-                  <div 
-                    className="absolute inset-0 opacity-[0.07]" 
-                    style={{
-                      backgroundImage: 'radial-gradient(#2ac4f4 1.5px, transparent 1.5px), linear-gradient(rgba(42,196,244,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(42,196,244,0.1) 1px, transparent 1px)',
-                      backgroundSize: '24px 24px, 24px 24px, 24px 24px',
-                      backgroundPosition: '0 0, 12px 12px, 12px 12px'
-                    }}
-                  />
-                  
-                  {/* Pulsing Glow Rings */}
-                  <div className="relative flex items-center justify-center">
-                    <motion.div 
-                      animate={{ scale: [1, 1.35, 1], opacity: [0.15, 0.02, 0.15] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute w-32 h-32 rounded-full border border-[#2ac4f4]/25"
-                    />
-                    <motion.div 
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.05, 0.25] }}
-                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute w-24 h-24 rounded-full border border-[#2ac4f4]/35"
-                    />
-                    
-                    {/* Medical Icon Inner Circle */}
-                    <div className="relative w-16 h-16 rounded-full bg-[#2ac4f4]/10 border border-[#2ac4f4]/30 flex items-center justify-center shadow-[0_0_24px_rgba(42,196,244,0.12)]">
-                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-[#2ac4f4]">
+                <div className="w-full h-full flex flex-col items-center justify-center bg-white/70 rounded-[8px] p-8 border border-dashed border-slate-300">
+                  <div className="relative flex items-center justify-center z-10">
+                    <div className="w-16 h-16 rounded-[6px] border border-[#2ac4f4]/40 flex items-center justify-center bg-[#2ac4f4]/10 shadow-[0_0_24px_rgba(42,196,244,0.15)]">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="w-7 h-7 text-[#0891b2]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                       </svg>
                     </div>
@@ -917,25 +888,25 @@ function ComparisonSection() {
       <div className="max-w-[1280px] mx-auto">
         <RevealSection className="text-center mb-12">
           <h2 className="font-heading font-bold text-[#1a2535] text-[28px] md:text-[38px] leading-[1.15] tracking-tight max-w-[800px] mx-auto mb-4">
-            <span className="text-[#2ac4f4]">Saber-C</span> Fixation Corridor Compared To Traditional Screw Fixation
+            <span className="text-[#2ac4f4]">Saber-C AVIA™</span> Fixation Corridor Compared To Traditional Screw Fixation
           </h2>
           <p className="font-sans text-[#64748b] text-[15px] md:text-[17px] leading-relaxed max-w-[740px] mx-auto">
-            Low-profile instrumentation combined with in-line spike fixation allows Saber-C to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
+            Low-profile instrumentation combined with in-line spike fixation allows Saber-C AVIA™ to be used through a small incision while allowing easier access to hard-to-reach levels of the cervical spine.
           </p>
         </RevealSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Saber-C Side */}
           <RevealSection delay={0.1} className="relative group">
-            <div className="absolute inset-0 bg-[#2ac4f4]/5 rounded-[24px] scale-[1.03] opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg" />
+            <div className="absolute inset-0 bg-[#2ac4f4]/5 rounded-[12px] scale-[1.03] opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg" />
             <div className="relative z-10 flex flex-col h-full">
               <h3 className="font-heading font-bold text-[#0a0e17] text-[18px] md:text-[20px] mb-4 flex items-center justify-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#2ac4f4]" />
-                Saber-C In-Line Spike Fixation
+                Saber-C AVIA™ In-Line Spike Fixation
               </h3>
               
               {/* Image Container with precise cropping */}
-              <div className="rounded-[20px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] mb-5 flex items-center justify-center bg-white">
+              <div className="rounded-[10px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] mb-5 flex items-center justify-center bg-white">
                 <img 
                   src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Saber-C-Fixation_go5mcv.png" 
                   alt="Saber-C Fixation" 
@@ -944,15 +915,15 @@ function ComparisonSection() {
               </div>
 
               <div className="flex flex-wrap gap-2 items-center justify-center font-heading font-bold text-[#0891b2] text-[12px]">
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-[4px]">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Minimized surgical exposure
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-[4px]">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Reduced surgical steps
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-full">
+                <div className="flex items-center gap-1.5 bg-[#2ac4f4]/10 px-3 py-1.5 rounded-[4px]">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                   Less challenging
                 </div>
@@ -969,7 +940,7 @@ function ComparisonSection() {
               </h3>
               
               {/* Image Container with precise cropping */}
-              <div className="rounded-[20px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center bg-white">
+              <div className="rounded-[10px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 relative aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center bg-white">
                 <img 
                   src="https://res.cloudinary.com/dvm7fjhxs/image/upload/v1784771902/Traditional-Fixation_o0nuww.png" 
                   alt="Traditional Screw Fixation" 
@@ -994,7 +965,7 @@ const featureCards = [
       </svg>
     ),
     title: "FDA 510(k) Cleared",
-    desc: "SABER-C™ holds full FDA 510(k) clearance and is commercially distributed across leading US healthcare networks with proven safety and efficacy profiles.",
+    desc: "Saber-C AVIA™ and Saber-XA™ hold full FDA 510(k) clearances and are commercially available across US healthcare networks.",
     link: "Learn More",
   },
   {
@@ -1004,7 +975,7 @@ const featureCards = [
       </svg>
     ),
     title: "Zero-Profile Fixation",
-    desc: "Proprietary in-line screw deployment eliminates secondary anterior plating, reducing operative time, soft tissue disruption, and adjacence-segment complications.",
+    desc: "Proprietary in-line fixation integrates plate architecture directly within the interbody construct, designed to streamline the surgical workflow.",
     link: "Learn More",
   },
   {
@@ -1066,10 +1037,10 @@ function FeaturesSection() {
                 borderColor: "rgba(42,196,244,0.35)",
               }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="group bg-[#f8fafc] border border-black/[0.06] rounded-[24px] p-8 flex flex-col gap-6 cursor-default"
+              className="group bg-[#f8fafc] border border-black/[0.06] rounded-[12px] p-8 flex flex-col gap-6 cursor-default"
             >
               {/* Icon box */}
-              <div className="w-14 h-14 rounded-[16px] bg-[#f0f9ff] border border-[#2ac4f4]/20 flex items-center justify-center group-hover:bg-[#2ac4f4]/10 transition-colors duration-300">
+              <div className="w-14 h-14 rounded-[8px] bg-[#f0f9ff] border border-[#2ac4f4]/20 flex items-center justify-center group-hover:bg-[#2ac4f4]/10 transition-colors duration-300">
                 {card.icon}
               </div>
 
@@ -1109,7 +1080,7 @@ function FeaturesSection() {
             whileHover={{ scale: 1.04, y: -3, boxShadow: "0 20px 50px rgba(42,196,244,0.35)", backgroundColor: "#6ecff4" }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[15px] px-10 py-4 rounded-full flex items-center gap-3 shadow-[0_8px_28px_rgba(42,196,244,0.25)]"
+            className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[15px] px-10 py-4 rounded-[4px] flex items-center gap-3 shadow-[0_8px_28px_rgba(42,196,244,0.25)]"
           >
             → Explore All Products
           </motion.button>
@@ -1121,8 +1092,6 @@ function FeaturesSection() {
 }
 
 // ─── Portal ───────────────────────────────────────────────────────────────────
-
-const BG_PORTAL = "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783571259/ChatGPT_Image_Jul_8_2026_11_27_26_PM_kiso5y.png";
 
 function PortalSection() {
   const sectionRef = useRef(null);
@@ -1138,36 +1107,21 @@ function PortalSection() {
     <section
       id="login"
       ref={sectionRef}
-      className="relative min-h-[680px] flex items-center overflow-hidden"
-      style={{ isolation: "isolate" }}
+      className="relative min-h-[640px] flex items-center overflow-hidden bg-[#0a0e17] py-20 md:py-28"
     >
-      {/* Full-bleed background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${BG_PORTAL})` }}
-      />
-      {/* Dark gradient overlay: heavy on left for text legibility, fades out on right */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
-      {/* Teal vignette tint at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e17]/60 to-transparent" />
+      {/* Dark gradient radial glow accents matching Partners page */}
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#2ac4f4] opacity-[0.07] blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0284c7] opacity-[0.05] blur-[130px] rounded-full pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1420px] mx-auto px-6 md:px-16 lg:px-24 py-20 md:py-28 flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch">
 
         {/* ── Left: Info card ──────────────────────────────────── */}
         <motion.div
           variants={stagger}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex-1 flex flex-col gap-8"
-          style={{
-            background: "rgba(255,255,255,0.07)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: "28px",
-            padding: "44px 48px",
-          }}
+          className="flex-1 flex flex-col justify-between gap-8 bg-white/[0.04] border border-white/10 backdrop-blur-xl rounded-[8px] p-8 md:p-12 shadow-2xl"
         >
           <div>
             <motion.p
@@ -1178,29 +1132,27 @@ function PortalSection() {
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              className="font-heading font-bold text-white text-[34px] md:text-[46px] leading-[1.1] tracking-tight mb-4"
+              className="font-heading font-bold text-white text-[32px] md:text-[44px] leading-[1.1] tracking-tight mb-4"
             >
-              Technical<br />Resource Portal
+              Technical & Clinical<br />Resource Portal
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-white/60 text-[15px] md:text-[17px] leading-relaxed max-w-[420px]">
-              Secure access to surgical techniques, IFU documentation, clinical data, and marketing assets for authorized distributors and surgical staff.
+            <motion.p variants={fadeUp} className="text-white/70 text-[15px] md:text-[16px] leading-relaxed max-w-[480px]">
+              Authorized distributors, sales representatives, and surgical staff can access verified IFUs, surgical technique guides, clinical trial data, and marketing collateral.
             </motion.p>
           </div>
 
           {/* Resource list */}
-          <motion.div variants={stagger} className="flex flex-col gap-5">
+          <motion.div variants={stagger} className="flex flex-col gap-4">
             {resources.map((item, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                whileHover={{ x: 5 }}
+                whileHover={{ x: 4 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-5 cursor-default group"
+                className="flex items-center gap-4 cursor-default group"
               >
-                <div className="flex items-center justify-center w-[50px] h-[50px] shrink-0 rounded-full"
-                  style={{ background: "rgba(42,196,244,0.12)", border: "1px solid rgba(42,196,244,0.25)" }}
-                >
-                  <svg fill="none" viewBox={item.vb} style={{ width: item.w * 0.75, height: item.h * 0.75 }}>
+                <div className="flex items-center justify-center w-[44px] h-[44px] shrink-0 rounded-[4px] bg-[#2ac4f4]/15 border border-[#2ac4f4]/30">
+                  <svg fill="none" viewBox={item.vb} style={{ width: item.w * 0.7, height: item.h * 0.7 }}>
                     <path d={item.icon} fill="#2ac4f4" />
                   </svg>
                 </div>
@@ -1212,24 +1164,19 @@ function PortalSection() {
           </motion.div>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-row gap-4 mt-2">
-            <motion.button
-              whileHover={{ scale: 1.04, y: -3, boxShadow: "0 20px 44px rgba(42,196,244,0.40)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.22, ease: "easeOut" }}
-              className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-3.5 rounded-full flex items-center gap-2 shadow-[0_8px_24px_rgba(42,196,244,0.3)]"
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-2">
+            <Link
+              to="/resources"
+              className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-8 py-3.5 rounded-[4px] flex items-center gap-2 shadow-[0_6px_20px_rgba(42,196,244,0.3)] hover:bg-[#6ecff4] transition-all"
             >
-              → Request Access
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.12)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.2 }}
-              className="border border-white/25 text-white font-heading font-medium text-[14px] px-8 py-3.5 rounded-full"
-              style={{ background: "rgba(255,255,255,0.07)", backdropFilter: "blur(8px)" }}
+              → Browse Resource Library
+            </Link>
+            <Link
+              to="/login"
+              className="border border-white/20 text-white font-heading font-semibold text-[14px] px-7 py-3.5 rounded-[4px] bg-white/5 hover:bg-white/10 transition-colors"
             >
-              Learn More
-            </motion.button>
+              Portal Login
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -1238,98 +1185,57 @@ function PortalSection() {
           variants={fadeUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="w-full max-w-[420px] shrink-0"
+          className="w-full lg:max-w-[440px] shrink-0 flex flex-col justify-center"
         >
-          <div
-            className="relative overflow-hidden rounded-[28px]"
-            style={{
-              background: "rgba(255,255,255,0.10)",
-              backdropFilter: "blur(28px)",
-              WebkitBackdropFilter: "blur(28px)",
-              border: "1px solid rgba(255,255,255,0.18)",
-              boxShadow: "0 24px 64px rgba(0,0,0,0.35)",
-            }}
-          >
-            {/* Cyan top bar */}
-            <div className="h-[4px] w-full bg-[#2ac4f4]" />
+          <div className="relative overflow-hidden rounded-[8px] bg-white/[0.06] backdrop-blur-2xl border border-white/15 shadow-2xl p-8 md:p-10">
+            {/* Top Cyan Accent */}
+            <div className="h-[3px] absolute top-0 left-0 right-0 bg-[#2ac4f4]" />
 
-            <div className="p-10">
-              <h3 className="font-heading font-bold text-white text-[28px] md:text-[32px] tracking-tight mb-1">
-                Portal login
-              </h3>
-              <p className="text-white/50 text-[14px] mb-8">Authorized personnel only.</p>
+            <h3 className="font-heading font-bold text-white text-[26px] md:text-[28px] tracking-tight mb-1">
+              Portal Access
+            </h3>
+            <p className="text-white/60 text-[14px] mb-8">Sign in with your verified credentials.</p>
 
-              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="flex flex-col gap-2">
-                  <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
-                    Institution email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="name@hospital.org"
-                    className="rounded-[12px] px-5 py-3.5 text-[15px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.08)",
-                      border: "1px solid rgba(255,255,255,0.15)",
-                    }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(42,196,244,0.6)";
-                      e.currentTarget.style.background = "rgba(255,255,255,0.12)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
-                      e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                    }}
-                  />
-                </div>
+            <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-white/60 text-[11px] tracking-widest uppercase font-semibold">
+                  Institution or Rep Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="name@hospital.org"
+                  className="rounded-[4px] px-4 py-3 text-[14px] placeholder-white/30 text-white font-sans bg-white/5 border border-white/15 focus:outline-none focus:border-[#2ac4f4] transition-colors"
+                />
+              </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="font-heading font-semibold text-white/60 text-[11px] tracking-widest uppercase">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    required
-                    placeholder="••••••••"
-                    className="rounded-[12px] px-5 py-3.5 text-[15px] placeholder-white/25 text-white font-sans focus:outline-none transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.08)",
-                      border: "1px solid rgba(255,255,255,0.15)",
-                    }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(42,196,244,0.6)";
-                      e.currentTarget.style.background = "rgba(255,255,255,0.12)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
-                      e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                    }}
-                  />
-                </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-white/60 text-[11px] tracking-widest uppercase font-semibold">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  required
+                  placeholder="••••••••"
+                  className="rounded-[4px] px-4 py-3 text-[14px] placeholder-white/30 text-white font-sans bg-white/5 border border-white/15 focus:outline-none focus:border-[#2ac4f4] transition-colors"
+                />
+              </div>
 
-                <div
-                  className="flex items-center justify-between pt-4 mt-1"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}
+              <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-1">
+                <Link
+                  to="/partners"
+                  className="font-heading text-white/60 hover:text-[#2ac4f4] text-[13px] font-medium transition-colors"
                 >
-                  <a
-                    href="#"
-                    className="font-heading text-white/50 hover:text-[#2ac4f4] text-[13px] font-medium transition-colors nav-underline"
-                  >
-                    Request access
-                  </a>
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.05, y: -2, boxShadow: "0 14px_36px rgba(42,196,244,0.45)" }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[13px] px-8 py-3 rounded-full shadow-[0_4px_20px_rgba(42,196,244,0.4)] cursor-pointer"
-                  >
-                    Secure login
-                  </motion.button>
-                </div>
-              </form>
-            </div>
+                  Request access →
+                </Link>
+                <Link
+                  to="/login"
+                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[13px] px-6 py-2.5 rounded-[4px] shadow-[0_4px_16px_rgba(42,196,244,0.35)] hover:bg-[#6ecff4] transition-all cursor-pointer"
+                >
+                  Sign In
+                </Link>
+              </div>
+            </form>
           </div>
         </motion.div>
 
@@ -1434,7 +1340,7 @@ function WorkflowSection() {
             {workflowSteps.map((s, idx) => (
               <div
                 key={idx}
-                className={`relative lg:sticky rounded-[24px] lg:rounded-[28px] p-6 sm:p-8 md:p-12 min-h-[auto] lg:min-h-[380px] flex flex-col justify-between transition-all duration-300 lg:top-[var(--top-offset)] ${s.bgColor}`}
+                className={`relative lg:sticky rounded-[12px] lg:rounded-[14px] p-6 sm:p-8 md:p-12 min-h-[auto] lg:min-h-[380px] flex flex-col justify-between transition-all duration-300 lg:top-[var(--top-offset)] ${s.bgColor}`}
                 style={{
                   '--top-offset': `${140 + idx * 28}px`,
                   zIndex: idx + 10,
@@ -1447,7 +1353,7 @@ function WorkflowSection() {
                   {s.icon}
 
                   {/* MOBILE IMAGE - Hidden on Desktop */}
-                  <div className="block lg:hidden w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-8 shadow-lg">
+                  <div className="block lg:hidden w-full aspect-[4/3] rounded-[8px] overflow-hidden mb-8 shadow-lg">
                     <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
                   </div>
 
@@ -1464,7 +1370,7 @@ function WorkflowSection() {
 
           {/* Right Column: Sticky Image with stats overlays */}
           <div className="lg:col-span-6 sticky top-[140px] z-0 hidden lg:block">
-            <div className="rounded-[28px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white aspect-[4/3] relative flex items-center justify-center">
+            <div className="rounded-[14px] overflow-hidden border border-black/[0.06] shadow-[0_12px_40px_rgba(0,0,0,0.04)] bg-white aspect-[4/3] relative flex items-center justify-center">
               <AnimatePresence>
                 <motion.div
                   key={activeIdx}
@@ -1484,15 +1390,22 @@ function WorkflowSection() {
             </div>
             
             {/* Bottom stats indicators placed below the video */}
-            <div className="flex justify-end gap-3 mt-6 pointer-events-none">
-              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                <span className="font-heading font-bold text-[#2ac4f4] text-[24px] leading-none">85%</span>
-                <span className="font-heading text-[#64748b] text-[10px] tracking-widest mt-1">Porosity</span>
+            <div className="flex flex-wrap justify-end gap-3 mt-6 pointer-events-none">
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">55%</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Porous Architecture</span>
               </div>
-              
-              <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[18px] px-6 py-4 flex flex-col items-center justify-center min-w-[120px]">
-                <span className="font-heading font-bold text-[24px] leading-none">2-S</span>
-                <span className="font-heading text-[10px] tracking-widest mt-1 uppercase">Fixation</span>
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">2</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Fixation Options</span>
+              </div>
+              <div className="bg-white/80 backdrop-blur-md border border-[rgba(42,196,244,0.3)] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[#2ac4f4] text-[22px] leading-none">2</span>
+                <span className="font-heading text-[#64748b] text-[9px] tracking-widest mt-1">Footprints</span>
+              </div>
+              <div className="bg-[#2ac4f4]/95 text-[#0a0e17] shadow-[0_8px_24px_rgba(42,196,244,0.2)] rounded-[9px] px-5 py-3.5 flex flex-col items-center justify-center min-w-[105px]">
+                <span className="font-heading font-bold text-[22px] leading-none">6°/12°</span>
+                <span className="font-heading text-[9px] tracking-widest mt-1 uppercase">Lordotic Options</span>
               </div>
             </div>
           </div>

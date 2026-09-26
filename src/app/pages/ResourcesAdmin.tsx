@@ -138,7 +138,7 @@ export default function ResourcesAdmin() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="fixed top-24 right-6 z-50 bg-[#161f33] text-white px-5 py-3 rounded-2xl shadow-2xl border border-[#2ac4f4]/40 flex items-center gap-3 font-heading text-sm"
+              className="fixed top-24 right-6 z-50 bg-[#161f33] text-white px-5 py-3 rounded-[8px] shadow-2xl border border-[#2ac4f4]/40 flex items-center gap-3 font-heading text-sm"
             >
               <CheckCircle2 className="w-4.5 h-4.5 text-[#2ac4f4]" />
               <span>{toastMessage}</span>
@@ -160,7 +160,7 @@ export default function ResourcesAdmin() {
               <h1 className="font-heading font-bold text-3xl md:text-5xl text-white">
                 CMS Admin Portal
               </h1>
-              <span className="bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 text-[#7fd0ff] text-xs font-mono font-bold px-3 py-1 rounded-full uppercase">
+              <span className="bg-[#2ac4f4]/20 border border-[#2ac4f4]/40 text-[#7fd0ff] text-xs font-mono font-bold px-3 py-1 rounded-[4px] uppercase">
                 /resourcesadmin
               </span>
             </div>
@@ -171,8 +171,8 @@ export default function ResourcesAdmin() {
 
           <div className="flex items-center gap-3">
             {isAdminAuthorized ? (
-              <div className="flex items-center gap-3 bg-white/5 border border-white/15 px-4 py-2.5 rounded-2xl">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/15 px-4 py-2.5 rounded-[8px]">
+                <div className="w-9 h-9 rounded-[4px] bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -190,7 +190,7 @@ export default function ResourcesAdmin() {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-xl text-xs font-mono font-semibold">
+              <div className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-[4px] text-xs font-mono font-semibold">
                 <Lock className="w-4 h-4" />
                 <span>Authorization Challenge Required</span>
               </div>
@@ -200,10 +200,10 @@ export default function ResourcesAdmin() {
 
         {/* AUTHORIZATION CHALLENGE SCREEN (If not authorized) */}
         {!isAdminAuthorized ? (
-          <div className="max-w-[500px] mx-auto bg-[#111827] border border-white/15 rounded-[28px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
+          <div className="max-w-[500px] mx-auto bg-[#111827] border border-white/15 rounded-[14px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
             <div className="h-1.5 bg-[#2ac4f4] absolute top-0 left-0 right-0" />
 
-            <div className="w-14 h-14 rounded-2xl bg-[#2ac4f4]/15 border border-[#2ac4f4]/30 flex items-center justify-center text-[#2ac4f4] mb-6">
+            <div className="w-14 h-14 rounded-[8px] bg-[#2ac4f4]/15 border border-[#2ac4f4]/30 flex items-center justify-center text-[#2ac4f4] mb-6">
               <Key className="w-7 h-7" />
             </div>
 
@@ -215,7 +215,7 @@ export default function ResourcesAdmin() {
             </p>
 
             {authError && (
-              <div className="mb-6 p-4 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 text-xs flex items-start gap-3">
+              <div className="mb-6 p-4 rounded-[6px] bg-red-500/15 border border-red-500/30 text-red-300 text-xs flex items-start gap-3">
                 <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
                 <div>
                   <strong className="block font-bold">Access Verification Failed</strong>
@@ -235,7 +235,7 @@ export default function ResourcesAdmin() {
                   value={challengeEmail}
                   onChange={(e) => setChallengeEmail(e.target.value)}
                   placeholder="admin@elevationspine.com"
-                  className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#2ac4f4]"
+                  className="w-full bg-white/5 border border-white/15 rounded-[4px] px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#2ac4f4]"
                 />
               </div>
 
@@ -249,13 +249,13 @@ export default function ResourcesAdmin() {
                   value={challengePassword}
                   onChange={(e) => setChallengePassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#2ac4f4]"
+                  className="w-full bg-white/5 border border-white/15 rounded-[4px] px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#2ac4f4]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-sm py-3.5 rounded-xl shadow-[0_4px_20px_rgba(42,196,244,0.4)] hover:bg-[#6ecff4] transition-all cursor-pointer mt-2"
+                className="w-full bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-sm py-3.5 rounded-[4px] shadow-[0_4px_20px_rgba(42,196,244,0.4)] hover:bg-[#6ecff4] transition-all cursor-pointer mt-2"
               >
                 Authenticate Administrator
               </button>
@@ -272,7 +272,7 @@ export default function ResourcesAdmin() {
                       setChallengeEmail(email);
                       setChallengePassword("admin2026");
                     }}
-                    className="text-[10px] font-mono bg-white/10 hover:bg-[#2ac4f4]/20 border border-white/15 text-[#7fd0ff] px-2.5 py-1 rounded-md transition-colors"
+                    className="text-[10px] font-mono bg-white/10 hover:bg-[#2ac4f4]/20 border border-white/15 text-[#7fd0ff] px-2.5 py-1 rounded-[3px] transition-colors"
                   >
                     {email}
                   </button>
@@ -285,7 +285,7 @@ export default function ResourcesAdmin() {
           <div className="flex flex-col gap-8">
             {/* Dashboard Overview Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-[#111827] border border-white/10 rounded-2xl p-6 flex items-center justify-between shadow-xl">
+              <div className="bg-[#111827] border border-white/10 rounded-[8px] p-6 flex items-center justify-between shadow-xl">
                 <div>
                   <div className="text-white/50 text-xs font-mono uppercase tracking-wider">Security Access</div>
                   <div className="font-heading font-bold text-xl text-emerald-400 mt-1 flex items-center gap-2">
@@ -296,13 +296,13 @@ export default function ResourcesAdmin() {
                 </div>
                 <button
                   onClick={() => setShowWhitelistModal(true)}
-                  className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading text-xs px-3.5 py-2 rounded-xl transition-all"
+                  className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading text-xs px-3.5 py-2 rounded-[4px] transition-all"
                 >
                   Manage Whitelist
                 </button>
               </div>
 
-              <div className="bg-[#111827] border border-white/10 rounded-2xl p-6 flex items-center justify-between shadow-xl">
+              <div className="bg-[#111827] border border-white/10 rounded-[8px] p-6 flex items-center justify-between shadow-xl">
                 <div>
                   <div className="text-white/50 text-xs font-mono uppercase tracking-wider">Product Categories</div>
                   <div className="font-heading font-bold text-xl text-[#2ac4f4] mt-1">
@@ -312,13 +312,13 @@ export default function ResourcesAdmin() {
                 </div>
                 <Link
                   to="/resources"
-                  className="bg-[#2ac4f4]/15 hover:bg-[#2ac4f4]/30 text-[#7fd0ff] border border-[#2ac4f4]/40 font-heading text-xs px-3.5 py-2 rounded-xl transition-all"
+                  className="bg-[#2ac4f4]/15 hover:bg-[#2ac4f4]/30 text-[#7fd0ff] border border-[#2ac4f4]/40 font-heading text-xs px-3.5 py-2 rounded-[4px] transition-all"
                 >
                   Open Explorer
                 </Link>
               </div>
 
-              <div className="bg-[#111827] border border-white/10 rounded-2xl p-6 flex items-center justify-between shadow-xl">
+              <div className="bg-[#111827] border border-white/10 rounded-[8px] p-6 flex items-center justify-between shadow-xl">
                 <div>
                   <div className="text-white/50 text-xs font-mono uppercase tracking-wider">Folder Permissions</div>
                   <div className="font-heading font-bold text-xl text-amber-400 mt-1">
@@ -333,7 +333,7 @@ export default function ResourcesAdmin() {
             </div>
 
             {/* Main Admin Management Hub */}
-            <div className="bg-[#111827] border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <div className="bg-[#111827] border border-white/10 rounded-[12px] p-8 shadow-2xl">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
                 <div>
                   <h3 className="font-heading font-bold text-2xl text-white">
@@ -345,7 +345,7 @@ export default function ResourcesAdmin() {
                 </div>
                 <Link
                   to="/resources"
-                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-xs px-5 py-3 rounded-xl hover:bg-[#6ecff4] transition-all flex items-center gap-2 shrink-0 shadow-lg"
+                  className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-xs px-5 py-3 rounded-[4px] hover:bg-[#6ecff4] transition-all flex items-center gap-2 shrink-0 shadow-lg"
                 >
                   <Folder className="w-4 h-4" />
                   <span>View Interactive Explorer</span>
@@ -353,7 +353,7 @@ export default function ResourcesAdmin() {
               </div>
 
               {/* Security & Architecture Guide for Admin */}
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+              <div className="bg-white/5 border border-white/10 rounded-[8px] p-6 mb-8">
                 <h4 className="font-heading font-bold text-base text-[#2ac4f4] flex items-center gap-2 mb-3">
                   <ShieldAlert className="w-5 h-5" />
                   <span>Admin Security & Domain Whitelisting Strategy</span>
@@ -375,7 +375,7 @@ export default function ResourcesAdmin() {
               </div>
 
               {/* Whitelist Quick List */}
-              <div className="bg-[#0a0e17] border border-white/10 rounded-2xl p-6">
+              <div className="bg-[#0a0e17] border border-white/10 rounded-[8px] p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-heading font-bold text-sm text-white flex items-center gap-2">
                     <UserPlus className="w-4 h-4 text-[#2ac4f4]" />
@@ -393,7 +393,7 @@ export default function ResourcesAdmin() {
                   {adminWhitelist.map((email) => (
                     <div
                       key={email}
-                      className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 text-xs"
+                      className="flex items-center justify-between p-3 rounded-[4px] bg-white/5 border border-white/10 text-xs"
                     >
                       <div className="flex items-center gap-2 overflow-hidden">
                         <Mail className="w-3.5 h-3.5 text-[#2ac4f4] shrink-0" />
@@ -432,7 +432,7 @@ export default function ResourcesAdmin() {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative z-10 w-full max-w-[500px] bg-[#111827] border border-white/15 rounded-[28px] p-8 text-white shadow-2xl overflow-hidden"
+                className="relative z-10 w-full max-w-[500px] bg-[#111827] border border-white/15 rounded-[14px] p-8 text-white shadow-2xl overflow-hidden"
               >
                 <button
                   onClick={() => setShowWhitelistModal(false)}
@@ -443,7 +443,7 @@ export default function ResourcesAdmin() {
 
                 <div className="h-1 bg-[#2ac4f4] absolute top-0 left-0 right-0" />
 
-                <div className="w-11 h-11 rounded-xl bg-[#2ac4f4]/15 border border-[#2ac4f4]/30 flex items-center justify-center text-[#2ac4f4] mb-4">
+                <div className="w-11 h-11 rounded-[6px] bg-[#2ac4f4]/15 border border-[#2ac4f4]/30 flex items-center justify-center text-[#2ac4f4] mb-4">
                   <UserPlus className="w-5.5 h-5.5" />
                 </div>
 
@@ -461,11 +461,11 @@ export default function ResourcesAdmin() {
                     value={newAdminEmail}
                     onChange={(e) => setNewAdminEmail(e.target.value)}
                     placeholder="executive@elevationspine.com"
-                    className="flex-1 bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-[#2ac4f4]"
+                    className="flex-1 bg-white/5 border border-white/15 rounded-[4px] px-4 py-2.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-[#2ac4f4]"
                   />
                   <button
                     type="submit"
-                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-xs px-4 py-2.5 rounded-xl hover:bg-[#6ecff4] transition-all cursor-pointer whitespace-nowrap"
+                    className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-xs px-4 py-2.5 rounded-[4px] hover:bg-[#6ecff4] transition-all cursor-pointer whitespace-nowrap"
                   >
                     Add Admin
                   </button>
@@ -475,7 +475,7 @@ export default function ResourcesAdmin() {
                   {adminWhitelist.map((email) => (
                     <div
                       key={email}
-                      className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-mono"
+                      className="flex items-center justify-between p-3 rounded-[4px] bg-white/5 border border-white/10 text-xs font-mono"
                     >
                       <span className="text-white/90 truncate">{email}</span>
                       {adminWhitelist.length > 1 && (

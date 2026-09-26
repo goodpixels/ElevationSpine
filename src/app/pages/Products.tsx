@@ -1,54 +1,45 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router";
 import { useState } from "react";
+import { TextRevealTitle } from "../App.tsx";
 
 const productsData = [
   {
     id: "saber-c",
-    shortTitle: "SABER-C® AVIA™",
+    shortTitle: "Saber-C AVIA™",
     dotColor: "bg-[#2ac4f4]",
-    tag: "FDA 510(k) Cleared",
-    tagColor: "text-[#0891b2] bg-[#2ac4f4]/10 border-[#2ac4f4]/20",
-    title: "Saber-C® AVIA™",
-    description: "Complete anterior cervical fixation system combining zero-profile stability with the flexibility to choose spike or screw fixation—no instrument switching required.",
+    title: "Saber-C AVIA™",
+    logoUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787072756/elevation-spine-saberc-avia-logo-white-rgb_mxhj8o.svg",
+    description: "Porous 3D printed titanium anterior cervical fixation system with a zero-profile plate construct and spike or screw fixation options.",
     visualType: "image",
-    visualUrl: "https://res.cloudinary.com/dvm7fjhxs/image/upload/v1783568424/Saber-C_TECH-17-Spike_Deployment_Flush_ytsoeh.png",
+    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787014799/SaberXA_lyih36.png",
     link: "/saber-c",
-    cta: "View Device Details",
+    cta: "Explore Saber-C AVIA",
   },
   {
     id: "saber-xa",
-    shortTitle: "SABER-XA™",
-    dotColor: "bg-[#10b981]",
-    tag: "Pipeline development",
-    tagColor: "text-[#64748b] bg-slate-100 border-slate-200",
-    title: "SABER-XA™",
-    description: "The first and only 3D-printed titanium expandable ALIF implant with true intra-operative customization of height and lordosis, integrated anterior plating, and comprehensive fixation options.",
+    shortTitle: "Saber-XA™",
+    dotColor: "bg-[#0891b2]",
+    title: "Saber-XA™",
+    description: "Expandable anterior lumbar interbody technology with intraoperative height and lordotic adjustment and integrated fixation options.",
     visualType: "image",
-    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1785983935/SaberXA_lyih36.png",
+    visualUrl: "https://res.cloudinary.com/mrjnagvc/image/upload/v1787015670/SABER_X-A_ylfzww.png",
     link: "/saber-xa",
-    cta: "View Device Details",
-    statusUpdate: {
-      title: "Status update",
-      text: `"Validation phases for the XA series are exceeding biomechanical benchmarks. Enrollment for initial clinical evaluation begins Q4."`,
-    },
+    cta: "Explore Saber-XA",
   },
 ];
-
-import { TextRevealTitle } from "../App.tsx";
 
 export default function Products() {
   const [activeTab, setActiveTab] = useState("all");
 
   return (
-    <div className="pt-32 pb-24 px-6 md:px-16 lg:px-24 min-h-screen bg-[#f8fafc] overflow-hidden">
-      <div className="max-w-[1280px] mx-auto">
+    <div className="pt-32 pb-24 px-6 md:px-12 lg:px-16 min-h-screen bg-[#f8fafc] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-12 text-left"
         >
           <p className="font-mono text-[#2ac4f4] text-[13px] font-semibold tracking-widest mb-3 uppercase">
             Product Portfolio
@@ -58,37 +49,39 @@ export default function Products() {
             text="Engineered for procedural simplicity"
             className="font-heading font-bold text-[#1a2535] text-[40px] md:text-[56px] leading-[1.1] tracking-tight max-w-3xl"
           />
+          <p className="text-[#4a5568] text-[16px] md:text-[17px] leading-relaxed mt-4 max-w-2xl">
+            Differentiated spinal implant systems designed to simplify procedural workflow through integrated fixation and versatile implant options.
+          </p>
         </motion.div>
 
         {/* Product Tabs */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-start gap-4 mb-10"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex flex-wrap items-center justify-start gap-3 mb-10"
         >
           <button
             onClick={() => setActiveTab("all")}
-            className={`flex items-center gap-2.5 px-6 py-3.5 rounded-[16px] font-heading font-bold text-[14px] transition-all duration-300 ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-[8px] font-heading font-bold text-[14px] transition-all duration-200 cursor-pointer ${
               activeTab === "all" 
-                ? "bg-[#0a0e17] text-white shadow-[0_8px_20px_rgba(10,14,23,0.2)] scale-105" 
-                : "bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-800 hover:scale-105"
+                ? "bg-[#0a0e17] text-white shadow-sm" 
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
             }`}
           >
-            All Products
+            All Systems
           </button>
           {productsData.map((product) => (
             <button
               key={product.id}
               onClick={() => setActiveTab(product.id)}
-              className={`flex items-center gap-2.5 px-6 py-3.5 rounded-[16px] font-heading font-bold text-[14px] transition-all duration-300 ${
+              className={`flex items-center gap-2.5 px-5 py-2.5 rounded-[4px] font-heading font-bold text-[14px] transition-all duration-200 cursor-pointer ${
                 activeTab === product.id 
-                  ? "bg-[#0a0e17] text-white shadow-[0_8px_20px_rgba(10,14,23,0.2)] scale-105" 
-                  : "bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-800 hover:scale-105"
+                  ? "bg-[#0a0e17] text-white shadow-sm" 
+                  : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
               }`}
             >
-              <span className={`w-2.5 h-2.5 rounded-full ${product.dotColor}`} />
+              <span className={`w-2 h-2 rounded-full ${product.dotColor}`} />
               {product.shortTitle}
             </button>
           ))}
@@ -100,11 +93,11 @@ export default function Products() {
             {activeTab === "all" ? (
               <motion.div 
                 key="all"
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="flex flex-col gap-12 w-full"
+                className="flex flex-col gap-10 w-full"
               >
                 {productsData.map((product) => (
                   <ProductCard key={product.id} product={product} />
@@ -113,9 +106,9 @@ export default function Products() {
             ) : (
               <motion.div 
                 key={activeTab}
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
                 className="w-full"
               >
@@ -130,74 +123,79 @@ export default function Products() {
 }
 
 function ProductCard({ product }: { product: any }) {
+  const CardWrapper = product.link ? Link : "div";
+
   return (
-    <div className="bg-white rounded-[24px] overflow-hidden border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_80px_rgba(42,196,244,0.15)] transition-all duration-700 group hover:-translate-y-1 grid grid-cols-1 lg:grid-cols-2">
-      <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-        <div className={`inline-flex self-start items-center border rounded-full px-4 py-1.5 mb-6 ${product.tagColor}`}>
-          <span className="font-mono font-medium text-[11px] tracking-wider uppercase">
-            {product.tag}
-          </span>
+    <CardWrapper
+      to={product.link}
+      className="block relative bg-white rounded-[8px] overflow-hidden border border-black/[0.08] hover:border-[#2ac4f4]/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_60px_rgba(42,196,244,0.16)] hover:-translate-y-1.5 transition-all duration-300 ease-out group grid grid-cols-1 lg:grid-cols-12 cursor-pointer"
+    >
+      {/* Subtle top cyan line on hover */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#2ac4f4] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+      {/* Left Content */}
+      <div className="p-8 md:p-12 lg:col-span-6 flex flex-col justify-center relative z-10">
+        <div className="flex items-center justify-between gap-4 mb-3">
+          <div className="flex items-center gap-2.5">
+            <span className={`w-2.5 h-2.5 rounded-full ${product.dotColor} shadow-sm group-hover:scale-125 transition-transform duration-300`} />
+            <span className="font-mono text-xs text-slate-400 uppercase tracking-wider font-semibold">
+              {product.shortTitle} Platform
+            </span>
+          </div>
+          {product.logoUrl && (
+            <div className="bg-[#0a0e17] px-3 py-1.5 rounded-[5px] border border-black/10 shadow-sm flex items-center shrink-0">
+              <img 
+                src={product.logoUrl} 
+                alt={`${product.title} Logo`} 
+                className="h-4 sm:h-5 w-auto object-contain"
+              />
+            </div>
+          )}
         </div>
-        
-        <h2 className="font-heading font-bold text-[#0a0e17] text-[32px] md:text-[36px] tracking-tight mb-4 group-hover:text-[#2ac4f4] transition-colors duration-500">
-          {product.title}
+
+        <h2 className="font-heading font-bold text-[#0a0e17] text-[30px] md:text-[36px] tracking-tight mb-4 group-hover:text-[#0891b2] transition-colors duration-300 flex items-center justify-between">
+          <span>{product.title}</span>
         </h2>
         
-        <p className="text-[#4a5568] text-[16px] leading-relaxed mb-8">
+        <p className="text-[#4a5568] text-[15px] md:text-[16px] leading-relaxed mb-8">
           {product.description}
         </p>
 
         {product.link && (
-          <Link to={product.link} className="inline-block self-start mt-auto">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="bg-[#2ac4f4] text-white font-heading font-semibold text-[14px] px-8 py-3.5 rounded-full shadow-[0_8px_24px_rgba(42,196,244,0.3)] transition-colors duration-300 hover:bg-[#1aafde]"
-            >
-              {product.cta}
-            </motion.button>
-          </Link>
-        )}
-
-        {product.statusUpdate && (
-           <div className="mt-6 bg-slate-50 border border-black/[0.04] rounded-[16px] p-6 text-left">
-             <p className="font-mono font-semibold text-[#64748b] text-[11px] tracking-wider mb-2 uppercase">
-               {product.statusUpdate.title}
-             </p>
-             <p className="italic text-[#475569] text-[14px] leading-relaxed">
-               {product.statusUpdate.text}
-             </p>
-           </div>
+          <div className="inline-flex self-start mt-auto">
+            <span className="bg-[#2ac4f4] text-[#0a0e17] font-heading font-bold text-[14px] px-7 py-3 rounded-[4px] shadow-[0_4px_16px_rgba(42,196,244,0.3)] group-hover:shadow-[0_6px_22px_rgba(42,196,244,0.45)] group-hover:bg-[#6ecff4] transition-all duration-200 flex items-center gap-2">
+              <span>{product.cta}</span>
+              <span className="transform group-hover:translate-x-1.5 transition-transform duration-200">→</span>
+            </span>
+          </div>
         )}
       </div>
 
-      <div className="bg-[#0a0e17] min-h-[360px] lg:min-h-0 flex items-center justify-center relative overflow-hidden">
+      {/* Right Image Container */}
+      <div className="bg-gradient-to-br from-white via-[#f8fafc] to-[#eef2f6] min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] lg:col-span-6 flex items-center justify-center relative overflow-hidden p-6 sm:p-8 md:p-10 border-t lg:border-t-0 lg:border-l border-slate-200/70">
         {product.visualType === "image" ? (
-          <div className="absolute inset-0">
+          <div className="w-full h-full flex items-center justify-center relative">
             <img 
               src={product.visualUrl} 
               alt={product.title} 
-              className="w-full h-full object-cover scale-[1.02] group-hover:scale-110 transition-transform duration-1000 ease-out" 
+              className="max-h-[260px] sm:max-h-[320px] md:max-h-[360px] w-full object-contain drop-shadow-[0_15px_35px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.04] group-hover:-translate-y-1 transition-all duration-400 ease-out" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
           </div>
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a101d] group-hover:bg-[#0c1424] transition-colors duration-700">
-             <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(#2ac4f4 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }} />
-             
-             <div className="relative flex items-center justify-center z-10 transform group-hover:scale-110 transition-transform duration-700 ease-out">
-                <div className="w-24 h-24 rounded-full border border-[#2ac4f4]/35 flex items-center justify-center bg-[#2ac4f4]/10 shadow-[0_0_24px_rgba(42,196,244,0.12)]">
-                   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="w-8 h-8 text-[#2ac4f4]">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                   </svg>
-                </div>
-             </div>
-             <div className="mt-6 text-center z-10 px-6">
-                <h4 className="font-mono text-[#2ac4f4] text-[12px] tracking-[2px] font-semibold uppercase group-hover:tracking-[4px] transition-all duration-700">In Development</h4>
-             </div>
+          <div className="w-full h-full flex flex-col items-center justify-center bg-white/60 rounded-[6px] p-8 border border-dashed border-slate-300">
+            <div className="relative flex items-center justify-center z-10">
+              <div className="w-16 h-16 rounded-[6px] border border-[#2ac4f4]/40 flex items-center justify-center bg-[#2ac4f4]/10 shadow-[0_0_24px_rgba(42,196,244,0.15)] group-hover:scale-110 transition-transform duration-300">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="w-7 h-7 text-[#0891b2]">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div className="mt-4 text-center z-10 px-4">
+              <h4 className="font-mono text-[#0891b2] text-[12px] tracking-[2px] font-bold uppercase">In Development</h4>
+            </div>
           </div>
         )}
       </div>
-    </div>
+    </CardWrapper>
   );
 }
