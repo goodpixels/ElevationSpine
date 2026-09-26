@@ -1,6 +1,25 @@
+# Netlify free plan: keep deploys cheap.
+# docs/ is built locally (npm run build) and committed, so Netlify only
+# publishes it: no npm install, no build minutes.
 [build]
-  command = "npm run build"
   publish = "docs"
+  command = "echo 'Publishing prebuilt docs/'"
+  # Skip the deploy entirely unless the published site actually changed.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- docs/ netlify.toml"
+
+# No deploy previews or branch deploys: only main goes out.
+[context.deploy-preview]
+  ignore = "exit 0"
+
+[context.branch-deploy]
+  ignore = "exit 0"
+
+# Hashed bundles never change: let browsers and the CDN cache them for a
+# year, so repeat visits cost no bandwidth.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
   from = "/*"
